@@ -11,7 +11,7 @@ public class DbConnection {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			//connection = DriverManager.getConnection("jdbc:sqlite:D:/PCTO/CatalogoSpade/CatalogoSpade.db");
-			connection = DriverManager.getConnection("jdbc:sqlite:./CatalogoSpade.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:c:/pcto/CatalogoSpade.db");
 			System.out.println("connected");
 		}catch(ClassNotFoundException | SQLException e) {
 			System.out.println(e);
