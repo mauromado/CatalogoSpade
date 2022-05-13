@@ -2,12 +2,15 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import database.DbConnection;
 
 /**
  * Servlet implementation class CatalogoServlet
@@ -40,6 +43,9 @@ public class CatalogoServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter stampa = response.getWriter();
 		stampa.println("<p>questa e' una prova</p>");
+		DbConnection dbConnection = new DbConnection();
+		Connection c = dbConnection.connect();
+		
 	}
 	
 	
