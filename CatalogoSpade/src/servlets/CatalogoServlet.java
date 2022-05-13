@@ -12,40 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import database.DbConnection;
 
-/**
- * Servlet implementation class CatalogoServlet
- */
 public class CatalogoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public CatalogoServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter stampa = response.getWriter();
 		stampa.println("<p>questa e' una prova</p>");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter stampa = response.getWriter();
 		stampa.println("<p>questa e' una prova</p>");
 		DbConnection dbConnection = new DbConnection();
-		Connection c = dbConnection.connect();
-		
+		dbConnection.insert(); //TODO: Non stiamo inserendo niente, solo test per connessione con il Database
+		dbConnection.close();
 	}
 	
 	
