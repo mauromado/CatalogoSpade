@@ -3,6 +3,8 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,13 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Arma;
+import beans.ListaArmi;
 import database.DbConnection;
 
 public class CatalogoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String QRY_ARMI_LISTA_TUTTO = "SELECT ar.*,ct.NomeCategoria\n"
-														+ "FROM Arma AS ar,Categoria AS ct\n"
-														+ "WHERE ar.ID_Categoria = ct.ID;";
+
        
     public CatalogoServlet() {
         super();
@@ -25,14 +27,34 @@ public class CatalogoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.err.println("doGet Start");
-		boolean testDB;
+		ResultSet rs;
+		ListaArmi listaArmi = new ListaArmi();
 		response.setContentType("text/html");
 		PrintWriter stampa = response.getWriter();
 		stampa.println("<p>questa e' una prova del get</p>");
 		if(request.getParameter("catalogo") != null && request.getParameter("catalogo").equals("mostraCatalogo")) {
+			//System.out.println("Entrato nel if");
 			DbConnection dbConnection = new DbConnection();
-			testDB = dbConnection.connect(); //TODO: Non stiamo inserendo niente, solo test per connessione con il Database
+			try {
+				rs = dbConnection.selectAll();
+				while(rs.next()) {
+					Arma newArma= new Arma(rs.getString("Nome"),
+							rs.getFloat("Potenza"),
+							rs.getFloat("Peso"),
+							rs.getInt("Livello"),
+							rs.getString("TipoDanno"),
+							rs.getFloat("Stabilita"),
+							rs.getInt("RiduzioneDanno"),
+							rs.getString("Scaling"),
+							rs.getInt("ID_Categoria"));
+					listaArmi.getListaArmi().add(newArma);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} //TODO: Non stiamo inserendo niente, solo test per connessione con il Database
+
 			dbConnection.close();
+			request.setAttribute("listaArmi", listaArmi);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
 			dispatcher.forward(request, response);
 		}
