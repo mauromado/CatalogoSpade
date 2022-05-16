@@ -11,16 +11,17 @@ public class DbConnection {
 	private static String projectLocation = System.getenv("PROJECT_LOC");
 	private static String dbName = "CatalogoSpade.db";
 	
-	private Connection connect() {
+	public boolean connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connection = DriverManager.getConnection("jdbc:sqlite:" + projectLocation + "/" + dbName);
-			System.out.println("Connessione avvenuta con successo.");
+			System.err.println("Connessione avvenuta con successo.");
 		}catch(ClassNotFoundException | SQLException e) {
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
+			return true;
 		}
 		
-		return connection;
+		return false;
 	}
 	
 	public void close() {
@@ -35,7 +36,11 @@ public class DbConnection {
 	}
 	
 	//TODO: Da completare insert
-	public void insert() {
+	/*public void insert() {
 		Connection c = this.connect();
+	}*/
+	
+	public void executeQRY(String QRY){
+		
 	}
 }
