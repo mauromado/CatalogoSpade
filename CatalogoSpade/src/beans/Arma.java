@@ -9,10 +9,10 @@ public class Arma {
 	private float stabilita;
 	private int riduzioneDanno;
 	private String scaling;
-	private int idCategoria;
+	private String NomeCategoria;
 	
 	public Arma(String nome, float potenza, float peso, int livello, String tipoDanno, float stabilita,
-			int riduzioneDanno, String scaling, int idCategoria) {
+			int riduzioneDanno, String scaling, String NomeCategoria) {
 		super();
 		this.nome = nome;
 		this.potenza = potenza;
@@ -22,7 +22,7 @@ public class Arma {
 		this.stabilita = stabilita;
 		this.riduzioneDanno = riduzioneDanno;
 		this.scaling = scaling;
-		this.idCategoria = idCategoria;
+		this.NomeCategoria = NomeCategoria;
 	}
 	
 	public Arma() {
@@ -92,18 +92,18 @@ public class Arma {
 		this.scaling = scaling;
 	}
 	
-	public int getIdCategoria() {
-		return idCategoria;
+	public String getIdCategoria() {
+		return NomeCategoria;
 	}
 
-	public void setIdCategoria(int idCategoria) {
-		this.idCategoria = idCategoria;
+	public void setIdCategoria(String NomeCategoria) {
+		this.NomeCategoria = NomeCategoria;
 	}
 
 	public String toString() {
 		return "nome=" + nome + ", potenza=" + potenza + ", peso=" + peso + ", livello=" + livello
 				+ ", tipoDanno=" + tipoDanno + ", stabilita=" + stabilita + ", riduzioneDanno=" + riduzioneDanno
-				+ ", scaling=" + scaling + ", ID_Categoria" + idCategoria;
+				+ ", scaling=" + scaling + ", NomeCategoria" + NomeCategoria;
 	}
 	
 	public boolean equals(Arma comp_arma) {

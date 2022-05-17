@@ -46,7 +46,7 @@ public class CatalogoServlet extends HttpServlet {
 							rs.getFloat("Stabilita"),
 							rs.getInt("RiduzioneDanno"),
 							rs.getString("Scaling"),
-							rs.getInt("ID_Categoria"));
+							rs.getString("NomeCategoria"));
 					listaArmi.getListaArmi().add(newArma);
 				}
 			} catch (SQLException e) {
