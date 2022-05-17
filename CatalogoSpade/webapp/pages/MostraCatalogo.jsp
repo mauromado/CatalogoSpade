@@ -4,11 +4,29 @@
 <html>
 <head>
 <style>
+a:link, a:visited {
+  color: #F2E37C;
+  text-decoration: none;
+}
+a:hover {
+  color: #F2E37C;
+  text-decoration: underline;
+}
+a:active {
+  color: #F55850;
+  text-decoration: none;
+}
 th, td {
 	border: 2px solid #5B594C;
 	padding: 10px;
 	background-color: #5B594C;
 	text-align: center;
+}
+.coloriDispari {
+	color: #F353E3;
+	}
+.coloriPari {
+	color: white;
 }
 
 #tabellaArmi {
@@ -23,7 +41,6 @@ th, td {
 <title>Catalogo Armi</title>
 </head>
 <body>
-	<p>Qua mostreremo la lista delle armi</p>
 	<table id="tabellaArmi">
 		<caption>Elenco armi attualmente inserite</caption>
 		<thead>
@@ -49,8 +66,9 @@ th, td {
 			ListaArmi listaArmi = (ListaArmi) request.getAttribute("listaArmi");
 			for (int x = 0; x < listaArmi.getListaArmi().size(); x++) {
 				Arma tempArma = listaArmi.getListaArmi().get(x);
+				String coloreRiga = x%2 == 0? "coloriDispari": "coloriPari"; 
 			%>
-			<tr>
+			<tr class = <%= coloreRiga %>>
 				<td><%=tempArma.getNome()%></td>
 				<td><%=tempArma.getPotenza()%></td>
 				<td><%=tempArma.getPeso()%></td>
