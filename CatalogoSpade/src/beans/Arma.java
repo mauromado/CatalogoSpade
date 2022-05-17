@@ -92,11 +92,11 @@ public class Arma {
 		this.scaling = scaling;
 	}
 	
-	public String getIdCategoria() {
+	public String getNomeCategoria() {
 		return NomeCategoria;
 	}
 
-	public void setIdCategoria(String NomeCategoria) {
+	public void setNomeCategoria(String NomeCategoria) {
 		this.NomeCategoria = NomeCategoria;
 	}
 
