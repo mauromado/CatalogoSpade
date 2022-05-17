@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS "ArmaBianca" (
 	"Descrizione"	TEXT NOT NULL,
 	"ID_Abilita"	INTEGER,
 	"ID_Categoria"	INTEGER,
-	FOREIGN KEY("ID_Categoria") REFERENCES "Categoria"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY("ID_Abilita") REFERENCES "Abilita"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("ID_Categoria") REFERENCES "Categoria"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY("ID" AUTOINCREMENT)
 );
 CREATE TABLE IF NOT EXISTS "ArmaDistanza" (
@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS "Scudi" (
 	"Descrizione"	TEXT NOT NULL,
 	"ID_Abilita"	INTEGER,
 	"ID_Categoria"	INTEGER,
-	FOREIGN KEY("ID_Categoria") REFERENCES "Categoria"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY("ID_Abilita") REFERENCES "Abilita"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("ID_Categoria") REFERENCES "Categoria"("ID") ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY("ID" AUTOINCREMENT)
 );
 INSERT INTO "Abilita" ("ID","Nome","Descrizione","TipologiaArma") VALUES (1,'concentrazione','Assume a stance from which to execute a lunging slash or a deflecting parry','arma bianca'),
@@ -72,11 +72,11 @@ INSERT INTO "Abilita" ("ID","Nome","Descrizione","TipologiaArma") VALUES (1,'con
  (3,'parata','Deflect an attack when timed properly and follow up with a critical hit. Works while equipped in either hand.','scudi'),
  (4,'parata magica','Repel an attack at the right time to follow up with a critical hit. Works while equipped in either hand. Also deflects spells.','scudi'),
  (5,'attacco con scudo','Without lowering your guard, strike the enemy with the shield to knock them back or stagger them. Works while equipped in either hand.','scudi'),
- (6,'spallata','Lunge into a shoulder tackle pushing back enemies to create distance.
-
+ (6,'spallata','Lunge into a shoulder tackle pushing back enemies to create distance.
+
 Deals no damage and serves as a kind of kick.','distanza'),
- (7,'raffica','Swiftly nocks arrows with finesse after drawing the bow, allowing for consecutive shots.
-
+ (7,'raffica','Swiftly nocks arrows with finesse after drawing the bow, allowing for consecutive shots.
+
 Speed of shots roughly doubles but damage is likewise halfed. Costs minor FP per shot.','distanza'),
  (8,'perforazione','Pull the arrow even further back for a more powerful shot that can also pierce shields.','distanza'),
  (9,'carica','Hold weapon at waist and charge at foe. Only, it is important to have good footing','arma bianca');
