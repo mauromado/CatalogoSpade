@@ -5,17 +5,18 @@
 <head>
 <style>
 th, td {
-	border: 2px solid black;
+	border: 2px solid #5B594C;
 	padding: 10px;
-	background-color: white;
+	background-color: #5B594C;
 	text-align: center;
 }
 
 #tabellaArmi {
 	border-width: 2px;
-	border-colore: #fa720a;
+	border-colore: #5B594C;
 	padding: 10px;
-	background-color: white;
+	color: #F6F6F2;
+	background-color: #F2E37C;
 }
 </style>
 <meta charset="ISO-8859-1">
@@ -27,7 +28,7 @@ th, td {
 		<caption>Elenco armi attualmente inserite</caption>
 		<thead>
 			<tr>
-				<th colspan="9">Catalogo Armi</th>
+				<th colspan="10">Catalogo Armi</th>
 			</tr>
 			<tr>
 				<td>Nome</td>
@@ -39,6 +40,7 @@ th, td {
 				<td>Riduzione Danno</td>
 				<td>Scaling</td>
 				<td>Nome categoria</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -58,11 +60,23 @@ th, td {
 				<td><%=tempArma.getRiduzioneDanno()%></td>
 				<td><%=tempArma.getScaling()%></td>
 				<td><%=tempArma.getNomeCategoria()%></td>
+				<td>
+					<a href = "./catalogoServlet?updateArma=<%=tempArma.getNome()%>">Aggiorna</a>
+					&nbsp;&nbsp;
+					<a href = "./catalogoServlet?deleteArma=<%=tempArma.getNome()%>">Elimina</a>
+				</td>
 			</tr>
 			<%
 			}
 			%>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan = "10">
+					<a href = "./catalogoServlet?insertArma">Inserisci nuova arma</a>
+				</td>
+			</tr>		
+		</tfoot>
 	</table>
 </body>
 </html>

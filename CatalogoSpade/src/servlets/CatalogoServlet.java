@@ -19,6 +19,11 @@ import database.DbConnection;
 
 public class CatalogoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String PARAMETER_CATALOGO = "catalogo";
+	private static final String PARAMETER_VALUE_CATALOGO = "mostraCatalogo";
+	private static final String PARAMETER_UPDATE = "updateArma";
+	private static final String PARAMETER_DELETE = "deleteArma";
+	private static final String PARAMETER_INSERT = "insertArma";
 
        
     public CatalogoServlet() {
@@ -32,7 +37,7 @@ public class CatalogoServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter stampa = response.getWriter();
 		stampa.println("<p>questa e' una prova del get</p>");
-		if(request.getParameter("catalogo") != null && request.getParameter("catalogo").equals("mostraCatalogo")) {
+		if(request.getParameter(PARAMETER_CATALOGO) != null && request.getParameter(PARAMETER_CATALOGO).equals(PARAMETER_VALUE_CATALOGO)) {
 			//System.out.println("Entrato nel if");
 			DbConnection dbConnection = new DbConnection();
 			try {
@@ -58,7 +63,15 @@ public class CatalogoServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
 			dispatcher.forward(request, response);
 		}
-		
+		else if(request.getParameter(PARAMETER_UPDATE) != null) {
+			System.err.println("chiamata update arma");
+		}
+		else if(request.getParameter(PARAMETER_DELETE) != null) {
+			System.err.println("chiamata delete arma");
+		}
+		else if(request.getParameter(PARAMETER_INSERT) != null) {
+			System.err.println("chiamata insert arma");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

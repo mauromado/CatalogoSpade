@@ -1,6 +1,7 @@
 package beans;
 
 public class Arma {
+	
 	private String nome;
 	private float potenza;
 	private float peso;
