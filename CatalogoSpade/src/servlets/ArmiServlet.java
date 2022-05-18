@@ -17,7 +17,7 @@ import beans.Arma;
 import beans.ListaArmi;
 import database.DbConnection;
 
-public class CatalogoServlet extends HttpServlet {
+public class ArmiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PARAMETER_CATALOGO = "catalogo";
 	private static final String PARAMETER_VALUE_CATALOGO = "mostraCatalogo";
@@ -26,7 +26,7 @@ public class CatalogoServlet extends HttpServlet {
 	private static final String PARAMETER_INSERT = "insertArma";
 
        
-    public CatalogoServlet() {
+    public ArmiServlet() {
         super();
     }
 
