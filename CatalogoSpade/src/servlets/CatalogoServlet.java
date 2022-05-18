@@ -31,14 +31,9 @@ public class CatalogoServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.err.println("doGet Start");
-		ResultSet rs;
 		ListaArmi listaArmi = new ListaArmi();
-		response.setContentType("text/html");
-		PrintWriter stampa = response.getWriter();
-		stampa.println("<p>questa e' una prova del get</p>");
 		if(request.getParameter(PARAMETER_CATALOGO) != null && request.getParameter(PARAMETER_CATALOGO).equals(PARAMETER_VALUE_CATALOGO)) {
-			//System.out.println("Entrato nel if");
+			ResultSet rs;
 			DbConnection dbConnection = new DbConnection();
 			try {
 				rs = dbConnection.selectAll();
@@ -56,8 +51,7 @@ public class CatalogoServlet extends HttpServlet {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-			} //TODO: Non stiamo inserendo niente, solo test per connessione con il Database
-
+			}
 			dbConnection.close();
 			request.setAttribute("listaArmi", listaArmi);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
@@ -67,7 +61,15 @@ public class CatalogoServlet extends HttpServlet {
 			System.err.println("chiamata update arma");
 		}
 		else if(request.getParameter(PARAMETER_DELETE) != null) {
-			System.err.println("chiamata delete arma");
+			DbConnection dbConnection = new DbConnection();
+			try {
+				boolean ris = dbConnection.delete(request.getParameter(PARAMETER_DELETE));
+				if(!ris) {
+					System.err.println("Errore nella delete");}
+			
+			}catch(Exception e) {}
+			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(PARAMETER_INSERT) != null) {
 			System.err.println("chiamata insert arma");
