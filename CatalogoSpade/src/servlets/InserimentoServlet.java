@@ -1,7 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import beans.Arma;
+import database.DbConnection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,7 +53,15 @@ public class InserimentoServlet extends HttpServlet {
 		
 		Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
 				             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma);
-		
+		DbConnection dbConnection = new DbConnection();
+		try {
+			dbConnection.insertArma(arma);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		dbConnection.close();
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+		dispatcher.forward(request, response);
 	}
 
 }
