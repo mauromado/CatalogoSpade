@@ -20,18 +20,18 @@ function nonBlank(myField) {
 	}
 
 	function checkNome(theForm){
-		var corrept = true;
+		var correct = true;
 		if (nonBlank(theForm.nome)){
 			var tempStr = new String(theForm.nome.value);
 			for (let i = 0; i < tempStr.length; i++){
 				if ((isNaN(tempStr.charAt(i)) && !containsSpecialChars(tempStr)) || tempStr.charAt(i) == " " ){
-					corrept = true;
+					correct = true;
 				} else {
-				corrept = false;
+				correct = false;
 				alert("Il nome dell'arma non può contenere caratteri speciali!");
 				}
 			}
 		}
-		return corrept;
+		return correct;
 	}		
 
