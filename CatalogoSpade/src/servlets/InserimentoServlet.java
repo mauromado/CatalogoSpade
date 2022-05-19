@@ -31,13 +31,20 @@ public class InserimentoServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.err.println("inserimento servlet doPost");
 		String nomeArma = request.getParameter("nome");
 		float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
 		float pesoArma = Float.parseFloat(request.getParameter("peso"));
 		int livelloArma = Integer.parseInt(request.getParameter("livello"));
 		String tipoDannoArma = request.getParameter("tipoDanno");
 		float stabilitaArma = Float.parseFloat(request.getParameter("stabilita"));
-		int riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
+//		int riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
+		int riduzioneDannoArma;
+		try{
+			riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
+		}catch(NumberFormatException e){
+			riduzioneDannoArma = 0;
+		}
 		String scalingArma = request.getParameter("scaling");
 		String nomeCategoriaArma = request.getParameter("nomeCategoria");
 		

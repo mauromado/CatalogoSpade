@@ -45,6 +45,7 @@ function nonBlank(myField) {
 			if (checkOnlySpaces(tempStr)){
 				correct = false;
 				alert("Il nome dell'arma non e' corretto!");
+				return correct;
 			}
 			for (let i = 0; i < tempStr.length; i++){
 				if ((isNaN(tempStr.charAt(i)) && !containsSpecialChars(tempStr)) || tempStr.charAt(i) == " " ){
@@ -52,6 +53,7 @@ function nonBlank(myField) {
 				} else {
 				correct = false;
 				alert("Il nome dell'arma non puo' contenere caratteri speciali!");
+				break;
 				}
 			}
 		}
