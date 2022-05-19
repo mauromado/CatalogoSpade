@@ -20,6 +20,7 @@ public class DbConnection {
 	private static final String QRY_INSERT_ARMA="INSERT INTO Arma(Nome,Potenza,Peso,Livello,TipoDanno,"
 			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria)" 
 			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
+	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
 	
 	public Connection connect() {
 		try {
@@ -91,6 +92,13 @@ public class DbConnection {
 		catch(Exception e) {
 			System.out.println("Insert: fallito l'inserimento dell'arma "+ arma.getNome() +" ("+e.getMessage()+")");
 		}
+	}
+	
+	public ResultSet selectCategorie()throws SQLException{
+		Connection c = connect();
+		Statement s = c.createStatement();
+		ResultSet rs = s.executeQuery(QRY_CATEGORIA_LISTA_NOMI);
+		return rs;
 	}
 	
 	

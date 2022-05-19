@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import beans.Arma;
@@ -11,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import beans.ListaCategoria;
 
 
 
@@ -26,6 +29,19 @@ public class InserimentoServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getParameter("insertArma") != null) {
+			ResultSet rs;
+			DbConnection dbConnection = new DbConnection();
+			ListaCategoria listaNomiCategorie = new ListaCategoria();
+			try {
+				rs = dbConnection.selectCategorie();
+				while(rs.next()){
+					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+				}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("listaNomiCategorie", listaNomiCategorie);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/CreaArma.jsp");
 			dispatcher.forward(request, response);
 		}

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="beans.ListaCategoria"%>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,9 +62,13 @@
 		  <label for="nomeCategoria">Categoria arma:</label>
           <br>
           <select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required>
-            <option value="armaBianca">Arma bianca</option>
+          <%ListaCategoria listaNomiCategoria = (ListaCategoria) request.getAttribute("listaNomiCategorie");
+          	for(int x=0; x<listaNomiCategoria.getListaNomiCategorie().size(); x++){ %>
+          	<option value ="<%= listaNomiCategoria.getListaNomiCategorie().get(x) %>"><%= listaNomiCategoria.getListaNomiCategorie().get(x) %></option>
+          <%} %>
+           <!-- <option value="armaBianca">Arma bianca</option>
             <option value="armaDistanza">Arma a distanza</option>
-            <option value="scudo">Scudo</option>
+            <option value="scudo">Scudo</option> -->
           </select>
           <br><br>
 		  <input type="submit" value="inserisci">
