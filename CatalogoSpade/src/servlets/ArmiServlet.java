@@ -63,7 +63,7 @@ public class ArmiServlet extends HttpServlet {
 		else if(request.getParameter(PARAMETER_DELETE) != null) {
 			DbConnection dbConnection = new DbConnection();
 			try {
-				boolean ris = dbConnection.delete(request.getParameter(PARAMETER_DELETE));
+				boolean ris = dbConnection.deleteArma(request.getParameter(PARAMETER_DELETE));
 				if(!ris) {
 					System.err.println("Errore nella delete");}
 			

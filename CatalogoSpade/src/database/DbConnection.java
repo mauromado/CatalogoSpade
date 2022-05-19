@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import beans.Arma;
+
 
 public class DbConnection {
 	private Connection connection;
@@ -15,6 +17,9 @@ public class DbConnection {
 	private static final String QRY_ARMI_LISTA_TUTTO = "SELECT * "
 			 									    + "FROM Arma;";
 	private static final String QRY_DELETE_ARMA="DELETE FROM Arma WHERE Nome=?;";
+	private static final String QRY_INSERT_ARMA="INSERT INTO Arma(Nome,Potenza,Peso,Livello,TipoDanno,"
+			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria)" 
+			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
 	
 	public Connection connect() {
 		try {
@@ -51,7 +56,7 @@ public class DbConnection {
 		return rs;
 	}
 	
-	public boolean delete(String nomeArma) throws SQLException{
+	public boolean deleteArma(String nomeArma) throws SQLException{
 		boolean ris = false;
 		Connection c = connect();
 		try {
@@ -65,6 +70,27 @@ public class DbConnection {
 			System.out.println("Delete: fallita la cancellazione dell'arma "+nomeArma +" ("+e.getMessage()+")");
 		}
 		return ris;
+	}
+	
+	public void insertArma(Arma arma) throws SQLException{
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_INSERT_ARMA);
+			s.setString(1, arma.getNome());
+			s.setFloat(2, arma.getPotenza());
+			s.setFloat(3, arma.getPeso());
+			s.setInt(4, arma.getLivello());
+			s.setString(5, arma.getTipoDanno());
+			s.setFloat(6, arma.getStabilita());
+			s.setFloat(7, arma.getRiduzioneDanno());
+			s.setString(8, arma.getScaling());
+			s.setString(9, arma.getNomeCategoria());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ arma.getNome() +" ("+e.getMessage()+")");
+		}
 	}
 	
 	

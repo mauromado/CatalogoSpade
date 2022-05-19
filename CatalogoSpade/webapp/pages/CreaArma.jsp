@@ -10,30 +10,26 @@
 </head>
 <body>
 	<div>
-	  <form action="#" method="post">
+	  <form action="inserimentoServlet" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
 		  <input type="text" id="name" name="nome" onChange="return checkNome(this.form)"  >
 		  <br><br>
-		  <label for="desc">Descrizione:</label>
-		  <br>
-		  <input type="text" id="desc" name="descrizione" >
-		  <br><br>
 		  <label for="Pot">Potenza:</label>
 		  <br>
-		  <input type="number" id="pot" name="potenza" >
+		  <input type="number" id="pot" name="potenza" min="0">
 		  <br><br>
 		  <label for="Peso">Peso:</label>
 		  <br>
-		  <input type="number" id="peso" name="peso" >
+		  <input type="number" id="peso" name="peso" min="0">
 		  <br><br>
 		  <label for="Liv">Livello:</label>
 		  <br>
-		  <input type="number" id="livello" min="0" max="10" value="0">
+		  <input type="number" id="livello" name="livello" min="0" max="10" value="0">
 		  <br><br>
 		  <label for="TipoDanno">Tipo di Danno:</label>
 		  <br>
-		  <select name="TipoDanno" id="tipoDanno">
+		  <select name="tipoDanno" id="tipoDanno">
 		    <option value="contundente">Contundente</option>
 		    <option value="taglio">Taglio</option>
 		    <option value="fisico">Fisico</option>
@@ -44,15 +40,16 @@
 		  <br><br>
 		  <label for="Stabilita">Stabilita':</label>
 		  <br>
-		  <input type="number" id="stabilita" name="stabilita" >
+		  <input type="number" id="stabilita" name="stabilita" min="0">
 		  <br><br>
 		  <label for="RiduzioneDanno">Riduzione del danno:</label>
 		  <br>
-		  <input type="number" id="riduzioneDanno" name="riduzioneDanno" >
+		  <input type="number" id="riduzioneDanno" name="riduzioneDanno" min="0">
 		  <br><br>
 		  <label for="Scaling">Scaling:</label>
 		  <br>
-		  <input type="text" id="scaling" name="scaling" >
+		  <input type="text" id="scaling" name="scaling" onChange="isCorrectScaling(this.form)">
+		   (nota:formato scaling:[S,A,B,C,D,E][str,dex,int,fth],...)
 		  <br><br>
 		  <input type="submit" value="inserisci">
 	  </form>
