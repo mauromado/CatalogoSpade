@@ -98,7 +98,6 @@ public class ArmiServlet extends HttpServlet {
 			}catch(Exception e) {
 				System.err.println(e.getMessage());
 				}
-			System.out.println("Cancellazione dell'arma "+PARAMETER_DELETE+"");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 			dispatcher.forward(request, response);
 		}

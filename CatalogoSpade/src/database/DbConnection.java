@@ -75,8 +75,8 @@ public class DbConnection {
 	
 	public void insertUpdateArma(Arma arma,boolean isUpdate) throws SQLException{
 		Connection c = connect();
-		System.out.println("Arrivato al inserUpdateArma");
 		try {
+			
 			PreparedStatement s = c.prepareStatement(isUpdate ? QRY_UPDATE_ARMA : QRY_INSERT_ARMA);
 			s.setString(1, arma.getNome());
 			s.setFloat(2, arma.getPotenza());
@@ -110,9 +110,10 @@ public class DbConnection {
 	
 	public ResultSet selectArmaByNome(String nomeArma)throws SQLException{
 		Connection c = connect();
-		Statement s = c.createStatement();
+		PreparedStatement s = c.prepareStatement(QRY_SELECT_ARMA_BY_NOME);
 		System.out.println("Arma da cercare: " + nomeArma);
-		ResultSet rs = s.executeQuery("SELECT * FROM Arma A WHERE A.ID=4");
+		s.setString(1,nomeArma);
+		ResultSet rs = s.executeQuery();
 		return rs;
 	}
 	

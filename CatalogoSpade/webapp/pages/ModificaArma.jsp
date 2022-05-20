@@ -11,11 +11,12 @@
 </head>
 <body>
 	  <%Arma arma = (Arma)request.getAttribute("armaToUpdate"); 
-	    String tempNome= arma.getNome();%>
+	    String tempNome= arma.getNome();
+	    request.setAttribute("nome",tempNome);%>
 	  <form action="armiServlet?arma=<%= tempNome%>" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
-		  <input type="text" id="name" name="nome" value="<%= arma.getNome() %>" onChange="return checkNome(this.form)" disabled>
+		  <input type="text" id="name" name="nome" value="<%= arma.getNome() %>" onChange="return checkNome(this.form)" readonly>
 		  <br><br>
 		  <label for="Pot">Potenza:</label>
 		  <br>
