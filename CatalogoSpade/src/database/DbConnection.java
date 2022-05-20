@@ -22,6 +22,9 @@ public class DbConnection {
 			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
 	private static final String QRY_SELECT_ARMA_BY_NOME="SELECT * FROM Arma WHERE Nome=?;";
+	private static final String QRY_UPDATE_ARMA="UPDATE Arma SET Nome=?,Potenza=?,Peso=?,Livello=?,"
+												+ "TipoDanno=?,Stabilita=?,RiduzioneDanno=?,Scaling=?,NomeCategoria=?"
+												+ " WHERE Nome=?";
 	
 	
 	public Connection connect() {
@@ -47,11 +50,6 @@ public class DbConnection {
 		}
 	}
 	
-	//TODO: Da completare insert
-	/*public void insert() {
-		Connection c = this.connect();
-	}*/
-	
 	public ResultSet selectAll() throws SQLException{
 		Connection c = connect();
 		Statement s = c.createStatement();
@@ -75,10 +73,11 @@ public class DbConnection {
 		return ris;
 	}
 	
-	public void insertArma(Arma arma) throws SQLException{
+	public void insertUpdateArma(Arma arma,boolean isUpdate) throws SQLException{
 		Connection c = connect();
+		System.out.println("Arrivato al inserUpdateArma");
 		try {
-			PreparedStatement s = c.prepareStatement(QRY_INSERT_ARMA);
+			PreparedStatement s = c.prepareStatement(isUpdate ? QRY_UPDATE_ARMA : QRY_INSERT_ARMA);
 			s.setString(1, arma.getNome());
 			s.setFloat(2, arma.getPotenza());
 			s.setFloat(3, arma.getPeso());
@@ -91,6 +90,9 @@ public class DbConnection {
 			}
 			s.setString(8, arma.getScaling());
 			s.setString(9, arma.getNomeCategoria());
+			if(isUpdate) {
+				s.setString(10, arma.getNome());
+			}
 			s.executeUpdate();
 			s.close();
 		}
@@ -110,8 +112,6 @@ public class DbConnection {
 		Connection c = connect();
 		Statement s = c.createStatement();
 		System.out.println("Arma da cercare: " + nomeArma);
-		//PreparedStatement s = c.prepareStatement(QRY_SELECT_ARMA_BY_NOME);
-		//s.setString(1, nomeArma);
 		ResultSet rs = s.executeQuery("SELECT * FROM Arma A WHERE A.ID=4");
 		return rs;
 	}

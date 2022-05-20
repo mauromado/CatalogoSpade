@@ -27,6 +27,7 @@ public class ArmiServlet extends HttpServlet {
 	private static final String PARAMETER_UPDATE = "updateArma";
 	private static final String PARAMETER_DELETE = "deleteArma";
 	private static final String PARAMETER_INSERT = "insertArma";
+	private static final String PARAMETER_UPDATE_INSERT_BUTTON = "tipoOperazione";
 
        
     public ArmiServlet() {
@@ -123,6 +124,8 @@ public class ArmiServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter(PARAMETER_UPDATE_INSERT_BUTTON) != null && (request.getParameter(PARAMETER_UPDATE_INSERT_BUTTON).equals("inserisci")
+				|| request.getParameter(PARAMETER_UPDATE_INSERT_BUTTON).equals("modifica")))  {
 		String nomeArma = request.getParameter("nome");
 		float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
 		float pesoArma = Float.parseFloat(request.getParameter("peso"));
@@ -142,13 +145,22 @@ public class ArmiServlet extends HttpServlet {
 				             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma);
 		DbConnection dbConnection = new DbConnection();
 		try {
-			dbConnection.insertArma(arma);
+			if(request.getParameter(PARAMETER_UPDATE_INSERT_BUTTON).equals("inserisci")) {
+				dbConnection.insertUpdateArma(arma,false);
+			}
+			else {
+				if(request.getParameter(PARAMETER_UPDATE_INSERT_BUTTON).equals("modifica")) {
+					dbConnection.insertUpdateArma(arma,true);
+				}
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		dbConnection.close();
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 		dispatcher.forward(request, response);
+		}
 	}
 	
 }

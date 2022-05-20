@@ -60,7 +60,7 @@
            	   <%} %>
 		  </select> 
 		  <br><br>
-		  <input id="insertButton" type="submit" value="inserisci" disabled>
+		  <input id="insertButton" type="submit" name="tipoOperazione" value="inserisci" disabled>
 	  </form>
 	</div>
 </body>

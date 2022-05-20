@@ -5,16 +5,17 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Creazione arma</title>
+	<title>Modifica arma</title>
 	<script type="text/javascript" src="./scripts/utils.js"></script>
 	
 </head>
 <body>
-	  <%Arma arma = (Arma)request.getAttribute("armaToUpdate"); %>
-	  <form action="armiServlet" method="post">
+	  <%Arma arma = (Arma)request.getAttribute("armaToUpdate"); 
+	    String tempNome= arma.getNome();%>
+	  <form action="armiServlet?arma=<%= tempNome%>" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
-		  <input type="text" id="name" name="nome" value="<%= arma.getNome() %>" onChange="return checkNome(this.form)" >
+		  <input type="text" id="name" name="nome" value="<%= arma.getNome() %>" onChange="return checkNome(this.form)" disabled>
 		  <br><br>
 		  <label for="Pot">Potenza:</label>
 		  <br>
@@ -61,7 +62,7 @@
            	   <%} %>
 		  </select> 
 		  <br><br>
-		  <input id="insertButton" type="submit" value="inserisci" disabled>
+		  <input id="insertButton" type="submit" name="tipoOperazione" value="modifica">
 	  </form>
 	</div>
 </body>
