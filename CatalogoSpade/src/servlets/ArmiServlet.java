@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Arma;
 import beans.ListaArmi;
+import beans.ListaCategoria;
 import database.DbConnection;
 
 public class ArmiServlet extends HttpServlet {
@@ -49,7 +50,7 @@ public class ArmiServlet extends HttpServlet {
 							rs.getString("NomeCategoria"));
 					listaArmi.getListaArmi().add(newArma);
 				}
-			} catch (SQLException e) {
+			} catch (SQLException e){
 				e.printStackTrace();
 			}
 			dbConnection.close();
@@ -67,18 +68,63 @@ public class ArmiServlet extends HttpServlet {
 				if(!ris) {
 					System.err.println("Errore nella delete");}
 			
-			}catch(Exception e) {}
+			}catch(Exception e) {
+				System.err.println(e.getMessage());
+				}
+			System.out.println("Cancellazione dell'arma "+PARAMETER_DELETE+"");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(PARAMETER_INSERT) != null) {
-			System.err.println("chiamata insert arma");
+			ResultSet rs;
+			DbConnection dbConnection = new DbConnection();
+			ListaCategoria listaNomiCategorie = new ListaCategoria();
+			try {
+				rs = dbConnection.selectCategorie();
+				while(rs.next()){
+					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+				}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("listaNomiCategorie", listaNomiCategorie);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/CreaArma.jsp");
+			dispatcher.forward(request, response);
 		}
+		
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		System.err.println("inserimento servlet doPost");
+		String nomeArma = request.getParameter("nome");
+		float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
+		float pesoArma = Float.parseFloat(request.getParameter("peso"));
+		int livelloArma = Integer.parseInt(request.getParameter("livello"));
+		String tipoDannoArma = request.getParameter("tipoDanno");
+		float stabilitaArma = Float.parseFloat(request.getParameter("stabilita"));
+		int riduzioneDannoArma;
+		try{
+			riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
+		}catch(NumberFormatException e){
+			riduzioneDannoArma = 0;
+		}
+		String scalingArma = request.getParameter("scaling");
+		String nomeCategoriaArma = request.getParameter("nomeCategoria");
+		
+		Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
+				             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma);
+		DbConnection dbConnection = new DbConnection();
+		try {
+			dbConnection.insertArma(arma);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		dbConnection.close();
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+		dispatcher.forward(request, response);
 	}
 	
-	
-
 }

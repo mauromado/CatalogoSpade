@@ -13,17 +13,8 @@
   	<servlet-name>armiServlet</servlet-name>
   	<servlet-class>servlets.ArmiServlet</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>inserimentoServlet</servlet-name>
-    <servlet-class>servlets.InserimentoServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>armiServlet</servlet-name>
   	<url-pattern>/armiServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>inserimentoServlet</servlet-name>
-  	<url-pattern>/inserimentoServlet</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping>  
 </web-app>

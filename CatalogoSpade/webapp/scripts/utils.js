@@ -3,7 +3,7 @@ const scalingValue = ["Astr","Adex","Aint","Afth","Sstr","Sdex","Sint","Sfth","B
                       "Dint","Dfth","Estr","Edex","Eint","Efth"];
 
 var nomeCorrect=false;
-var scalingCorrect=false;
+var scalingCorrect=true;
 
 function nonBlank(myField) {
 	    // Check for non-blank field
@@ -32,7 +32,11 @@ function capitalize(string) {
 }
 	
 function isCorrectScaling(theForm){
-		
+		if(theForm.scaling.value === ""){
+			scalingCorrect = true;
+			changeStateButton()
+			return true;
+		}
 		var tempScaling = new String(theForm.scaling.value);
 		const tempScalingArray = tempScaling.split(",");
 		const alreadyIn= [];

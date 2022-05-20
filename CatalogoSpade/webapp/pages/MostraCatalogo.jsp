@@ -1,42 +1,10 @@
-<%@ page import="beans.ListaArmi"%>
+0<%@ page import="beans.ListaArmi"%>
 <%@ page import="beans.Arma"%>
 <%@ page import="java.util.*"%>
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <html>
 <head>
-<style>
-a:link, a:visited {
-  color: #F2E37C;
-  text-decoration: none;
-}
-a:hover {
-  color: #F2E37C;
-  text-decoration: underline;
-}
-a:active {
-  color: #F55850;
-  text-decoration: none;
-}
-th, td {
-	border: 2px solid #5B594C;
-	padding: 10px;
-	background-color: #5B594C;
-	text-align: center;
-}
-.coloriDispari {
-	color: #F353E3;
-	}
-.coloriPari {
-	color: white;
-}
 
-#tabellaArmi {
-	border-width: 2px;
-	border-colore: #5B594C;
-	padding: 10px;
-	color: #F6F6F2;
-	background-color: #F2E37C;
-}
-</style>
 <meta charset="ISO-8859-1">
 <title>Catalogo Armi</title>
 </head>
@@ -91,7 +59,7 @@ th, td {
 		<tfoot>
 			<tr>
 				<td colspan = "10">
-					<a href = "./inserimentoServlet?insertArma">Inserisci nuova arma</a>
+					<a href = "./armiServlet?insertArma">Inserisci nuova arma</a>
 				</td>
 			</tr>		
 		</tfoot>

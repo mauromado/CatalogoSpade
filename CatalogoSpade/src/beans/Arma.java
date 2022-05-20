@@ -13,7 +13,7 @@ public class Arma {
 	private String nomeCategoria;
 	
 	public Arma(String nome, float potenza, float peso, int livello, String tipoDanno, float stabilita,
-			int riduzioneDanno, String scaling, String nomeCategoria) {
+			int riduzioneDanno, String scaling, String nomeCategoria){
 		super();
 		this.nome = nome;
 		this.potenza = potenza;

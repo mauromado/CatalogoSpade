@@ -84,6 +84,9 @@ public class DbConnection {
 			s.setString(5, arma.getTipoDanno());
 			s.setFloat(6, arma.getStabilita());
 			s.setFloat(7, arma.getRiduzioneDanno());
+			if(arma.getScaling().isEmpty()) {
+				arma.setScaling("N/D");
+			}
 			s.setString(8, arma.getScaling());
 			s.setString(9, arma.getNomeCategoria());
 			s.executeUpdate();
