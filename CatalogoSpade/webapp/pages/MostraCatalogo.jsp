@@ -1,4 +1,4 @@
-0<%@ page import="beans.ListaArmi"%>
+<%@ page import="beans.ListaArmi"%>
 <%@ page import="beans.Arma"%>
 <%@ page import="java.util.*"%>
 <link href="./style/style.css" rel="stylesheet" type="text/css">

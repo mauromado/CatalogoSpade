@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -59,7 +61,32 @@ public class ArmiServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(PARAMETER_UPDATE) != null) {
-			System.err.println("chiamata update arma");
+			String nomeArma = request.getParameter("updateArma");
+			DbConnection db = new DbConnection();
+			List<Arma> listaArma = new ArrayList<>();
+			try {
+				ResultSet rs = db.selectAll();
+				System.out.println("tuple trovate"+rs.getRow());
+				while(rs.next()) {
+					Arma arma = new Arma(rs.getString("Nome"),
+							rs.getFloat("Potenza"),
+							rs.getFloat("Peso"),
+							rs.getInt("Livello"),
+							rs.getString("TipoDanno"),
+							rs.getFloat("Stabilita"),
+							rs.getInt("RiduzioneDanno"),
+							rs.getString("Scaling"),
+							rs.getString("NomeCategoria"));
+					listaArma.add(arma);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			db.close();
+			int indexOfArma = listaArma.indexOf(nomeArma);
+			request.setAttribute("armaToUpdate", listaArma.get(indexOfArma));
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/ModificaArma.jsp");
+			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(PARAMETER_DELETE) != null) {
 			DbConnection dbConnection = new DbConnection();
@@ -97,8 +124,6 @@ public class ArmiServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		System.err.println("inserimento servlet doPost");
 		String nomeArma = request.getParameter("nome");
 		float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
 		float pesoArma = Float.parseFloat(request.getParameter("peso"));

@@ -21,6 +21,7 @@ public class DbConnection {
 			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria)" 
 			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
+	private static final String QRY_SELECT_ARMA_BY_NOME="SELECT * FROM Arma WHERE Nome=?;";
 	
 	
 	public Connection connect() {
@@ -102,6 +103,16 @@ public class DbConnection {
 		Connection c = connect();
 		Statement s = c.createStatement();
 		ResultSet rs = s.executeQuery(QRY_CATEGORIA_LISTA_NOMI);
+		return rs;
+	}
+	
+	public ResultSet selectArmaByNome(String nomeArma)throws SQLException{
+		Connection c = connect();
+		Statement s = c.createStatement();
+		System.out.println("Arma da cercare: " + nomeArma);
+		//PreparedStatement s = c.prepareStatement(QRY_SELECT_ARMA_BY_NOME);
+		//s.setString(1, nomeArma);
+		ResultSet rs = s.executeQuery("SELECT * FROM Arma A WHERE A.ID=4");
 		return rs;
 	}
 	
