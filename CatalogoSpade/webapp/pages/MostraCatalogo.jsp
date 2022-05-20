@@ -47,9 +47,9 @@
 				<td><%=tempArma.getScaling()%></td>
 				<td><%=tempArma.getNomeCategoria()%></td>
 				<td>
-					<a href = "./armiServlet?updateArma=<%=tempArma.getNome()%>">Aggiorna</a>
+					<a href = "./armaServlet?updateArma=<%=tempArma.getNome()%>">Aggiorna</a>
 					&nbsp;&nbsp;
-					<a href = "./armiServlet?deleteArma=<%=tempArma.getNome()%>">Elimina</a>
+					<a href = "./armaServlet?deleteArma=<%=tempArma.getNome()%>">Elimina</a>
 				</td>
 			</tr>
 			<%
@@ -59,7 +59,7 @@
 		<tfoot>
 			<tr>
 				<td colspan = "10">
-					<a href = "./armiServlet?insertArma">Inserisci nuova arma</a>
+					<a href = "./armaServlet?insertArma">Inserisci nuova arma</a>
 				</td>
 			</tr>		
 		</tfoot>

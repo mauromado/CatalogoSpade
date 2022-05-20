@@ -10,11 +10,21 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>armiServlet</servlet-name>
-  	<servlet-class>servlets.ArmiServlet</servlet-class>
+  	<servlet-name>armaServlet</servlet-name>
+  	<servlet-class>servlets.ArmaServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>armiServlet</servlet-name>
-  	<url-pattern>/armiServlet</url-pattern>
-  </servlet-mapping>  
+  	<servlet-name>armaServlet</servlet-name>
+  	<url-pattern>/armaServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <description></description>
+    <servlet-name>mostraCatalogoServlet</servlet-name>
+    <servlet-class>servlets.MostraCatalogoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mostraCatalogoServlet</servlet-name>
+    <url-pattern>/mostraCatalogoServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

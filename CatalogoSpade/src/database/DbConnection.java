@@ -73,11 +73,11 @@ public class DbConnection {
 		return ris;
 	}
 	
-	public void insertUpdateArma(Arma arma,boolean isUpdate) throws SQLException{
+	public void insertArma(Arma arma) throws SQLException {
 		Connection c = connect();
 		try {
 			
-			PreparedStatement s = c.prepareStatement(isUpdate ? QRY_UPDATE_ARMA : QRY_INSERT_ARMA);
+			PreparedStatement s = c.prepareStatement(QRY_INSERT_ARMA);
 			s.setString(1, arma.getNome());
 			s.setFloat(2, arma.getPotenza());
 			s.setFloat(3, arma.getPeso());
@@ -90,9 +90,31 @@ public class DbConnection {
 			}
 			s.setString(8, arma.getScaling());
 			s.setString(9, arma.getNomeCategoria());
-			if(isUpdate) {
-				s.setString(10, arma.getNome());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ arma.getNome() +" ("+e.getMessage()+")");
+		}
+	}
+	
+	public void updateArma(Arma arma) throws SQLException {
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_UPDATE_ARMA);
+			s.setString(1, arma.getNome());
+			s.setFloat(2, arma.getPotenza());
+			s.setFloat(3, arma.getPeso());
+			s.setInt(4, arma.getLivello());
+			s.setString(5, arma.getTipoDanno());
+			s.setFloat(6, arma.getStabilita());
+			s.setFloat(7, arma.getRiduzioneDanno());
+			if(arma.getScaling().isEmpty()) {
+				arma.setScaling("N/D");
 			}
+			s.setString(8, arma.getScaling());
+			s.setString(9, arma.getNomeCategoria());
+			s.setString(10, arma.getNome());
 			s.executeUpdate();
 			s.close();
 		}

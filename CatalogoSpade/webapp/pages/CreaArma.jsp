@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div>
-	  <form action="armiServlet" method="post">
+	  <form action="armaServlet" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
 		  <input type="text" id="name" name="nome" value="" placeholder="nome arma" onChange="return checkNome(this.form)" >

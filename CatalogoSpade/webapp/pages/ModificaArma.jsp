@@ -13,7 +13,7 @@
 	  <%Arma arma = (Arma)request.getAttribute("armaToUpdate"); 
 	    String tempNome= arma.getNome();
 	    request.setAttribute("nome",tempNome);%>
-	  <form action="armiServlet?arma=<%= tempNome%>" method="post">
+	  <form action="armaServlet?arma=<%= tempNome%>" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
 		  <input type="text" id="name" name="nome" value="<%= arma.getNome() %>" onChange="return checkNome(this.form)" readonly>
