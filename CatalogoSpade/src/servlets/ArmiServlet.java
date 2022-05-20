@@ -62,13 +62,11 @@ public class ArmiServlet extends HttpServlet {
 		}
 		else if(request.getParameter(PARAMETER_UPDATE) != null) {
 			String nomeArma = request.getParameter("updateArma");
-			DbConnection db = new DbConnection();
-			List<Arma> listaArma = new ArrayList<>();
+			DbConnection dbConnection = new DbConnection();
+			ListaCategoria listaNomiCategorie = new ListaCategoria();;
 			try {
-				ResultSet rs = db.selectAll();
-				System.out.println("tuple trovate"+rs.getRow());
-				while(rs.next()) {
-					Arma arma = new Arma(rs.getString("Nome"),
+				ResultSet rs = dbConnection.selectArmaByNome(nomeArma);
+				Arma arma = new Arma(rs.getString("Nome"),
 							rs.getFloat("Potenza"),
 							rs.getFloat("Peso"),
 							rs.getInt("Livello"),
@@ -77,14 +75,15 @@ public class ArmiServlet extends HttpServlet {
 							rs.getInt("RiduzioneDanno"),
 							rs.getString("Scaling"),
 							rs.getString("NomeCategoria"));
-					listaArma.add(arma);
-				}
+				request.setAttribute("armaToUpdate", arma);
+				rs = dbConnection.selectCategorie();
+				while(rs.next()){
+					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+				request.setAttribute("listaNomiCategorie", listaNomiCategorie);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			db.close();
-			int indexOfArma = listaArma.indexOf(nomeArma);
-			request.setAttribute("armaToUpdate", listaArma.get(indexOfArma));
+			dbConnection.close();
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/ModificaArma.jsp");
 			dispatcher.forward(request, response);
 		}
