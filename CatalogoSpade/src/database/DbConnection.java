@@ -22,6 +22,7 @@ public class DbConnection {
 			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
 	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
 	
+	
 	public Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
