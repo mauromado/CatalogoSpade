@@ -77,7 +77,7 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
 		//insert
@@ -158,7 +158,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			
 		}
