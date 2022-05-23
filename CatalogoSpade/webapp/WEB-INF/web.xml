@@ -17,7 +17,6 @@
   	<servlet-name>armaServlet</servlet-name>
   	<url-pattern>/armaServlet</url-pattern>
   </servlet-mapping>
-  
    <servlet>
     <description></description>
     <servlet-name>mostraCatalogoServlet</servlet-name>
@@ -26,5 +25,15 @@
   <servlet-mapping>
     <servlet-name>mostraCatalogoServlet</servlet-name>
     <url-pattern>/mostraCatalogoServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <servlet-name>dettaglioArmaServlet</servlet-name>
+    <servlet-class>servlets.DettaglioArmaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dettaglioArmaServlet</servlet-name>
+    <url-pattern>/dettaglioArmaServlet</url-pattern>
   </servlet-mapping>
 </web-app>

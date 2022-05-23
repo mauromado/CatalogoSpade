@@ -104,7 +104,7 @@ public class Arma {
 	public String toString() {
 		return "nome=" + nome + ", potenza=" + potenza + ", peso=" + peso + ", livello=" + livello
 				+ ", tipoDanno=" + tipoDanno + ", stabilita=" + stabilita + ", riduzioneDanno=" + riduzioneDanno
-				+ ", scaling=" + scaling + ", NomeCategoria" + nomeCategoria;
+				+ ", scaling=" + scaling + ", NomeCategoria=" + nomeCategoria;
 	}
 	
 	public boolean equals(Arma comp_arma) {

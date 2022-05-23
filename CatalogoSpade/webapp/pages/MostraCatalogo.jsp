@@ -17,15 +17,8 @@
 			</tr>
 			<tr>
 				<td>Nome</td>
-				<td>Potenza</td>
-				<td>Peso</td>
-				<td>Livello</td>
-				<td>TipoDanno</td>
-				<td>Stabilità</td>
-				<td>Riduzione Danno</td>
-				<td>Scaling</td>
 				<td>Nome categoria</td>
-				<td>Operazione</td>
+				<td>Dettagli</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,19 +31,8 @@
 			%>
 			<tr class = <%= coloreRiga %>>
 				<td><%=tempArma.getNome()%></td>
-				<td><%=tempArma.getPotenza()%></td>
-				<td><%=tempArma.getPeso()%></td>
-				<td><%=tempArma.getLivello()%></td>
-				<td><%=tempArma.getTipoDanno()%></td>
-				<td><%=tempArma.getStabilita()%></td>
-				<td><%=tempArma.getRiduzioneDanno()%></td>
-				<td><%=tempArma.getScaling()%></td>
 				<td><%=tempArma.getNomeCategoria()%></td>
-				<td>
-					<a href = "./armaServlet?updateArma=<%=tempArma.getNome()%>">Aggiorna</a>
-					&nbsp;&nbsp;
-					<a href = "./armaServlet?deleteArma=<%=tempArma.getNome()%>">Elimina</a>
-				</td>
+				<td> <a href = "./dettaglioArmaServlet?dettaglioArma=<%=tempArma.getNome()%>">Dettagli</a> </td>
 			</tr>
 			<%
 			}

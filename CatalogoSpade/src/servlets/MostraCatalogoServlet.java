@@ -24,7 +24,7 @@ import database.DbConnection;
 public class MostraCatalogoServlet extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 		private static final String PARAMETER_CATALOGO = "catalogo";
-		private static final String PARAMETER_VALUE_CATALOGO = "mostraCatalogo";
+		private static final String PARAMETER_VALUE_CATALOGO = "Mostra Catalogo";
 	       
 	    public MostraCatalogoServlet() {
 	        super();

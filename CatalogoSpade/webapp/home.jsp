@@ -29,7 +29,7 @@
 		clicca il bottone sottostante per visionare il catalogo delle armi
 		</p>
 		<form action="mostraCatalogoServlet" method="get">
-			<input type="submit" name="catalogo" value="mostraCatalogo">
+			<input type="submit" name="catalogo" value="Mostra Catalogo">
 		</form>
 	</body>
 </html>
