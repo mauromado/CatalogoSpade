@@ -25,7 +25,7 @@
 				<td>Riduzione Danno</td>
 				<td>Scaling</td>
 				<td>Nome categoria</td>
-				<td></td>
+				<td>Operazione</td>
 			</tr>
 		</thead>
 		<tbody>

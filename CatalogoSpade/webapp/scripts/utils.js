@@ -2,7 +2,7 @@ const scalingValue = ["Astr","Adex","Aint","Afth","Sstr","Sdex","Sint","Sfth","B
                       "Bdex","Bint","Bfth","Cstr","Cdex","Cint","Cfth","Dstr","Ddex",
                       "Dint","Dfth","Estr","Edex","Eint","Efth"];
 
-var nomeCorrect=false;
+var nomeCorrect=true;
 var scalingCorrect=true;
 
 function nonBlank(myField) {
@@ -111,4 +111,8 @@ function changeStateButton(){
 	const button = document.getElementById("insertButton");
 	if(nomeCorrect && scalingCorrect)button.disabled = false;
 	else button.disabled = true;
+}
+
+function successAlert(){
+	return alert("Inserimento avvenuto con successo.");
 }

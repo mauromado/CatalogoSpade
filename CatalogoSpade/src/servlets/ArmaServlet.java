@@ -101,6 +101,7 @@ public class ArmaServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean successOp = true;
 		//inserimento:
 		if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("inserisci")) {
 			String nomeArma = request.getParameter("nome");
@@ -124,9 +125,11 @@ public class ArmaServlet extends HttpServlet {
 			try {
 				dbConnection.insertArma(arma);
 			} catch (SQLException e) {
+				successOp = false;
 				e.printStackTrace();
 			}
 			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
 			dispatcher.forward(request, response);
 			
