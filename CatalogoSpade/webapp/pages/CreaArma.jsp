@@ -8,7 +8,7 @@
 	<script type="text/javascript" src="./scripts/utils.js"></script>
 	
 </head>
-<body>
+<body onload="setNomeCorrect(false)">
 	<div>
 	  <form action="armaServlet" method="post">
 		  <label for="Name">Nome:</label>

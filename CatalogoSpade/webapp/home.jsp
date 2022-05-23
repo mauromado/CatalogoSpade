@@ -10,7 +10,7 @@
 	<body>
 	<% if(request.getAttribute("esitoOperazione") != null) {
 			boolean esito = (boolean) request.getAttribute("esitoOperazione");
-			if(esito) {%>
+			if(esito){%>
 			<script>alert("Operazione avvenuta con successo: verrai reindirizzato al catalogo");</script>
 			<%}
 	}%>

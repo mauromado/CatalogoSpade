@@ -5,6 +5,10 @@ const scalingValue = ["Astr","Adex","Aint","Afth","Sstr","Sdex","Sint","Sfth","B
 var nomeCorrect=true;
 var scalingCorrect=true;
 
+function setNomeCorrect(newNomeCorrect){
+	nomeCorrect = newNomeCorrect
+}
+
 function nonBlank(myField) {
 	    // Check for non-blank field
 	    if ( myField.value == "") {

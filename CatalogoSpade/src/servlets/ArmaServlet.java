@@ -33,6 +33,7 @@ public class ArmaServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean successOp = true;
 		//update: (SELECT ARMA(DA INVIARE ALLA JSP) + UPDATE ARMA)
 		if(request.getParameter(PARAMETER_UPDATE) != null) {
 			String nomeArma = request.getParameter("updateArma");
@@ -74,9 +75,11 @@ public class ArmaServlet extends HttpServlet {
 				}
 			
 			}catch(Exception e) {
+				successOp=false;
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -155,9 +158,11 @@ public class ArmaServlet extends HttpServlet {
 			try {
 				dbConnection.updateArma(arma);
 			} catch (SQLException e) {
+				successOp = false;
 				e.printStackTrace();
 			}
 			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			
