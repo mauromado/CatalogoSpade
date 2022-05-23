@@ -11,7 +11,7 @@
 	<% if(request.getAttribute("esitoOperazione") != null) {
 			boolean esito = (boolean) request.getAttribute("esitoOperazione");
 			if(esito){%>
-			<script>alert("Operazione avvenuta con successo: verrai reindirizzato al catalogo");</script>
+			<script>alert("Operazione avvenuta con successo: verrai reindirizzato alla Home :)");</script>
 			<%}
 	}%>
 		
@@ -28,8 +28,9 @@
 		</ul>
 		clicca il bottone sottostante per visionare il catalogo delle armi
 		</p>
-		<form action="mostraCatalogoServlet" method="get">
+		<form action="homeServlet" method="get">
 			<input type="submit" name="catalogo" value="Mostra Catalogo">
+			<input type="submit" name="categorie" value="Mostra Categorie">
 		</form>
 	</body>
 </html>

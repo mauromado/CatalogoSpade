@@ -19,12 +19,12 @@
   </servlet-mapping>
    <servlet>
     <description></description>
-    <servlet-name>mostraCatalogoServlet</servlet-name>
-    <servlet-class>servlets.MostraCatalogoServlet</servlet-class>
+    <servlet-name>homeServlet</servlet-name>
+    <servlet-class>servlets.HomeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>mostraCatalogoServlet</servlet-name>
-    <url-pattern>/mostraCatalogoServlet</url-pattern>
+    <servlet-name>homeServlet</servlet-name>
+    <url-pattern>/homeServlet</url-pattern>
   </servlet-mapping>
   
   <servlet>

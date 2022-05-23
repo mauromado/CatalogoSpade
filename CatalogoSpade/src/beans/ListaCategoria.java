@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaCategoria {
-	private List<String> listaNomiCategorie = new ArrayList<String>();
+	private List<Categoria> listaNomiCategorie = new ArrayList<Categoria>();
 
-	public ListaCategoria(List<String> listaNomiCategorie) {
+	public ListaCategoria(List<Categoria> listaNomiCategorie) {
 		super();
 		this.listaNomiCategorie = listaNomiCategorie;
 	}
@@ -14,11 +14,11 @@ public class ListaCategoria {
 	public ListaCategoria() {
 	}
 	
-	public List<String> getListaNomiCategorie() {
+	public List<Categoria> getListaNomiCategorie() {
 		return listaNomiCategorie;
 	}
 
-	public void setListaNomiCategorie(List<String> listaNomiCategorie) {
+	public void setListaNomiCategorie(List<Categoria> listaNomiCategorie) {
 		this.listaNomiCategorie = listaNomiCategorie;
 	}
 	

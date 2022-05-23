@@ -16,17 +16,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Arma;
+import beans.Categoria;
 import beans.ListaArmi;
 import beans.ListaCategoria;
 import database.DbConnection;
 
 
-public class MostraCatalogoServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 		private static final String PARAMETER_CATALOGO = "catalogo";
 		private static final String PARAMETER_VALUE_CATALOGO = "Mostra Catalogo";
+		private static final String PARAMETER_CATEGORIA = "categorie";
+		private static final String PARAMETER_VALUE_CATEGORIA = "Mostra Categorie";
 	       
-	    public MostraCatalogoServlet() {
+	    public HomeServlet() {
 	        super();
 	    }
 
@@ -36,7 +39,7 @@ public class MostraCatalogoServlet extends HttpServlet {
 				ResultSet rs;
 				DbConnection dbConnection = new DbConnection();
 				try {
-					rs = dbConnection.selectAll();
+					rs = dbConnection.selectAllArmi();
 					while(rs.next()) {
 						Arma newArma= new Arma(rs.getString("Nome"),
 								rs.getFloat("Potenza"),
@@ -56,6 +59,26 @@ public class MostraCatalogoServlet extends HttpServlet {
 				request.setAttribute("listaArmi", listaArmi);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
 				dispatcher.forward(request, response);
+			}
+			else if(request.getParameter(PARAMETER_CATEGORIA) != null && request.getParameter(PARAMETER_CATEGORIA).equals(PARAMETER_VALUE_CATEGORIA)) {
+				ResultSet rs;
+				ListaCategoria listaCategorie = new ListaCategoria();
+				DbConnection dbConnection = new DbConnection();
+				try {
+					rs = dbConnection.selectAllCategorie();
+					while(rs.next()) {
+						Categoria newCategoria= new Categoria(rs.getString("NomeCategoria"),
+								rs.getString("Descrizione"));
+						listaCategorie.getListaNomiCategorie().add(newCategoria);
+					}
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+				dbConnection.close();
+				request.setAttribute("listaCategorie", listaCategorie);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCategorie.jsp");
+				dispatcher.forward(request, response);
+				
 			}
 			
 		}

@@ -38,7 +38,7 @@ public class ArmaServlet extends HttpServlet {
 		if(request.getParameter(PARAMETER_UPDATE) != null) {
 			String nomeArma = request.getParameter("updateArma");
 			DbConnection dbConnection = new DbConnection();
-			ListaCategoria listaNomiCategorie = new ListaCategoria();
+			List<String> listaNomiCategorie = new ArrayList<String>();
 			try {
 				ResultSet rs = dbConnection.selectArmaByNome(nomeArma);
 				Arma arma = new Arma(rs.getString("Nome"),
@@ -55,7 +55,7 @@ public class ArmaServlet extends HttpServlet {
 				
 				rs = dbConnection.selectCategorie(); //riapro la connessione
 				while(rs.next()){
-					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+					listaNomiCategorie.add(rs.getString("NomeCategoria"));}
 				request.setAttribute("listaNomiCategorie", listaNomiCategorie);
 			} catch (SQLException e) {
 				e.printStackTrace();

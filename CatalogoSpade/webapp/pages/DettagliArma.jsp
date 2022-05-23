@@ -7,12 +7,55 @@
 <meta charset="ISO-8859-1">
 <title>Dettagli arma</title>
 </head>
-<body>
+<body align="center">
 	<%Arma arma = (Arma)request.getAttribute("detailsArma");%>
-	<%System.out.println(arma.toString()); %>
-	<form action="armaServlet" method="get">
-			<input type="submit" name="updateArma" value="Aggiorna">
-			<input type="submit" name="deleteArma" value="Elimina">
-	</form>
+	<h1><%=arma.getNome().toUpperCase() %></h1>
+	<table border="1" align="center">
+		<caption>Dettagli arma</caption>
+		
+		<tr>
+				<th colspan="2"><%=arma.getNome().toUpperCase() %></th>
+		</tr>
+		<tr>
+				<td>Nome</td>
+				<td><%=arma.getNome()%></td>
+		</tr>
+		<tr>
+				<td>Potenza</td>
+				<td><%=arma.getPotenza()%></td>
+		</tr>
+		<tr>
+				<td>Peso</td>
+				<td><%=arma.getPeso()%></td>
+		</tr>
+		<tr>
+				<td>Livello</td>
+				<td><%=arma.getLivello()%></td>
+		</tr>
+		<tr>
+				<td>Tipo Di Danno</td>
+				<td><%=arma.getTipoDanno()%></td>
+		</tr>
+		<tr>
+				<td>Stabilita'</td>
+				<td><%=arma.getStabilita()%></td>
+		</tr>
+		<tr>
+				<td>Riduzione Danno</td>
+				<td><%=arma.getRiduzioneDanno()%></td>
+		</tr>
+		<tr>
+				<td>Scaling</td>
+				<td><%=arma.getScaling()%></td>
+		</tr>
+		<tr>
+				<td>Categoria</td>
+				<td><%=arma.getNomeCategoria()%></td>
+		</tr>
+	</table>
+	<a href = "./armaServlet?updateArma=<%=arma.getNome()%>">Aggiorna</a>
+	&nbsp;&nbsp;
+	<a href = "./armaServlet?deleteArma=<%=arma.getNome()%>">Elimina</a>
+	
 </body>
 </html>

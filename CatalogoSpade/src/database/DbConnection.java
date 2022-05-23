@@ -25,6 +25,7 @@ public class DbConnection {
 	private static final String QRY_UPDATE_ARMA="UPDATE Arma SET Nome=?,Potenza=?,Peso=?,Livello=?,"
 												+ "TipoDanno=?,Stabilita=?,RiduzioneDanno=?,Scaling=?,NomeCategoria=?"
 												+ " WHERE Nome=?";
+	private static final String QRY_CATEGORIA_LISTA_TUTTO="SELECT * FROM Categoria";
 	
 	
 	public Connection connect() {
@@ -50,10 +51,17 @@ public class DbConnection {
 		}
 	}
 	
-	public ResultSet selectAll() throws SQLException{
+	public ResultSet selectAllArmi() throws SQLException{
 		Connection c = connect();
 		Statement s = c.createStatement();
 		ResultSet rs = s.executeQuery(QRY_ARMI_LISTA_TUTTO);
+		return rs;
+	}
+	
+	public ResultSet selectAllCategorie() throws SQLException{
+		Connection c = connect();
+		Statement s = c.createStatement();
+		ResultSet rs = s.executeQuery(QRY_CATEGORIA_LISTA_TUTTO);
 		return rs;
 	}
 	
