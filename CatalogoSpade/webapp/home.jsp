@@ -6,12 +6,16 @@
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html;">
 		<title>Catalogo Spade</title>
-		<script type="text/javascript" src="./scripts/utils.js"></script>
 	</head>
 	<body>
-		<%if((boolean)request.getAttribute("esitoOperazione")){
-			successAlert();
-		} %>
+	<% if(request.getAttribute("esitoOperazione") != null) {
+			boolean esito = (boolean) request.getAttribute("esitoOperazione");
+			if(esito) {%>
+			<script>alert("Operazione avvenuta con successo: verrai reindirizzato al catalogo");</script>
+			<%}
+	}%>
+		
+	
 		<h2>Benvenuto</h2>
 		<br>
 		<p>

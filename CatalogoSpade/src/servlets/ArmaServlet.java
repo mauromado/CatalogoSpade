@@ -130,7 +130,7 @@ public class ArmaServlet extends HttpServlet {
 			}
 			dbConnection.close();
 			request.setAttribute("esitoOperazione", successOp);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("index.html");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			
 		} else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("modifica")) {
