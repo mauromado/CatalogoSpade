@@ -2,11 +2,13 @@ const scalingValue = ["Astr","Adex","Aint","Afth","Sstr","Sdex","Sint","Sfth","B
                       "Bdex","Bint","Bfth","Cstr","Cdex","Cint","Cfth","Dstr","Ddex",
                       "Dint","Dfth","Estr","Edex","Eint","Efth"];
 
-var nomeCorrect=true;
-var scalingCorrect=true;
+var correctDict = {
+	"nomeCorrect" : true,
+	"scalingCorrect" : true,
+}
 
 function setNomeCorrect(newNomeCorrect){
-	nomeCorrect = newNomeCorrect
+	correctDict["nomeCorrect"] = newNomeCorrect;
 }
 
 function nonBlank(myField) {
@@ -37,7 +39,7 @@ function capitalize(string) {
 	
 function isCorrectScaling(theForm){
 		if(theForm.scaling.value === ""){
-			scalingCorrect = true;
+			correctDict["scalingCorrect"] = true;
 			changeStateButton()
 			return true;
 		}
@@ -50,7 +52,7 @@ function isCorrectScaling(theForm){
 			if(!scalingValue.includes(tempScalingPart) || alreadyIn.includes(tempScalingPart.substring(1,4))){
 				alert("Valore di scaling non valido!");
 				
-				scalingCorrect = false;
+				correctDict["scalingCorrect"]= false;
 				changeStateButton()
 				
 				return false;
@@ -58,7 +60,7 @@ function isCorrectScaling(theForm){
 			alreadyIn.push(tempScalingPart.substring(1,4))
 		}
 		
-		scalingCorrect = true; 
+		correctDict["scalingCorrect"] = true; 
 		changeStateButton()
 	}
 
@@ -68,7 +70,7 @@ function checkNome(theForm){
 	
 	if (!nonBlank(theForm.nome)){
 		
-		nomeCorrect = false;
+		correctDict["nomeCorrect"] = false;
 		changeStateButton()
 		
 		return false;}
@@ -76,7 +78,7 @@ function checkNome(theForm){
 	else if (tempStr.charAt(0)===" " || checkConcateneteSpace(tempStr)){
 		alert("Il nome dell'arma non e' corretto!");
 		
-		nomeCorrect = false;
+		correctDict["nomeCorrect"] = false;
 		changeStateButton()
 		
 		return false;
@@ -86,13 +88,13 @@ function checkNome(theForm){
 		if ( !( (isNaN(tempStr.charAt(i)) && !containsSpecialChars(tempStr)) || tempStr.charAt(i) == " " ) ){
 			alert("Il nome dell'arma non puo' contenere caratteri speciali!");
 			
-			nomeCorrect = false;
+			correctDict["nomeCorrect"] = false;
 			changeStateButton()
 			
 			return false}
 	}
 	
-	nomeCorrect = true;
+	correctDict["nomeCorrect"] = true;
 	changeStateButton()
 	
 	return correct;
@@ -113,8 +115,14 @@ function checkNumber(form,min=0,max=1000){
 
 function changeStateButton(){
 	const button = document.getElementById("insertButton");
-	if(nomeCorrect && scalingCorrect)button.disabled = false;
-	else button.disabled = true;
+	for(keys in correctDict){
+		if(correctDict[keys]  == false){
+			button.disabled = true;
+			return;
+			}
+	}
+	button.disabled = false;
+	return;
 }
 
 function successAlert(){
