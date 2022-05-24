@@ -11,7 +11,7 @@
 
 </head>
 <body onload="getTabella()">
-	<table id="tabellaArmi">
+	<table id="tabellaArmi" align="center">
 		<caption>Elenco armi attualmente inserite</caption>
 		<thead>
 			<tr>
