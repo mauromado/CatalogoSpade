@@ -31,6 +31,8 @@
 		<form action="homeServlet" method="get">
 			<input type="submit" name="catalogo" value="Mostra Catalogo">
 			<input type="submit" name="categorie" value="Mostra Categorie">
+			<input type="submit" name="abilita" value="Mostra Abilita">
+			<input type="submit" name="munizioni" value="Mostra Munizioni">
 		</form>
 	</body>
 </html>
