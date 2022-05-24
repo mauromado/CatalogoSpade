@@ -7,8 +7,10 @@
 
 <meta charset="ISO-8859-1">
 <title>Catalogo Armi</title>
+<script type="text/javascript" src="./scripts/filtraCatalogo.js"></script>
+
 </head>
-<body>
+<body onload="getTabella()">
 	<table id="tabellaArmi">
 		<caption>Elenco armi attualmente inserite</caption>
 		<thead>
@@ -17,7 +19,25 @@
 			</tr>
 			<tr>
 				<td>Nome</td>
-				<td>Nome categoria</td>
+				<td>					
+					<p>
+						filtra per categoria
+					</p>			
+					<select name="filtroArmi" id="filtroArmi" onChange="aggiornamentoTabella(this.value)">
+						<option value="tutto">
+							Tutto
+						</option>
+						<option value="arma bianca">
+							Arma bianca
+						</option>
+						<option value="distanza ">
+							Arma a distanza
+						</option>
+						<option value="scudi">
+							Scudo
+						</option>
+					</select>
+				</td>
 				<td>Dettagli</td>
 			</tr>
 		</thead>

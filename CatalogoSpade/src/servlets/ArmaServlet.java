@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Arma;
+import beans.Categoria;
 import beans.ListaArmi;
 import beans.ListaCategoria;
 import database.DbConnection;
@@ -38,7 +39,7 @@ public class ArmaServlet extends HttpServlet {
 		if(request.getParameter(PARAMETER_UPDATE) != null) {
 			String nomeArma = request.getParameter("updateArma");
 			DbConnection dbConnection = new DbConnection();
-			List<String> listaNomiCategorie = new ArrayList<String>();
+			ListaCategoria listaNomiCategorie = new ListaCategoria();
 			try {
 				ResultSet rs = dbConnection.selectArmaByNome(nomeArma);
 				Arma arma = new Arma(rs.getString("Nome"),
@@ -53,9 +54,12 @@ public class ArmaServlet extends HttpServlet {
 				request.setAttribute("armaToUpdate", arma);
 				dbConnection.close(); //chiudo
 				
-				rs = dbConnection.selectCategorie(); //riapro la connessione
+				rs = dbConnection.selectAllCategorie(); //riapro la connessione
 				while(rs.next()){
-					listaNomiCategorie.add(rs.getString("NomeCategoria"));}
+					Categoria categoria = new Categoria(
+							rs.getString("NomeCategoria"),
+							rs.getString("Descrizione"));
+					listaNomiCategorie.getListaNomiCategorie().add(categoria);}
 				request.setAttribute("listaNomiCategorie", listaNomiCategorie);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -89,9 +93,12 @@ public class ArmaServlet extends HttpServlet {
 			DbConnection dbConnection = new DbConnection();
 			ListaCategoria listaNomiCategorie = new ListaCategoria();
 			try {
-				rs = dbConnection.selectCategorie();
+				rs = dbConnection.selectAllCategorie();
 				while(rs.next()){
-					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+					Categoria categoria = new Categoria(
+							rs.getString("NomeCategoria"),
+							rs.getString("Descrizione"));
+					listaNomiCategorie.getListaNomiCategorie().add(categoria);}
 				}
 			catch(SQLException e) {
 				e.printStackTrace();
