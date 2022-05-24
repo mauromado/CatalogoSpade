@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.Arma;
+import beans.Categoria;
 import beans.ListaArmi;
 import beans.ListaCategoria;
 import database.DbConnection;
@@ -89,9 +90,12 @@ public class ArmaServlet extends HttpServlet {
 			DbConnection dbConnection = new DbConnection();
 			ListaCategoria listaNomiCategorie = new ListaCategoria();
 			try {
-				rs = dbConnection.selectCategorie();
+				rs = dbConnection.selectAllCategorie();
 				while(rs.next()){
-					listaNomiCategorie.getListaNomiCategorie().add(rs.getString("NomeCategoria"));}
+					Categoria categoria = new Categoria(
+							rs.getString("NomeCategoria"),
+							rs.getString("Descrizione"));
+					listaNomiCategorie.getListaNomiCategorie().add(categoria);}
 				}
 			catch(SQLException e) {
 				e.printStackTrace();

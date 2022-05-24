@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 	<meta charset="ISO-8859-1">
 	<title>Modifica arma</title>
 	<script type="text/javascript" src="./scripts/utils.js"></script>
