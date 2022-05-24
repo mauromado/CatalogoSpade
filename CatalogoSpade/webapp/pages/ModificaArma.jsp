@@ -60,7 +60,7 @@
 		  <select name="nomeCategoria" id="nomeCategoria" value="<%= arma.getNomeCategoria() %>" required>
           	  <%ListaCategoria listaNomiCategoria = (ListaCategoria) request.getAttribute("listaNomiCategorie");
               	for(int x=0; x<listaNomiCategoria.getListaNomiCategorie().size(); x++){ %>
-              	<option value ="<%= listaNomiCategoria.getListaNomiCategorie().get(x) %>"><%= listaNomiCategoria.getListaNomiCategorie().get(x) %>
+              	<option value ="<%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>"><%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>
            	   <%} %>
 		  </select> 
 		  <br><br>
