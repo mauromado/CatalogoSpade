@@ -1,19 +1,28 @@
 <%@ page import="beans.ListaCategoria"%>
+<%@ page import="beans.ListaAbilita"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Creazione arma</title>
+	
+	<script>
+	let dictAbilita = {};
+	<%ListaAbilita listaAbilita = (ListaAbilita) request.getAttribute("listaNomiAbilita");
+	for(int x=0;x<listaAbilita.getListaAbilita().size();x++){%>
+		dictAbilita['<%=listaAbilita.getListaAbilita().get(x).getNome()%>']='<%=listaAbilita.getListaAbilita().get(x).getTipologiaArma()%>';
+	<%}%>
+	</script>
 	<script type="text/javascript" src="./scripts/utils.js"></script>
 	
 </head>
-<body onload="setNomeCorrect(false)">
+<body onload="bootStrapPageCreaArmi()">
 	<div>
 	  <form action="armaServlet" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
-		  <input type="text" id="name" name="nome" value="" placeholder="nome arma" onChange="return checkNome(this.form)" >
+		  <input type="text" id="name" name="nome" value="" placeholder="nome arma" onChange="checkNome(this.form)" >
 		  <br><br>
 		  <label for="Pot">Potenza:</label>
 		  <br>
@@ -53,11 +62,22 @@
 		  <br><br>
 		  <label for="nomeCategoria">Categoria arma:</label>
 		  <br>
-		  <select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required>
+		  <select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required onChange="changeAbilitaDisponibili(this.value)">
+		  	  <option value="" disabled selected>Scegli una categoria</option>
           	  <%ListaCategoria listaNomiCategoria = (ListaCategoria) request.getAttribute("listaNomiCategorie");
               	for(int x=0; x<listaNomiCategoria.getListaNomiCategorie().size(); x++){ %>
               	<option value ="<%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>"><%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>
            	   <%} %>
+		  </select> 
+		  <br><br>
+		  <label for="nomeCategoria">Abilita' arma:</label>
+		  <br>
+		  <select name="nomeAbilita" id="nomeAbilita" required disabled>
+		      <option value="" disabled selected>Scegli un'abilita'</option>
+          	  <%listaAbilita = (ListaAbilita) request.getAttribute("listaNomiAbilita");
+          	  for(int x=0; x<listaAbilita.getListaAbilita().size(); x++){ %>
+              	<option value ="<%= listaAbilita.getListaAbilita().get(x).getNome() %>"><%= listaAbilita.getListaAbilita().get(x).getNome() %>
+           	   <%}%>
 		  </select> 
 		  <br><br>
 		  <input id="insertButton" type="submit" name="tipoOperazione" value="inserisci" disabled>

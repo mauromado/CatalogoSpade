@@ -18,15 +18,16 @@ public class DbConnection {
 			 									    + "FROM Arma;";
 	private static final String QRY_DELETE_ARMA="DELETE FROM Arma WHERE Nome=?;";
 	private static final String QRY_INSERT_ARMA="INSERT INTO Arma(Nome,Potenza,Peso,Livello,TipoDanno,"
-			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria)" 
-			                                    + " VALUES(?,?,?,?,?,?,?,?,?)";
+			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria,NomeAbilita)" 
+			                                    + " VALUES(?,?,?,?,?,?,?,?,?,?)";
 	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
 	private static final String QRY_SELECT_ARMA_BY_NOME="SELECT * FROM Arma WHERE Nome=?;";
 	private static final String QRY_UPDATE_ARMA="UPDATE Arma SET Nome=?,Potenza=?,Peso=?,Livello=?,"
-												+ "TipoDanno=?,Stabilita=?,RiduzioneDanno=?,Scaling=?,NomeCategoria=?"
+												+ "TipoDanno=?,Stabilita=?,RiduzioneDanno=?,Scaling=?,NomeCategoria=?,NomeAbilita=?"
 												+ " WHERE Nome=?";
 	private static final String QRY_CATEGORIA_LISTA_TUTTO="SELECT * FROM Categoria";
-	
+	private static final String QRY_MUNIZIONE_LISTA_TUTTO="SELECT * FROM Munizioni;";
+	private static final String QRY_ABILITA_LISTA_TUTTO="SELECT * FROM Abilita;";
 	
 	public Connection connect() {
 		try {
@@ -55,6 +56,20 @@ public class DbConnection {
 		Connection c = connect();
 		Statement s = c.createStatement();
 		ResultSet rs = s.executeQuery(QRY_ARMI_LISTA_TUTTO);
+		return rs;
+	}
+	
+	public ResultSet selectAllMunizioni() throws SQLException{
+		Connection c = connect();
+		Statement s = c.createStatement();
+		ResultSet rs = s.executeQuery(QRY_MUNIZIONE_LISTA_TUTTO);
+		return rs;
+	}
+	
+	public ResultSet selectAllAbilita() throws SQLException{
+		Connection c = connect();
+		Statement s = c.createStatement();
+		ResultSet rs = s.executeQuery(QRY_ABILITA_LISTA_TUTTO);
 		return rs;
 	}
 	
@@ -98,6 +113,7 @@ public class DbConnection {
 			}
 			s.setString(8, arma.getScaling());
 			s.setString(9, arma.getNomeCategoria());
+			s.setString(10, arma.getNomeAbilita());
 			s.executeUpdate();
 			s.close();
 		}
@@ -122,7 +138,8 @@ public class DbConnection {
 			}
 			s.setString(8, arma.getScaling());
 			s.setString(9, arma.getNomeCategoria());
-			s.setString(10, arma.getNome());
+			s.setString(10, arma.getNomeAbilita());
+			s.setString(11, arma.getNome());
 			s.executeUpdate();
 			s.close();
 		}

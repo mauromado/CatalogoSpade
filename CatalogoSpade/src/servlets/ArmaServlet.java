@@ -15,8 +15,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Abilita;
 import beans.Arma;
 import beans.Categoria;
+import beans.ListaAbilita;
 import beans.ListaArmi;
 import beans.ListaCategoria;
 import database.DbConnection;
@@ -50,7 +52,8 @@ public class ArmaServlet extends HttpServlet {
 							rs.getFloat("Stabilita"),
 							rs.getInt("RiduzioneDanno"),
 							rs.getString("Scaling"),
-							rs.getString("NomeCategoria"));
+							rs.getString("NomeCategoria"),
+							rs.getString("NomeAbilita"));
 				request.setAttribute("armaToUpdate", arma);
 				dbConnection.close(); //chiudo
 				
@@ -92,6 +95,7 @@ public class ArmaServlet extends HttpServlet {
 			ResultSet rs;
 			DbConnection dbConnection = new DbConnection();
 			ListaCategoria listaNomiCategorie = new ListaCategoria();
+			ListaAbilita listaNomiAbilita = new ListaAbilita();
 			try {
 				rs = dbConnection.selectAllCategorie();
 				while(rs.next()){
@@ -99,12 +103,25 @@ public class ArmaServlet extends HttpServlet {
 							rs.getString("NomeCategoria"),
 							rs.getString("Descrizione"));
 					listaNomiCategorie.getListaNomiCategorie().add(categoria);}
-				}
+				request.setAttribute("listaNomiCategorie", listaNomiCategorie);
+				dbConnection.close();
+				
+				rs = dbConnection.selectAllAbilita();
+				while(rs.next()){
+					Abilita abilita = new Abilita (
+							rs.getString("Nome"),
+							rs.getString("Descrizione"),
+							rs.getString("TipologiaArma"));
+					listaNomiAbilita.getListaAbilita().add(abilita);}
+				request.setAttribute("listaNomiAbilita", listaNomiAbilita);
+				dbConnection.close();
+			
+			}
 			catch(SQLException e) {
 				e.printStackTrace();
 			}
-			dbConnection.close();
-			request.setAttribute("listaNomiCategorie", listaNomiCategorie);
+			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/CreaArma.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -128,9 +145,10 @@ public class ArmaServlet extends HttpServlet {
 			}
 			String scalingArma = request.getParameter("scaling");
 			String nomeCategoriaArma = request.getParameter("nomeCategoria");
+			String nomeAbilitaArma = request.getParameter("nomeAbilita");
 			
 			Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
-					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma);
+					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma,nomeAbilitaArma);
 			DbConnection dbConnection = new DbConnection();
 			try {
 				dbConnection.insertArma(arma);
@@ -158,9 +176,10 @@ public class ArmaServlet extends HttpServlet {
 			}
 			String scalingArma = request.getParameter("scaling");
 			String nomeCategoriaArma = request.getParameter("nomeCategoria");
+			String nomeAbilitaArma = request.getParameter("nomeAbilita");
 			
 			Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
-					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma);
+					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma,nomeAbilitaArma);
 			DbConnection dbConnection = new DbConnection();
 			try {
 				dbConnection.updateArma(arma);

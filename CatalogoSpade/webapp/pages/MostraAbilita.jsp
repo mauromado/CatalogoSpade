@@ -12,7 +12,9 @@
 	  List<Abilita> lista = listaAbilita.getListaAbilita();%>
 	<ul>
 		<%for (int i = 0; i<lista.size(); i++){%>
-		<li>nome:<%=lista.get(i).getNome() %>, descrizione: <%=lista.get(i).getDescrizione() %></li>
+		<li>nome:<%=lista.get(i).getNome() %>,
+		 descrizione: <%=lista.get(i).getDescrizione() %>,
+		 tipologiaArma: <%=lista.get(i).getTipologiaArma() %></li>
 		<%} %>		
 	</ul>
 </body>

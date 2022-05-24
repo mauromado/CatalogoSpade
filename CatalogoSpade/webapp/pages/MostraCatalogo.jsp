@@ -30,7 +30,7 @@
 						<option value="arma bianca">
 							Arma bianca
 						</option>
-						<option value="distanza ">
+						<option value="distanza">
 							Arma a distanza
 						</option>
 						<option value="scudi">
@@ -38,6 +38,7 @@
 						</option>
 					</select>
 				</td>
+				<td>Abilita'</td>
 				<td>Dettagli</td>
 			</tr>
 		</thead>
@@ -52,6 +53,7 @@
 			<tr class = <%= coloreRiga %>>
 				<td><%=tempArma.getNome()%></td>
 				<td><%=tempArma.getNomeCategoria()%></td>
+				<td><%=tempArma.getNomeAbilita()%></td>
 				<td> <a href = "./dettaglioArmaServlet?dettaglioArma=<%=tempArma.getNome()%>">Dettagli</a> </td>
 			</tr>
 			<%

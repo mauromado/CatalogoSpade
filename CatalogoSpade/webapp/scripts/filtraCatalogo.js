@@ -9,6 +9,7 @@ function getTabella(){
 		tempArr.push(myTabella.rows[x].cells[0].innerHTML);
 		tempArr.push(myTabella.rows[x].cells[1].innerHTML);
 		tempArr.push(myTabella.rows[x].cells[2].innerHTML);
+		tempArr.push(myTabella.rows[x].cells[3].innerHTML);
 		matrixElement.push(tempArr);
 	}
 	currentArmi=matrixElement.length;
@@ -33,9 +34,11 @@ function aggiornamentoTabella(filter){
 			let cell0 = row.insertCell(0);
 			let cell1 = row.insertCell(1);
 			let cell2 = row.insertCell(2);
+			let cell3 = row.insertCell(3);
 			cell0.innerHTML = matrixElement[x][0];
 			cell1.innerHTML = matrixElement[x][1];
 			cell2.innerHTML = matrixElement[x][2];
+			cell3.innerHTML = matrixElement[x][3];
 			currentArmi++;
 		}
 	}

@@ -5,11 +5,14 @@ const scalingValue = ["Astr","Adex","Aint","Afth","Sstr","Sdex","Sint","Sfth","B
 var correctDict = {
 	"nomeCorrect" : true,
 	"scalingCorrect" : true,
+	"abilitaInserita" : true,
 }
 
-function setNomeCorrect(newNomeCorrect){
-	correctDict["nomeCorrect"] = newNomeCorrect;
+function bootStrapPageCreaArmi(){
+	correctDict["nomeCorrect"] = false;
+	correctDict["abilitaInserita"] = false;
 }
+
 
 function nonBlank(myField) {
 	    // Check for non-blank field
@@ -127,4 +130,30 @@ function changeStateButton(){
 
 function successAlert(){
 	return alert("Inserimento avvenuto con successo.");
+}
+
+function size_dict(d){
+	let c=0;
+	for (i in d) c++; 
+	return c;}
+
+function clearSelect(selectObject){
+	    while (selectObject.options.length > 0) {
+        selectObject.remove(0);
+    }
+}
+
+function changeAbilitaDisponibili(currentCategoria){
+	const selectAbilita= document.getElementById("nomeAbilita");
+	
+	selectAbilita.disabled = false;
+	correctDict["abilitaInserita"] = true;
+	changeStateButton();
+	
+	
+	clearSelect(selectAbilita);
+	for(keys in dictAbilita){
+		if(dictAbilita[keys]===currentCategoria){
+			selectAbilita.add(new Option(keys,keys));}
+	}
 }

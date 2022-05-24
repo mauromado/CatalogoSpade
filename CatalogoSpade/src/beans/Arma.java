@@ -11,9 +11,10 @@ public class Arma {
 	private int riduzioneDanno;
 	private String scaling;
 	private String nomeCategoria;
+	private String nomeAbilita;
 	
 	public Arma(String nome, float potenza, float peso, int livello, String tipoDanno, float stabilita,
-			int riduzioneDanno, String scaling, String nomeCategoria){
+			int riduzioneDanno, String scaling, String nomeCategoria,String nomeAbilita){
 		super();
 		this.nome = nome;
 		this.potenza = potenza;
@@ -24,6 +25,7 @@ public class Arma {
 		this.riduzioneDanno = riduzioneDanno;
 		this.scaling = scaling;
 		this.nomeCategoria = nomeCategoria;
+		this.nomeAbilita = nomeAbilita;
 	}
 	
 	public Arma() {
@@ -99,6 +101,14 @@ public class Arma {
 
 	public void setNomeCategoria(String nomeCategoria) {
 		this.nomeCategoria = nomeCategoria;
+	}
+	
+	public String getNomeAbilita() {
+		return nomeAbilita;
+	}
+
+	public void setNomeAbilita(String nomeAbilita) {
+		this.nomeAbilita = nomeAbilita;
 	}
 
 	public String toString() {

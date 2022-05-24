@@ -15,10 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import beans.Abilita;
 import beans.Arma;
 import beans.Categoria;
+import beans.ListaAbilita;
 import beans.ListaArmi;
 import beans.ListaCategoria;
+import beans.ListaMunizioni;
+import beans.Munizioni;
 import database.DbConnection;
 
 
@@ -28,6 +32,10 @@ public class HomeServlet extends HttpServlet {
 		private static final String PARAMETER_VALUE_CATALOGO = "Mostra Catalogo";
 		private static final String PARAMETER_CATEGORIA = "categorie";
 		private static final String PARAMETER_VALUE_CATEGORIA = "Mostra Categorie";
+		private static final String PARAMETER_MUNIZIONI = "munizioni";
+		private static final String PARAMETER_VALUE_MUNIZIONI = "Mostra Munizioni";
+		private static final String PARAMETER_ABILITA = "abilita";
+		private static final String PARAMETER_VALUE_ABILITA = "Mostra Abilita";
 	       
 	    public HomeServlet() {
 	        super();
@@ -49,7 +57,8 @@ public class HomeServlet extends HttpServlet {
 								rs.getFloat("Stabilita"),
 								rs.getInt("RiduzioneDanno"),
 								rs.getString("Scaling"),
-								rs.getString("NomeCategoria"));
+								rs.getString("NomeCategoria"),
+								rs.getString("NomeAbilita"));
 						listaArmi.getListaArmi().add(newArma);
 					}
 				} catch (SQLException e){
@@ -77,6 +86,53 @@ public class HomeServlet extends HttpServlet {
 				dbConnection.close();
 				request.setAttribute("listaCategorie", listaCategorie);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCategorie.jsp");
+				dispatcher.forward(request, response);
+				
+			}
+			
+			else if(request.getParameter(PARAMETER_ABILITA) != null && request.getParameter(PARAMETER_ABILITA).equals(PARAMETER_VALUE_ABILITA)) {
+				ResultSet rs;
+				ListaAbilita listaAbilita = new ListaAbilita();
+				DbConnection dbConnection = new DbConnection();
+				try {
+					rs = dbConnection.selectAllAbilita();
+					while(rs.next()) {
+						Abilita newAbilita= new Abilita(
+								rs.getString("Nome"),
+								rs.getString("Descrizione"),
+								rs.getString("TipologiaArma"));
+						listaAbilita.getListaAbilita().add(newAbilita);
+					}
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+				dbConnection.close();
+				request.setAttribute("listaAbilita", listaAbilita);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraAbilita.jsp");
+				dispatcher.forward(request, response);
+				
+			}
+			
+			else if(request.getParameter(PARAMETER_MUNIZIONI) != null && request.getParameter(PARAMETER_MUNIZIONI).equals(PARAMETER_VALUE_MUNIZIONI)) {
+				ResultSet rs;
+				ListaMunizioni listaMunizioni = new ListaMunizioni();
+				DbConnection dbConnection = new DbConnection();
+				try {
+					rs = dbConnection.selectAllMunizioni();
+					while(rs.next()) {
+						Munizioni newMunizioni= new Munizioni(
+								rs.getString("Nome"),
+								rs.getString("Descrizione"),
+								rs.getFloat("Danno"),
+								rs.getString("TipoDanno"));
+						listaMunizioni.getListaNomiMunizioni().add(newMunizioni);
+					}
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+				dbConnection.close();
+				request.setAttribute("listaMunizioni", listaMunizioni);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraMunizioni.jsp");
 				dispatcher.forward(request, response);
 				
 			}

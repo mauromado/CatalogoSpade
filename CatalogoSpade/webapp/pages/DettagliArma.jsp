@@ -52,6 +52,10 @@
 				<td>Categoria</td>
 				<td><%=arma.getNomeCategoria()%></td>
 		</tr>
+		<tr>
+			<td>Abilita'</td>
+			<td><%=arma.getNomeAbilita()%></td>
+		</tr>
 	</table>
 	<a href = "./armaServlet?updateArma=<%=arma.getNome()%>">Aggiorna</a>
 	&nbsp;&nbsp;

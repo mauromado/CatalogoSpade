@@ -39,7 +39,8 @@ public class DettaglioArmaServlet extends HttpServlet {
 						rs.getFloat("Stabilita"),
 						rs.getInt("RiduzioneDanno"),
 						rs.getString("Scaling"),
-						rs.getString("NomeCategoria"));
+						rs.getString("NomeCategoria"),
+						rs.getString("NomeAbilita"));
 					dbConnection.close();
 					request.setAttribute("detailsArma", arma);
 			}catch(Exception e){
