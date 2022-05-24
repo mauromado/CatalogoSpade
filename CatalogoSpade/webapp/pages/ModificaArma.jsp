@@ -67,12 +67,12 @@
 		    </option>
 		    
 		    <option 
-		    <%=("contundenteElementare".equals( arma.getTipoDanno().toLowerCase() ) )? "selected" : ""%>
+		    <%=("contundenteelementare".equals( arma.getTipoDanno().toLowerCase() ) )? "selected" : ""%>
 		    value="contundenteElementare">Contundente Elementare
 		    </option>
 		    
 		    <option 
-		    <%=("taglioElementare".equals( arma.getTipoDanno().toLowerCase() ) )? "selected" : ""%>
+		    <%=("taglioelementare".equals( arma.getTipoDanno().toLowerCase() ) )? "selected" : ""%>
 		    value="taglioElementare">Taglio Elementare
 		    </option>
 		    
