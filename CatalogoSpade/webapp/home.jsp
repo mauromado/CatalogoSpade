@@ -20,16 +20,23 @@
 		
 	
 		<h2>Benvenuto</h2>
-		<br>
 		<p>
-		Hai appena aperto il nostro catalogo delle spade di Dark Souls.<br>
-		All'interno di questro catalogo potrai:
+		Hai appena aperto il nostro catalogo delle armi di Dark Souls.<br>
+		<br>
+		All'interno di questo catalogo potrai:
 		<ul>
+			<li>visualizzare il catalogo</li>
 			<li>aggiungere armi</li>
 			<li>modificare le caratteristiche delle armi</li>
 			<li>eliminare le armi</li>
+			<li>ricercare per categoria</li>
+			<li>ricercare per abilita'</li>
+			<li>visualizzare le categorie</li>
+			<li>visualizzare le abilita'</li>
+			<li>visualizzare le munizioni</li>
 		</ul>
-		clicca il bottone sottostante per visionare il catalogo delle armi
+		<br>
+		Naviga nel nostro catalogo!
 		</p>
 		<form action="homeServlet" method="get">
 			<input type="submit" name="catalogo" value="Mostra Catalogo">
