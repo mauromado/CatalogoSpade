@@ -1,5 +1,9 @@
-@charset "ISO-8859-1";
-
+body {
+  background-image: url(sfondo.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 a:link, a:visited {
   color: #F2E37C;
   text-decoration: none;
@@ -13,13 +17,13 @@ a:active {
   text-decoration: none;
 }
 th, td {
-	border: 2px solid #5B594C;
+	border: 2px solid #D8DB2D;
 	padding: 10px;
-	background-color: #5B594C;
+	background-color: rgba(50, 50, 50, 0.85);
 	text-align: center;
 }
 .coloriDispari {
-	color: #F353E3;
+	color: #C4C4C3;
 	}
 .coloriPari {
 	color: white;
@@ -27,8 +31,9 @@ th, td {
 
 #tabellaArmi {
 	border-width: 2px;
-	border-colore: #5B594C;
-	padding: 10px;
-	color: #F6F6F2;
-	background-color: #F2E37C;
+	border-colore: #D8DB2D;
+	padding: 1px;
+	color: #D8DB2D;
+	background-color: rgba(0, 0, 0, 0);
+	border-collapse: collapse;
 }
