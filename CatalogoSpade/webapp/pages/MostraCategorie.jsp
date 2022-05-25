@@ -7,16 +7,49 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+
+
+function toggleTabella(){
+	var tabella = document.getElementById('inserisci');
+	var status = tabella.style.display;
+	if(status == 'block'){
+		tabella.style.display = 'none';
+	}else{
+		tabella.style.display = 'block';
+	}
+}
+</script>
+
 <meta charset="ISO-8859-1">
 <title>Categorie Disponibili</title>
 </head>
 <body>
-	<%ListaCategoria listaCategoria = (ListaCategoria)request.getAttribute("listaCategorie");
-	  List<Categoria> lista = listaCategoria.getListaNomiCategorie();%>
+
+	<%ListaCategoria listaNomiCategorie = (ListaCategoria)request.getAttribute("listaCategorie");
+	  List<Categoria> lista = listaNomiCategorie.getListaNomiCategorie();%>
 	<ul>
 		<%for (int i = 0; i<lista.size(); i++){%>
-		<li>nome:<%=lista.get(i).getNome() %>, descrizione: <%=lista.get(i).getDescrizione() %></li>
+		<li>
+		nome:<%=lista.get(i).getNome()%>, 
+		descrizione:<%=lista.get(i).getDescrizione()%>,  
+		</li>
 		<%} %>		
 	</ul>
-</body>
-</html>
+	
+
+		<input type="submit" name="aggiugiCategoria" value="Aggiungi categoria" onClick="toggleTabella(this.parentNode);">
+
+		<form action="" method="post" id="inserisci" hidden>
+		<label for="Name">Nome:</label>
+		<br>
+		<input type="text" id="name" name="nome" value="" placeholder="Nome categoria"" >
+		<br><br>
+		<label for="descrizione">Descrizione:</label>
+		<br>
+		<input type="text" id="descrizione" name="descrizione" value="">
+		<br>
+		<input type="submit" name="inserisciCategoria" value="Inserisci">
+		 </form>
+
+	
