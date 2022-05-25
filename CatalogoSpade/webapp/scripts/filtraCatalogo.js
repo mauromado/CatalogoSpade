@@ -1,6 +1,8 @@
 let myTabella;
 let matrixElement = new Array();
 let currentArmi = 0;
+let statoSelectCategoria = "tutto";
+let statoSelectAbilita = "tutto";
 
 function getTabella(){
 	myTabella=document.getElementById("tabellaArmi");
@@ -22,11 +24,22 @@ function clearTabella(){
 	currentArmi = 0;
 }
 
-function aggiornamentoTabella(filter){
+function setStatoSelectCategoria(newStatoSelectCategoria){
+	statoSelectCategoria = newStatoSelectCategoria;
+	aggiornamentoTabella();
+}
+
+function setStatoSelectAbilita(newStatoSelectAbilita){
+	statoSelectAbilita = newStatoSelectAbilita;
+	aggiornamentoTabella();
+}
+
+function aggiornamentoTabella(){
 	clearTabella();
 	let numberRow=2;
 	for(let x = 0; x<matrixElement.length ; x++){
-		if(filter===matrixElement[x][1] || filter==="tutto"){
+		if((statoSelectCategoria===matrixElement[x][1] || statoSelectCategoria==="tutto") 
+		&& (statoSelectAbilita===matrixElement[x][2] || statoSelectAbilita==="tutto") ){
 			let row = myTabella.insertRow(numberRow);
 			if(numberRow%2==0)row.className="coloriDispari";
 			else row.className="coloriPari";

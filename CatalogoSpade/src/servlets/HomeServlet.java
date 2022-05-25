@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,9 +37,29 @@ public class HomeServlet extends HttpServlet {
 		private static final String PARAMETER_VALUE_MUNIZIONI = "Mostra Munizioni";
 		private static final String PARAMETER_ABILITA = "abilita";
 		private static final String PARAMETER_VALUE_ABILITA = "Mostra Abilita";
+		ListaAbilita listaAbilita = new ListaAbilita();
 	       
 	    public HomeServlet() {
 	        super();
+	    }
+	    
+	    @Override
+	    public void init(ServletConfig config){
+	    	ResultSet rs;
+			DbConnection dbConnection = new DbConnection();
+			try {
+				rs = dbConnection.selectAllAbilita();
+				while(rs.next()) {
+					Abilita newAbilita= new Abilita(
+							rs.getString("Nome"),
+							rs.getString("Descrizione"),
+							rs.getString("TipologiaArma"));
+					listaAbilita.getListaAbilita().add(newAbilita);
+				}
+			} catch (SQLException e){
+				e.printStackTrace();
+			}
+			dbConnection.close();
 	    }
 
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -66,6 +87,7 @@ public class HomeServlet extends HttpServlet {
 				}
 				dbConnection.close();
 				request.setAttribute("listaArmi", listaArmi);
+				request.setAttribute("listaAbilita", listaAbilita);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
 				dispatcher.forward(request, response);
 			}
@@ -91,22 +113,6 @@ public class HomeServlet extends HttpServlet {
 			}
 			
 			else if(request.getParameter(PARAMETER_ABILITA) != null && request.getParameter(PARAMETER_ABILITA).equals(PARAMETER_VALUE_ABILITA)) {
-				ResultSet rs;
-				ListaAbilita listaAbilita = new ListaAbilita();
-				DbConnection dbConnection = new DbConnection();
-				try {
-					rs = dbConnection.selectAllAbilita();
-					while(rs.next()) {
-						Abilita newAbilita= new Abilita(
-								rs.getString("Nome"),
-								rs.getString("Descrizione"),
-								rs.getString("TipologiaArma"));
-						listaAbilita.getListaAbilita().add(newAbilita);
-					}
-				} catch (SQLException e){
-					e.printStackTrace();
-				}
-				dbConnection.close();
 				request.setAttribute("listaAbilita", listaAbilita);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraAbilita.jsp");
 				dispatcher.forward(request, response);
