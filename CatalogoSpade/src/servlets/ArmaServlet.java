@@ -42,6 +42,7 @@ public class ArmaServlet extends HttpServlet {
 			String nomeArma = request.getParameter("updateArma");
 			DbConnection dbConnection = new DbConnection();
 			ListaCategoria listaNomiCategorie = new ListaCategoria();
+			ListaAbilita listaNomiAbilita = new ListaAbilita();
 			try {
 				ResultSet rs = dbConnection.selectArmaByNome(nomeArma);
 				Arma arma = new Arma(rs.getString("Nome"),
@@ -64,10 +65,21 @@ public class ArmaServlet extends HttpServlet {
 							rs.getString("Descrizione"));
 					listaNomiCategorie.getListaNomiCategorie().add(categoria);}
 				request.setAttribute("listaNomiCategorie", listaNomiCategorie);
+				dbConnection.close();
+				
+				rs = dbConnection.selectAllAbilita();
+				while(rs.next()){
+					Abilita abilita = new Abilita (
+							rs.getString("Nome"),
+							rs.getString("Descrizione"),
+							rs.getString("TipologiaArma"));
+					listaNomiAbilita.getListaAbilita().add(abilita);}
+				request.setAttribute("listaNomiAbilita", listaNomiAbilita);
+				dbConnection.close();
+				
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			dbConnection.close();
 			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/ModificaArma.jsp");
 			dispatcher.forward(request, response);
 		} 

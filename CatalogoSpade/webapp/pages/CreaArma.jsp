@@ -70,7 +70,7 @@
            	   <%} %>
 		  </select> 
 		  <br><br>
-		  <label for="nomeCategoria">Abilita' arma:</label>
+		  <label for="nomeAbilita">Abilita' arma:</label>
 		  <br>
 		  <select name="nomeAbilita" id="nomeAbilita" required disabled>
 		      <option value="" disabled selected>Scegli un'abilita'</option>
