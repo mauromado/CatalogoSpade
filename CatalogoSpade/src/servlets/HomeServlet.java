@@ -113,6 +113,21 @@ public class HomeServlet extends HttpServlet {
 			}
 			
 			else if(request.getParameter(PARAMETER_ABILITA) != null && request.getParameter(PARAMETER_ABILITA).equals(PARAMETER_VALUE_ABILITA)) {
+				ResultSet rs;
+				ListaCategoria listaCategorie = new ListaCategoria();
+				DbConnection dbConnection = new DbConnection();
+				try {
+					rs = dbConnection.selectAllCategorie();
+					while(rs.next()) {
+						Categoria newCategoria= new Categoria(rs.getString("NomeCategoria"),
+								rs.getString("Descrizione"));
+						listaCategorie.getListaNomiCategorie().add(newCategoria);
+					}
+				} catch (SQLException e){
+					e.printStackTrace();
+				}
+				dbConnection.close();
+				request.setAttribute("listaCategorie", listaCategorie);
 				request.setAttribute("listaAbilita", listaAbilita);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraAbilita.jsp");
 				dispatcher.forward(request, response);
