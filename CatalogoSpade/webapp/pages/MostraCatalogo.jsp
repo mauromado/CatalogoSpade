@@ -64,7 +64,7 @@
 				<p>
 				Filtra per categoria
 				</p>			
-				<select name="filtroArmi" id="filtroArmi" onChange="setStatoSelectCategoria(this.value)">
+				<select name="filtroArmi" id="filtroCategoria" onChange="setStatoSelectCategoria(this.value)">
 					<option value="tutto">
 						Tutto
 					</option>
@@ -82,8 +82,8 @@
 				<p>
 				Filtra per abilita'
 				</p>			
-				<select name="filtroArmi" id="filtroArmi" onChange="setStatoSelectAbilita(this.value)">
-					<option value="tutto">
+				<select name="filtroArmi" id="filtroAbilita" onChange="setStatoSelectAbilita(this.value)">
+					<option value="tutto" >
 						Tutto
 					</option>
 					<%ListaAbilita listaAbilita = (ListaAbilita)request.getAttribute("listaAbilita");
@@ -93,7 +93,8 @@
 					</option>
 					<%}%>
 				</select>
-				
+				<br><br>
+				<input type="submit" name="" value="Resetta filtri" onClick="resetFiltri()">
 			</td>
 		</tr>
 	</table>

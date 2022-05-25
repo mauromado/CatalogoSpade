@@ -57,6 +57,11 @@ function aggiornamentoTabella(){
 	}
 }
 	
-
+function resetFiltri(){
+	setStatoSelectCategoria("tutto");
+	setStatoSelectAbilita("tutto");
+	document.getElementById("filtroCategoria").value="tutto";
+	document.getElementById("filtroAbilita").value="tutto";
+}
 
 
