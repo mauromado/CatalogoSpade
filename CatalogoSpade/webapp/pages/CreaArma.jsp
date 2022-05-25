@@ -1,6 +1,9 @@
+<%@ page errorPage="../errors/failure.jsp" %>
+
 <%@ page import="beans.ListaCategoria"%>
 <%@ page import="beans.ListaAbilita"%>
 <%@ page import="java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>

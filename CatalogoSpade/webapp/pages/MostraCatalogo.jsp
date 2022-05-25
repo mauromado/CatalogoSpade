@@ -1,6 +1,9 @@
+<%@ page errorPage="../errors/failure.jsp" %>
+
 <%@ page import="beans.ListaArmi"%>
 <%@ page import="beans.Arma"%>
 <%@ page import="java.util.*"%>
+
 <link href="./style/style.css" rel="stylesheet" type="text/css">
 <html>
 <head>

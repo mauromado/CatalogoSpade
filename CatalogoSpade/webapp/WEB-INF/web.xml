@@ -36,4 +36,14 @@
     <servlet-name>dettaglioArmaServlet</servlet-name>
     <url-pattern>/dettaglioArmaServlet</url-pattern>
   </servlet-mapping>
+  
+  <error-page>
+  	<exception-type>javax.servlet.ServletException</exception-type>
+  	<location>/errors/failure.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/errors/notFound.html</location>
+  </error-page>
 </web-app>
