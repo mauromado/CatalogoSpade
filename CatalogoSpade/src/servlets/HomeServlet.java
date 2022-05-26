@@ -51,7 +51,6 @@ public class HomeServlet extends HttpServlet {
 			try {
 				rs = dbConnection.selectAllAbilita();
 				while(rs.next()) {
-					System.out.println(rs.getString("Nome"));
 					Abilita newAbilita= new Abilita(
 							rs.getString("Nome"),
 							rs.getString("Descrizione"),

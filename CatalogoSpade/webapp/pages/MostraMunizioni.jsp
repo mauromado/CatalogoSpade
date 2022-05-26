@@ -14,7 +14,7 @@
 <script type="text/javascript" src="./scripts/utils.js"></script>
 
 </head>
-<body>);
+<body>
 	
 	<table id="tabellaArmi" align="center">
 			
@@ -86,7 +86,7 @@
 			<option value="elementare">elementare</option>
 		</select>
 		<br><br>
-		<input id="insertButton" type="submit" name="tipoOperazione" value="inserisciMunizioni">
+		<input id="insertButton" type="submit" name="tipoOperazione" value="Inserisci munizioni">
 	</form>
 	</div>
 	
@@ -98,7 +98,7 @@
 		<br><br>
 		<label for="Desc">Descrizione:</label>
 		<br>
-		<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci descrizione"></textarea>
+		<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci munizione"></textarea>
 		<br><br>
 		<label for="Damage">Danno:</label>
 		<br>
@@ -109,7 +109,7 @@
 			<option value="elementare">elementare</option>
 		</select>
 		<br><br>
-		<input id="insertButton" type="submit" name="tipoOperazione" value="inserisciMunizioni">
+		<input id="insertButton" type="submit" name="tipoOperazione" value="Modifica munizione">
 	</form>
 	</div>
 </body>

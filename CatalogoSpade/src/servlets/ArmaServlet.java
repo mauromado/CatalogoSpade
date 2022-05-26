@@ -170,7 +170,6 @@ public class ArmaServlet extends HttpServlet {
 				successOp=false;
 				System.err.println(e.getMessage());
 				}
-			System.out.println(request.getParameter("nomeCategoria"));
 			dbConnection.close();
 			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
@@ -189,7 +188,6 @@ public class ArmaServlet extends HttpServlet {
 				successOp=false;
 				System.err.println(e.getMessage());
 				}
-			System.out.println(request.getParameter("nomeAbilita"));
 			dbConnection.close();
 			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
@@ -200,8 +198,7 @@ public class ArmaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean successOp = true;
 		//inserimento:
-		if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("InserisciCategoria")) {
-			System.out.println("sono nella servlet");
+		if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci categoria")) {
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
 			Categoria categoria = new Categoria(nome,descrizione);
@@ -218,7 +215,7 @@ public class ArmaServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 			
-		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("inserisciMunizioni")) {
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci munizioni")) {
 			String nomeMunizioni = request.getParameter("nome");
 			String descrizioniMunizioni = request.getParameter("descrizione");
 			float dannoMunizioni = Float.parseFloat(request.getParameter("danno"));
@@ -237,6 +234,79 @@ public class ArmaServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		} 
+
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci abilita")) {
+			String nomeAbilita = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			String tipologiaArma = request.getParameter("nomeCategoria");
+			Abilita abilita = new Abilita(nomeAbilita,descrizione,tipologiaArma);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.insertAbilita(abilita);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Modifica categoria")) {
+			String nome = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			Categoria categoria = new Categoria(nome,descrizione);
+			System.out.println(nome);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.updateCategoria(categoria);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Modifica abilita")) {
+			String nome = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			String tipoArma = request.getParameter("nomeCategoria");
+			Abilita abilita= new Abilita(nome,descrizione,tipoArma);
+			System.out.println(nome);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.updateAbilita(abilita);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Modifica munizione")) {
+			String nome = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			float danno= Float.parseFloat(request.getParameter("danno"));
+			String tipoDanno = request.getParameter("tipoDanno");
+			Munizioni munizione= new Munizioni(nome,descrizione,danno,tipoDanno);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.updateMunizione(munizione);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("modifica")) {
 			String nomeArma = request.getParameter("nome");
 			float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
@@ -300,23 +370,6 @@ public class ArmaServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			}
-		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci abilita")) {
-			String nomeAbilita = request.getParameter("nome");
-			String descrizione = request.getParameter("descrizione");
-			String tipologiaArma = request.getParameter("nomeCategoria");
-			Abilita abilita = new Abilita(nomeAbilita,descrizione,tipologiaArma);
-			DbConnection dbConnection = new DbConnection();
-			try {
-				dbConnection.insertAbilita(abilita);
-			} catch (SQLException e) {
-				successOp = false;
-				e.printStackTrace();
-			}
-			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-			dispatcher.forward(request, response);
-		}
 		
 	}
 }

@@ -63,7 +63,7 @@
 			<br>
 			<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci descrizione"></textarea>
 			<br><br>
-			<input id="insertButton" type="submit" name="tipoOperazione" value="InserisciCategoria">
+			<input id="insertButton" type="submit" name="tipoOperazione" value="Inserisci categoria">
 		</form>
 		</div>
 		

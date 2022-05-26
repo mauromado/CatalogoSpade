@@ -43,6 +43,10 @@ public class DbConnection {
 	private static final String QRY_DELETE_ARMA_ABILITA="DELETE FROM ARMA WHERE NomeAbilita=?";
 	private static final String QRY_DELETE_ABILITA="DELETE FROM ABILITA WHERE Nome=?;";
 	
+	private static final String QRY_UPDATE_CATEGORIA="UPDATE Categoria SET NomeCategoria=?,Descrizione=? WHERE NomeCategoria=?;";
+	private static final String QRY_UPDATE_ABILITA="UPDATE Abilita SET Nome=?,Descrizione=?,TipologiaArma=? WHERE Nome=?;";
+	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
+	
 	public Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -176,6 +180,56 @@ public class DbConnection {
 		}
 		catch(Exception e) {
 			System.out.println("Insert: fallito l'inserimento dell'arma "+ arma.getNome() +" ("+e.getMessage()+")");
+		}
+	}
+	
+	public void updateCategoria(Categoria categoria) throws SQLException {
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_UPDATE_CATEGORIA);
+			s.setString(1, categoria.getNome());
+			s.setString(2, categoria.getDescrizione());
+			s.setString(3, categoria.getNome());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ categoria.getNome() +" ("+e.getMessage()+")");
+		}
+	}
+	
+	public void updateAbilita(Abilita abilita) throws SQLException {
+		Connection c = connect();
+		//TODO se un abilita cambia tipo di arma le armi che avevano questa 
+		//abilita dovranno cambiare di conseguenza (come ancora da definire)
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_UPDATE_ABILITA);
+			s.setString(1, abilita.getNome());
+			s.setString(2, abilita.getDescrizione());
+			s.setString(3, abilita.getTipologiaArma());
+			s.setString(4, abilita.getNome());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ abilita.getNome() +" ("+e.getMessage()+")");
+		}
+	}
+	
+	public void updateMunizione(Munizioni munizioni) throws SQLException {
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_UPDATE_MUNIZIONI);
+			s.setString(1, munizioni.getNome());
+			s.setString(2, munizioni.getDescrizione());
+			s.setFloat(3, munizioni.getDanno());
+			s.setString(4, munizioni.getTipoDanno());
+			s.setString(5, munizioni.getNome());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ munizioni.getNome() +" ("+e.getMessage()+")");
 		}
 	}
 	
