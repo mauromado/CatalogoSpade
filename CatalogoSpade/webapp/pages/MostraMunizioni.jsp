@@ -10,17 +10,7 @@
 
 <meta charset="ISO-8859-1">
 <title>Munizioni Disponibili</title>
-<script>
-function hideDisplayForm(){
-	form=document.getElementById("formInserisciMunizioni");
-	if(form.style.display==="block"){
-		form.style.display="none";}
-	else{
-		form.style.display="block";}
-}
-
-
-</script>
+<script type="text/javascript" src="./scripts/utils.js"></script>
 
 </head>
 <body>
@@ -36,12 +26,12 @@ function hideDisplayForm(){
 		<%} %>		
 	</ul>
 	<br>
-	<input id="addtButton" type="submit" value="aggiungi" onClick="hideDisplayForm()">
+	<input type="submit" value="aggiungi" onClick="hideDisplayForm()">
 	<br><br><br>
-	<form hidden action="armaServlet" method="post" id="formInserisciMunizioni">
+	<form action="armaServlet" method="post" id="formInserisci" hidden>
 		<label for="Name">Nome:</label>
 		<br>
-		<input type="text" id="name" name="nome" value="" placeholder="nome munizioni">
+		<input type="text" id="name" name="nome" value="" placeholder="nome munizioni" onChange="checkNome(this.form)">
 		<br><br>
 		<label for="Desc">Descrizione:</label>
 		<br>
@@ -49,7 +39,7 @@ function hideDisplayForm(){
 		<br><br>
 		<label for="Damage">Danno:</label>
 		<br>
-		<input type="number" id="damage" name="danno" value="0">
+		<input type="number" id="damage" name="danno" value="0" onChange="checkNumber(this)">
 		<br><br>
 		<select name="tipoDanno" id="tipoDanno">
 			<option value="fisico">fisico</option>

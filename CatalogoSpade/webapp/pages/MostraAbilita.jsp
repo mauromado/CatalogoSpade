@@ -11,15 +11,7 @@
 
 <meta charset="ISO-8859-1">
 <title>Abilita' Disponibili</title>
-<script>
-function hideDisplayForm(){
-	 form=document.getElementById("formInserisciAbilita");
-	 if(form.style.display==="block")
-		 form.style.display="none";
-	 else
-		 form.style.display="block";
-}
-</script>
+<script type="text/javascript" src="./scripts/utils.js"></script>
 
 </head>
 <body>
@@ -34,12 +26,12 @@ function hideDisplayForm(){
 	</ul>
 	<br><br>
 	
-	<input type="button" id="insertButton" value="Inserisci nuova abilità" onClick="hideDisplayForm()">
+	<input type="button" value="Inserisci nuova abilità" onClick="hideDisplayForm()">
 	<br><br>
-	<form action="armaServlet" method="post" id="formInserisciAbilita" hidden>
+	<form action="armaServlet" method="post" id="formInserisci" hidden>
  		<label for="Name">Nome:</label>
 		<br>
-		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="" >
+		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="checkNome(this.form)" >
 		<br><br>
 		<label for="Name">Descrizione:</label>
 		<br>

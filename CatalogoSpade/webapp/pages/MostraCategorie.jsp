@@ -7,19 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-
-
-function toggleTabella(){
-	var tabella = document.getElementById('inserisciCategoria');
-	var status = tabella.style.display;
-	if(status == 'block'){
-		tabella.style.display = 'none';
-	}else{
-		tabella.style.display = 'block';
-	}
-}
-</script>
+<script type="text/javascript" src="./scripts/utils.js"></script>
 
 <meta charset="ISO-8859-1">
 <title>Categorie Disponibili</title>
@@ -38,17 +26,17 @@ function toggleTabella(){
 	</ul>
 	
 
-		<input type="submit" name="aggiugiCategoria" value="Aggiungi categoria" onClick="toggleTabella(this.parentNode);">
+		<input type="submit" name="aggiugiCategoria" value="Aggiungi categoria" onClick="hideDisplayForm();">
 
-		<form action="armaServlet" method="post" id="inserisciCategoria" hidden>
+		<form action="armaServlet" method="post" id="formInserisci" hidden>
 			<label for="Name">Nome:</label>
 			<br>
-			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria">
+			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria" onChange="checkNome(this.form)">
 			<br><br>
 			<label for="descrizione">Descrizione:</label>
 			<br>
-			<input type="text" id="descrizione" name="descrizione" value="" placeholder="Descrizione">
-			<br>
+			<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci descrizione"></textarea>
+			<br><br>
 			<input id="insertButton" type="submit" name="tipoOperazione" value="InserisciCategoria">
 		</form>
 
