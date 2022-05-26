@@ -4,6 +4,7 @@
 <%@ page import="beans.Munizioni"%>
 <%@ page import="java.util.*"%>
 
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,18 +24,47 @@ function hideDisplayForm(){
 </script>
 
 </head>
-<body>
-	<%ListaMunizioni listaMunizioni = (ListaMunizioni)request.getAttribute("listaMunizioni");
-	  List<Munizioni> lista = listaMunizioni.getListaNomiMunizioni();%>
-	<ul>
-		<%for (int i = 0; i<lista.size(); i++){%>
-		<li>nome:<%=lista.get(i).getNome()%>, 
-		descrizione: <%=lista.get(i).getDescrizione()%>, 
-		danno: <%=lista.get(i).getDanno()%>, 
-		tipo di danno: <%=lista.get(i).getTipoDanno()%> 
-		</li>
-		<%} %>		
-	</ul>
+<body>);
+	
+	<table id="tabellaArmi" align="center">
+			
+				<thead>
+					<tr>
+						<th colspan="5">Munizioni</th>
+					</tr>
+					<tr>
+						<td>Nome</td>
+						<td>Descrizione</td>
+						<td>Danno</td>
+						<td>Tipo di danno</td>
+						<td>Aggiorna/elimina</td>
+					</tr>
+					</thead>
+					<tbody>
+						<%
+						ListaMunizioni listaMunizioni = (ListaMunizioni)request.getAttribute("listaMunizioni");
+						List<Munizioni> lista = listaMunizioni.getListaNomiMunizioni();
+						for (int x = 0; x < listaMunizioni.getListaNomiMunizioni().size(); x++) {
+						Munizioni tempMunizioni = listaMunizioni.getListaNomiMunizioni().get(x);
+						String coloreRiga = x%2 == 0? "coloriDispari": "coloriPari"; 
+						%>
+						<tr class = <%= coloreRiga %>>
+						<td><%=tempMunizioni.getNome()%></td>
+						<td><%=tempMunizioni.getDescrizione()%></td>
+						<td><%=tempMunizioni.getDanno()%></td>
+						<td><%=tempMunizioni.getTipoDanno()%></td>
+						<td>
+							<form action="armaServlet" method="get">
+								<input type="submit" name="deleteMunizioni" value="elimina <%=tempMunizioni.getNome()%>">
+							</form>
+							<input type="submit" name="updateMunizioni" value="aggiorna <%=tempMunizioni.getNome()%>">
+						</td>
+						</tr>
+						<%
+						}
+						%>
+					</tbody>
+	</table>
 	<br>
 	<input id="addtButton" type="submit" value="aggiungi" onClick="hideDisplayForm()">
 	<br><br><br>
