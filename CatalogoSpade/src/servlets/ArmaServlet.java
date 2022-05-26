@@ -211,6 +211,37 @@ public class ArmaServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			}
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("inserisci")) {
+			String nomeArma = request.getParameter("nome");
+			float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
+			float pesoArma = Float.parseFloat(request.getParameter("peso"));
+			int livelloArma = Integer.parseInt(request.getParameter("livello"));
+			String tipoDannoArma = request.getParameter("tipoDanno");
+			float stabilitaArma = Float.parseFloat(request.getParameter("stabilita"));
+			int riduzioneDannoArma;
+			try{
+				riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
+			}catch(NumberFormatException e){
+				riduzioneDannoArma = 0;
+			}
+			String scalingArma = request.getParameter("scaling");
+			String nomeCategoriaArma = request.getParameter("nomeCategoria");
+			String nomeAbilitaArma = request.getParameter("nomeAbilita");
+			
+			Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
+					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma,nomeAbilitaArma);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.insertArma(arma);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+			}
 		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci abilita")) {
 			String nomeAbilita = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
