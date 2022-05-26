@@ -34,6 +34,14 @@ public class DbConnection {
 	private static final String QRY_INSERT_CATEGORIA="INSERT INTO Categoria(NomeCategoria,Descrizione) VALUES(?,?)";
 	private static final String QRY_INSERT_MUNIZIONI="INSERT INTO Munizioni(Nome,Descrizione,Danno,TipoDanno) VALUES(?,?,?,?)";
 	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,TipologiaArma) VALUES(?,?,?);";
+	private static final String QRY_DELETE_MUNIZIONI="DELETE FROM Munizioni WHERE Nome=?;";
+	
+	private static final String QRY_DELETE_CATEGORIA="DELETE FROM Categoria WHERE NomeCategoria=?";
+	private static final String QRY_DELETE_ARMA_CATEGORIA="DELETE FROM Arma WHERE NomeCategoria=?";
+	private static final String QRY_DELETE_ABILITA_CATEGORIA="DELETE FROM Abilita WHERE TipologiaArma=?";
+	
+	private static final String QRY_DELETE_ARMA_ABILITA="DELETE FROM ARMA WHERE NomeAbilita=?";
+	private static final String QRY_DELETE_ABILITA="DELETE FROM ABILITA WHERE Nome=?;";
 	
 	public Connection connect() {
 		try {
@@ -216,5 +224,64 @@ public class DbConnection {
 		}
 	}
 	
+	public boolean deleteMunizione(String nomeMunizione) throws SQLException{
+		boolean ris = false;
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_DELETE_MUNIZIONI);
+			s.setString(1, nomeMunizione);
+			s.executeUpdate();
+			ris=true;
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Delete: fallita la cancellazione della munizione "+nomeMunizione +" ("+e.getMessage()+")");
+		}
+		return ris;
+	}
+	
+	public boolean deleteCategoria(String nomeCategoria) throws SQLException{
+		boolean ris = false;
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_DELETE_CATEGORIA);
+			PreparedStatement p = c.prepareStatement(QRY_DELETE_ARMA_CATEGORIA);
+			PreparedStatement ps = c.prepareStatement(QRY_DELETE_ABILITA_CATEGORIA);
+			s.setString(1, nomeCategoria);
+			p.setString(1, nomeCategoria);;
+			ps.setString(1, nomeCategoria);
+			s.executeUpdate();
+			p.executeUpdate();
+			ps.executeUpdate();
+			ris=true;
+			s.close();
+			p.close();
+			ps.close();
+		}
+		catch(Exception e) {
+			System.out.println("Delete: fallita la cancellazione della munizione "+nomeCategoria +" ("+e.getMessage()+")");
+		}
+		return ris;
+	}
+	
+	public boolean deleteAbilita(String nomeAbilita) throws SQLException{
+		boolean ris = false;
+		Connection c = connect();
+		try {
+			PreparedStatement s = c.prepareStatement(QRY_DELETE_ABILITA);
+			PreparedStatement p = c.prepareStatement(QRY_DELETE_ARMA_ABILITA);
+			s.setString(1, nomeAbilita);
+			p.setString(1, nomeAbilita);
+			s.executeUpdate();
+			p.executeUpdate();
+			ris=true;
+			s.close();
+			p.close();
+		}
+		catch(Exception e) {
+			System.out.println("Delete: fallita la cancellazione della munizione "+nomeAbilita +" ("+e.getMessage()+")");
+		}
+		return ris;
+	}
 	
 }

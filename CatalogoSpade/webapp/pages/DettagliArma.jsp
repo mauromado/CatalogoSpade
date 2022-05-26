@@ -4,6 +4,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="beans.Arma"%>
 
+<link href="./style/style.css" rel="stylesheet" type="text/css">
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,49 +15,49 @@
 <body align="center">
 	<%Arma arma = (Arma)request.getAttribute("detailsArma");%>
 	<h1><%=arma.getNome().toUpperCase() %></h1>
-	<table border="1" align="center">
+	<table border="1" align="center" id="tabellaArmi">
 		<caption>Dettagli arma</caption>
 		
 		<tr>
 				<th colspan="2"><%=arma.getNome().toUpperCase() %></th>
 		</tr>
-		<tr>
+		<tr class="coloriPari">
 				<td>Nome</td>
 				<td><%=arma.getNome()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriDispari">
 				<td>Potenza</td>
 				<td><%=arma.getPotenza()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriPari">
 				<td>Peso</td>
 				<td><%=arma.getPeso()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriDispari">
 				<td>Livello</td>
 				<td><%=arma.getLivello()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriPari">
 				<td>Tipo Di Danno</td>
 				<td><%=arma.getTipoDanno()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriDispari">
 				<td>Stabilita'</td>
 				<td><%=arma.getStabilita()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriPari">
 				<td>Riduzione Danno</td>
 				<td><%=arma.getRiduzioneDanno()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriDispari">
 				<td>Scaling</td>
 				<td><%=arma.getScaling()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriPari">
 				<td>Categoria</td>
 				<td><%=arma.getNomeCategoria()%></td>
 		</tr>
-		<tr>
+		<tr class="coloriDispari">
 			<td>Abilita'</td>
 			<td><%=arma.getNomeAbilita()%></td>
 		</tr>

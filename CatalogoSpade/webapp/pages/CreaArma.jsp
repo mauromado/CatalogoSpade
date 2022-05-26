@@ -75,7 +75,7 @@
 		  <br><br>
 		  <label for="nomeAbilita">Abilita' arma:</label>
 		  <br>
-		  <select name="nomeAbilita" id="nomeAbilita" required disabled>
+		  <select name="nomeAbilita" id="nomeAbilita" disabled>
 		      <option value="" disabled selected>Scegli un'abilita'</option>
           	  <%listaAbilita = (ListaAbilita) request.getAttribute("listaNomiAbilita");
           	  for(int x=0; x<listaAbilita.getListaAbilita().size(); x++){ %>

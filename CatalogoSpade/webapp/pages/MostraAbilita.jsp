@@ -42,6 +42,7 @@
 						<td><%=tempAbilita.getDescrizione()%></td>
 						<td>
 							<form action="armaServlet" method="get">
+								<input type="hidden" name="nomeAbilita" value="<%=tempAbilita.getNome()%>">
 								<input type="submit" name="deleteAbilita" value="elimina <%=tempAbilita.getNome()%>">
 							</form>
 							<input type="submit" name="updateAbilita" value="aggiorna <%=tempAbilita.getNome()%>">
