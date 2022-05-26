@@ -38,7 +38,7 @@ function hideDisplayForm(){
 	<br>
 	<input id="addtButton" type="submit" value="aggiungi" onClick="hideDisplayForm()">
 	<br><br><br>
-	<form hidden action="ArmaServlet" method="post" id="formInserisciMunizioni">
+	<form hidden action="armaServlet" method="post" id="formInserisciMunizioni">
 		<label for="Name">Nome:</label>
 		<br>
 		<input type="text" id="name" name="nome" value="" placeholder="nome munizioni">
