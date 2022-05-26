@@ -21,6 +21,7 @@ import beans.Categoria;
 import beans.ListaAbilita;
 import beans.ListaArmi;
 import beans.ListaCategoria;
+import beans.Munizioni;
 import database.DbConnection;
 
 public class ArmaServlet extends HttpServlet {
@@ -158,8 +159,28 @@ public class ArmaServlet extends HttpServlet {
 			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
-
-		} else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("modifica")) {
+		}
+			
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("inserisciMunizioni")) {
+			String nomeMunizioni = request.getParameter("nome");
+			String descrizioniMunizioni = request.getParameter("descrizione");
+			float dannoMunizioni = Float.parseFloat(request.getParameter("danno"));
+			String tipoDannoMunizioni = request.getParameter("tipoDanno");
+				
+			Munizioni munizione = new Munizioni(nomeMunizioni,descrizioniMunizioni,dannoMunizioni,tipoDannoMunizioni);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.insertMunizioni(munizione);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		} 
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("modifica")) {
 			String nomeArma = request.getParameter("nome");
 			float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
 			float pesoArma = Float.parseFloat(request.getParameter("peso"));

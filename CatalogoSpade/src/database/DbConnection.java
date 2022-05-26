@@ -10,6 +10,7 @@ import java.sql.Statement;
 import beans.Abilita;
 import beans.Arma;
 import beans.Categoria;
+import beans.Munizioni;
 
 
 public class DbConnection {
@@ -30,10 +31,10 @@ public class DbConnection {
 	private static final String QRY_CATEGORIA_LISTA_TUTTO="SELECT * FROM Categoria";
 	private static final String QRY_MUNIZIONE_LISTA_TUTTO="SELECT * FROM Munizioni;";
 	private static final String QRY_ABILITA_LISTA_TUTTO="SELECT * FROM Abilita;";
-	private static final String QRY_INSERT_CATEGORIA="INSERT INTO Categoria(NomeCategoria,Descrizione)"
-	                                                 +" VALUES(?,?)";
-	
+	private static final String QRY_INSERT_CATEGORIA="INSERT INTO Categoria(NomeCategoria,Descrizione) VALUES(?,?)";
+	private static final String QRY_INSERT_MUNIZIONI="INSERT INTO Munizioni(Nome,Descrizione,Danno,TipoDanno) VALUES(?,?,?,?)";
 	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,TipologiaArma) VALUES(?,?,?);";
+	
 	public Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -124,6 +125,23 @@ public class DbConnection {
 		}
 		catch(Exception e) {
 			System.out.println("Insert: fallito l'inserimento dell'arma "+ arma.getNome() +" ("+e.getMessage()+")");
+		}
+	}
+	
+	public void insertMunizioni(Munizioni munizioni) throws SQLException {
+		Connection c = connect();
+		try {
+			
+			PreparedStatement s = c.prepareStatement(QRY_INSERT_MUNIZIONI);
+			s.setString(1, munizioni.getNome());
+			s.setString(2, munizioni.getDescrizione());
+			s.setFloat(3, munizioni.getDanno());
+			s.setString(4, munizioni.getTipoDanno());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento della munizione "+ munizioni.getNome() +" ("+e.getMessage()+")");
 		}
 	}
 	
