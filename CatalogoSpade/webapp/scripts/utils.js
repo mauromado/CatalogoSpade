@@ -158,10 +158,19 @@ function changeAbilitaDisponibili(currentCategoria){
 	}
 }
 
-function hideDisplayForm(){
-	form=document.getElementById("formInserisci");
+function hideDisplayForm(idForm){
+	form=document.getElementById(idForm);
 	if(form.style.display==="block"){
 		form.style.display="none";}
 	else{
 		form.style.display="block";}
+}
+
+function populateForm(arr){
+	const form = document.getElementById("formModifica");
+	let x=0;
+	form.style.display="block";
+	Array.from(form.elements).forEach(element => {
+  	element.value=arr[x++];
+	});
 }

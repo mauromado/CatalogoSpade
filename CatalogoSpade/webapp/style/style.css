@@ -47,3 +47,9 @@ th, td {
 	background-color: red;
 	color: white;
 }
+div.rightForm {
+	float:right;
+}
+div.leftForm {
+	float:left;
+}

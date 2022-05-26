@@ -5,11 +5,10 @@
 <%@ page import="beans.ListaCategoria"%>
 <%@ page import="java.util.*"%>
 
-<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
-
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <meta charset="ISO-8859-1">
 <title>Abilita' Disponibili</title>
 <script type="text/javascript" src="./scripts/utils.js"></script>
@@ -27,6 +26,7 @@
 						<td>Nome</td>
 						<td>Descrizione</td>
 						<td>Aggiorna/elimina</td>
+						<td>Tipologia arma</td>
 					</tr>
 					</thead>
 					<tbody>
@@ -40,11 +40,19 @@
 						<tr class = <%= coloreRiga %>>
 						<td><%=tempAbilita.getNome()%></td>
 						<td><%=tempAbilita.getDescrizione()%></td>
+						<td><%=tempAbilita.getTipologiaArma()%></td>
 						<td>
 							<form action="armaServlet" method="get">
 								<input type="submit" name="deleteAbilita" value="elimina <%=tempAbilita.getNome()%>">
 							</form>
-							<input type="submit" name="updateAbilita" value="aggiorna <%=tempAbilita.getNome()%>">
+							<input type="submit" name="updateAbilita" value="aggiorna <%=tempAbilita.getNome()%>"
+							onClick="populateForm(
+									Array(
+									'<%=tempAbilita.getNome()%>',
+									'<%=tempAbilita.getDescrizione()%>',
+									'<%=tempAbilita.getTipologiaArma()%>',
+									'Modifica abilita',
+									) )">
 						</td>
 						</tr>
 						<%
@@ -54,8 +62,9 @@
 	</table>
 	<br><br>
 	
-	<input type="button" value="Inserisci nuova abilità" onClick="hideDisplayForm()">
+	<input type="button" value="Inserisci nuova abilità" onClick="hideDisplayForm('formInserisci')">
 	<br><br>
+	<div class="leftForm">
 	<form action="armaServlet" method="post" id="formInserisci" hidden>
  		<label for="Name">Nome:</label>
 		<br>
@@ -75,5 +84,28 @@
 		<br><br>
 		<input id="insertButton" type="submit" name="tipoOperazione" value="Inserisci abilita">
 	</form>
+	</div>
+	
+	<div class="rightForm">
+	<form action="armaServlet" method="post" id="formModifica" hidden>
+ 		<label for="Name">Nome:</label>
+		<br>
+		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="checkNome(this.form)" readonly>
+		<br><br>
+		<label for="Name">Descrizione:</label>
+		<br>
+		<textarea rows = "5" cols = "60" id="descrizione" name = "descrizione" placeholder="Descrizione abilita'"></textarea>
+        <br><br>
+		<select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required>
+			<option value="" disabled selected>Scegli la categoria delle armi</option>
+          	<%
+              for(int x=0; x<listaNomiCategoria.getListaNomiCategorie().size(); x++){ %>
+            <option value ="<%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>"><%= listaNomiCategoria.getListaNomiCategorie().get(x).getNome() %>
+           	<%}%>
+		  </select>
+		<br><br>
+		<input id="insertButton" type="submit" name="tipoOperazione" value="Modifica abilita">
+	</form>
+	</div>
 </body>
 </html>

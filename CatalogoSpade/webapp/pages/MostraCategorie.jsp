@@ -3,10 +3,10 @@
 <%@ page import="beans.ListaCategoria"%>
 <%@ page import="beans.Categoria"%>
 <%@ page import="java.util.*"%>
-<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="./scripts/utils.js"></script>
 <meta charset="ISO-8859-1">
 <title>Categorie Disponibili</title>
@@ -36,7 +36,13 @@
 				<form action="armaServlet" method="post" id="cancellaCategoria">
 					<input type="submit" name="cancellaCategoria" value="Cancella <%=tempCat.getNome()%>";>
 				</form>
-				<input type="submit" name="modificaCategoria" value="Modifica <%=tempCat.getNome()%>";>
+				<input type="submit" name="modificaCategoria" value="Modifica <%=tempCat.getNome()%>" 
+				onClick="populateForm(
+				Array(
+				'<%=tempCat.getNome()%>',
+				'<%=tempCat.getDescrizione()%>',
+				'Modifica categoria',
+				) )">
 				</td>
 			</tr>
 				<%
@@ -45,9 +51,9 @@
 		</tbody>
 	</table>
 	
-	<input type="submit" name="aggiugiCategoria" value="Aggiungi categoria" onClick="hideDisplayForm();">
-
-		<form action="armaServlet" method="post" id="formInserisci" hidden>
+	<input type="submit" name="aggiugiCategoria" value="Aggiungi categoria" onClick="hideDisplayForm('formInserisci');">
+		<div class="leftForm">
+		<form action="armaServlet" method="post" id="formInserisci"  hidden>
 			<label for="Name">Nome:</label>
 			<br>
 			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria" onChange="checkNome(this.form)">
@@ -58,3 +64,19 @@
 			<br><br>
 			<input id="insertButton" type="submit" name="tipoOperazione" value="InserisciCategoria">
 		</form>
+		</div>
+		
+		<div class="rightForm">
+		<form action="armaServlet" method="post" id="formModifica" hidden>
+			<br>
+			<label for="Name">Nome:</label>
+			<br>
+			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria" readonly>
+			<br><br>
+			<label for="descrizione">Descrizione:</label>
+			<br>
+			<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci descrizione"></textarea>
+			<br><br>
+			<input id="insertButton" type="submit" name="tipoOperazione" value="Modifica categoria">
+		</form>
+		</div>
