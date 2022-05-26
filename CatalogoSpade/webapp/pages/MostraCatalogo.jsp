@@ -4,6 +4,7 @@
 <%@ page import="beans.Arma"%>
 <%@ page import="java.util.*"%>
 <%@page import="beans.ListaAbilita" %>
+<%@page import="beans.ListaCategoria" %>
 
 <link href="./style/style.css" rel="stylesheet" type="text/css">
 <html>
@@ -68,15 +69,12 @@
 					<option value="tutto">
 						Tutto
 					</option>
-					<option value="arma bianca">
-						Arma bianca
+					<%ListaCategoria listaCategoria = (ListaCategoria)request.getAttribute("listaCategorie");
+					for(int i=0;i<listaCategoria.getListaNomiCategorie().size();i++){%>
+					<option value="<%=listaCategoria.getListaNomiCategorie().get(i).getNome()%>">
+						<%=listaCategoria.getListaNomiCategorie().get(i).getNome()%>
 					</option>
-					<option value="distanza">
-						Arma a distanza
-					</option>
-					<option value="scudi">
-						Scudo
-					</option>
+					<%}%>
 				</select>
 				<br>
 				<p>

@@ -69,6 +69,7 @@ public class HomeServlet extends HttpServlet {
 			if(request.getParameter(PARAMETER_CATALOGO) != null && request.getParameter(PARAMETER_CATALOGO).equals(PARAMETER_VALUE_CATALOGO)) {//catalogo=mostraCatalogo
 				ResultSet rs;
 				DbConnection dbConnection = new DbConnection();
+				ListaCategoria listaCategorie = new ListaCategoria();
 				try {
 					rs = dbConnection.selectAllArmi();
 					while(rs.next()) {
@@ -84,12 +85,24 @@ public class HomeServlet extends HttpServlet {
 								rs.getString("NomeAbilita"));
 						listaArmi.getListaArmi().add(newArma);
 					}
+					dbConnection.close();
+					request.setAttribute("listaArmi", listaArmi);
+					
+					rs = dbConnection.selectAllCategorie();
+					while(rs.next()) {
+						Categoria newCategoria= new Categoria(rs.getString("NomeCategoria"),
+								rs.getString("Descrizione"));
+						listaCategorie.getListaNomiCategorie().add(newCategoria);
+					}
+					dbConnection.close();
+					request.setAttribute("listaCategorie", listaCategorie);
+					
 				} catch (SQLException e){
 					e.printStackTrace();
 				}
-				dbConnection.close();
-				request.setAttribute("listaArmi", listaArmi);
+				
 				request.setAttribute("listaAbilita", listaAbilita);
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraCatalogo.jsp");
 				dispatcher.forward(request, response);
 			}
