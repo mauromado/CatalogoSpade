@@ -157,3 +157,11 @@ function changeAbilitaDisponibili(currentCategoria){
 			selectAbilita.add(new Option(keys,keys));}
 	}
 }
+
+function hideDisplayForm(){
+	form=document.getElementById("formInserisci");
+	if(form.style.display==="block"){
+		form.style.display="none";}
+	else{
+		form.style.display="block";}
+}
