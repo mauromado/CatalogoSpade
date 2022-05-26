@@ -38,25 +38,25 @@ function hideDisplayForm(){
 	<br>
 	<input id="addtButton" type="submit" value="aggiungi" onClick="hideDisplayForm()">
 	<br><br><br>
-	<form hidden action="" method="" id="formInserisciMunizioni" onClick="hideDisplayForm()">
+	<form hidden action="ArmaServlet" method="post" id="formInserisciMunizioni">
 		<label for="Name">Nome:</label>
 		<br>
 		<input type="text" id="name" name="nome" value="" placeholder="nome munizioni">
 		<br><br>
 		<label for="Desc">Descrizione:</label>
 		<br>
-		<textarea rows="5" cols="60" id="descrizione" name="descrizione" placeholder="Inserisci descrizione"></textarea>
+		<textarea rows="5" cols="60" id="desc" name="descrizione" placeholder="Inserisci descrizione"></textarea>
 		<br><br>
 		<label for="Damage">Danno:</label>
 		<br>
-		<input type="number" id="damage" name="danno" value="0" onChange="checkNumber(this)">
+		<input type="number" id="damage" name="danno" value="0">
 		<br><br>
 		<select name="tipoDanno" id="tipoDanno">
 			<option value="fisico">fisico</option>
 			<option value="elementare">elementare</option>
 		</select>
 		<br><br>
-		<input id="insertButton" type="submit" value="inserisci">
+		<input id="insertButton" type="submit" name="tipoOperazione" value="inserisciMunizioni">
 	</form>
 </body>
 </html>
