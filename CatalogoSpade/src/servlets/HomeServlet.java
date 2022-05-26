@@ -47,9 +47,11 @@ public class HomeServlet extends HttpServlet {
 	    public void init(ServletConfig config){
 	    	ResultSet rs;
 			DbConnection dbConnection = new DbConnection();
+			listaAbilita.getListaAbilita().clear();
 			try {
 				rs = dbConnection.selectAllAbilita();
 				while(rs.next()) {
+					System.out.println(rs.getString("Nome"));
 					Abilita newAbilita= new Abilita(
 							rs.getString("Nome"),
 							rs.getString("Descrizione"),
@@ -128,6 +130,7 @@ public class HomeServlet extends HttpServlet {
 				}
 				dbConnection.close();
 				request.setAttribute("listaCategorie", listaCategorie);
+				init(null);
 				request.setAttribute("listaAbilita", listaAbilita);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraAbilita.jsp");
 				dispatcher.forward(request, response);

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import beans.Abilita;
 import beans.Arma;
 
 
@@ -29,6 +30,7 @@ public class DbConnection {
 	private static final String QRY_MUNIZIONE_LISTA_TUTTO="SELECT * FROM Munizioni;";
 	private static final String QRY_ABILITA_LISTA_TUTTO="SELECT * FROM Abilita;";
 	
+	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,TipologiaArma) VALUES(?,?,?);";
 	public Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
@@ -162,6 +164,20 @@ public class DbConnection {
 		s.setString(1,nomeArma);
 		ResultSet rs = s.executeQuery();
 		return rs;
+	}
+	public void insertAbilita(Abilita abilita) throws SQLException {
+		Connection c = connect();
+		try {	
+			PreparedStatement s = c.prepareStatement(QRY_INSERT_ABILITA);
+			s.setString(1, abilita.getNome());
+			s.setString(2, abilita.getDescrizione());
+			s.setString(3, abilita.getTipologiaArma());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento dell'arma "+ abilita.getNome() +" ("+e.getMessage()+")");
+		}
 	}
 	
 	

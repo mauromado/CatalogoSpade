@@ -205,6 +205,23 @@ public class ArmaServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
+		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Inserisci abilita")) {
+			String nomeAbilita = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			String tipologiaArma = request.getParameter("nomeCategoria");
+			Abilita abilita = new Abilita(nomeAbilita,descrizione,tipologiaArma);
+			DbConnection dbConnection = new DbConnection();
+			try {
+				dbConnection.insertAbilita(abilita);
+			} catch (SQLException e) {
+				successOp = false;
+				e.printStackTrace();
+			}
+			dbConnection.close();
+			request.setAttribute("esitoOperazione", successOp);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 	
 }

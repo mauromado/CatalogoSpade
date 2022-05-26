@@ -36,7 +36,7 @@ function hideDisplayForm(){
 	
 	<input type="button" id="insertButton" value="Inserisci nuova abilità" onClick="hideDisplayForm()">
 	<br><br>
-	<form action="" method="" id="formInserisciAbilita" hidden>
+	<form action="armaServlet" method="post" id="formInserisciAbilita" hidden>
  		<label for="Name">Nome:</label>
 		<br>
 		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="" >
@@ -45,7 +45,7 @@ function hideDisplayForm(){
 		<br>
 		<textarea rows = "5" cols = "60" id="descrizione" name = "descrizione" placeholder="Descrizione abilita'"></textarea>
         <br><br>
-		<select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required onChange="changeAbilitaDisponibili(this.value)">
+		<select name="nomeCategoria" id="nomeCategoria" value="armaBianca" required>
 			<option value="" disabled selected>Scegli la categoria delle armi</option>
           	<%ListaCategoria listaNomiCategoria = (ListaCategoria) request.getAttribute("listaCategorie");
               for(int x=0; x<listaNomiCategoria.getListaNomiCategorie().size(); x++){ %>
