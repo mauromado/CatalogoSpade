@@ -142,28 +142,14 @@ public class ArmaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean successOp = true;
 		//inserimento:
-		if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("inserisci")) {
-			String nomeArma = request.getParameter("nome");
-			float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
-			float pesoArma = Float.parseFloat(request.getParameter("peso"));
-			int livelloArma = Integer.parseInt(request.getParameter("livello"));
-			String tipoDannoArma = request.getParameter("tipoDanno");
-			float stabilitaArma = Float.parseFloat(request.getParameter("stabilita"));
-			int riduzioneDannoArma;
-			try{
-				riduzioneDannoArma = Integer.parseInt(request.getParameter("riduzioneDanno"));
-			}catch(NumberFormatException e){
-				riduzioneDannoArma = 0;
-			}
-			String scalingArma = request.getParameter("scaling");
-			String nomeCategoriaArma = request.getParameter("nomeCategoria");
-			String nomeAbilitaArma = request.getParameter("nomeAbilita");
-			
-			Arma arma = new Arma(nomeArma,potenzaArma,pesoArma,livelloArma,tipoDannoArma,
-					             stabilitaArma,riduzioneDannoArma,scalingArma,nomeCategoriaArma,nomeAbilitaArma);
+		if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("InserisciCategoria")) {
+			System.out.println("sono nella servlet");
+			String nome = request.getParameter("nome");
+			String descrizione = request.getParameter("descrizione");
+			Categoria categoria = new Categoria(nome,descrizione);
 			DbConnection dbConnection = new DbConnection();
 			try {
-				dbConnection.insertArma(arma);
+				dbConnection.insertCategoria(categoria);
 			} catch (SQLException e) {
 				successOp = false;
 				e.printStackTrace();
@@ -172,7 +158,7 @@ public class ArmaServlet extends HttpServlet {
 			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
-			
+
 		} else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("modifica")) {
 			String nomeArma = request.getParameter("nome");
 			float potenzaArma = Float.parseFloat(request.getParameter("potenza"));
@@ -204,7 +190,7 @@ public class ArmaServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			
-		}
+
 	}
-	
+	}
 }

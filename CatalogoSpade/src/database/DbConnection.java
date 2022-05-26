@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import beans.Arma;
+import beans.Categoria;
 
 
 public class DbConnection {
@@ -28,6 +29,8 @@ public class DbConnection {
 	private static final String QRY_CATEGORIA_LISTA_TUTTO="SELECT * FROM Categoria";
 	private static final String QRY_MUNIZIONE_LISTA_TUTTO="SELECT * FROM Munizioni;";
 	private static final String QRY_ABILITA_LISTA_TUTTO="SELECT * FROM Abilita;";
+	private static final String QRY_INSERT_CATEGORIA="INSERT INTO Categoria(NomeCategoria,Descrizione)"
+	                                                 +" VALUES(?,?)";
 	
 	public Connection connect() {
 		try {
@@ -162,6 +165,21 @@ public class DbConnection {
 		s.setString(1,nomeArma);
 		ResultSet rs = s.executeQuery();
 		return rs;
+	}
+	
+	public void insertCategoria(Categoria categoria) throws SQLException {
+		Connection c = connect();
+		try {
+			System.out.println("sono nel DB");
+			PreparedStatement s = c.prepareStatement(QRY_INSERT_CATEGORIA);
+			s.setString(1, categoria.getNome());
+			s.setString(2, categoria.getDescrizione());
+			s.executeUpdate();
+			s.close();
+		}
+		catch(Exception e) {
+			System.out.println("Insert: fallito l'inserimento della categoria "+ categoria.getNome() +" ("+e.getMessage()+")");
+		}
 	}
 	
 	
