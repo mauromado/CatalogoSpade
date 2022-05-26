@@ -24,10 +24,10 @@ function toggleTabella(){
 <title>Categorie Disponibili</title>
 </head>
 <body onload="getTabella()">
-	<table id="tabellaArmi">
+	<table id="tabellaArmi" align="center">
 		<thead>
 			<tr>
-				<th colspan="10">Catalogo Categorie</th>
+				<th colspan="3">Catalogo Categorie</th>
 			</tr>
 			<tr>
 				<td>Nome</td>
@@ -46,9 +46,8 @@ function toggleTabella(){
 				<td><%=tempCat.getDescrizione()%></td>
 				<td>
 				<form action="armaServlet" method="post" id="cancellaCategoria">
-				<input type="submit" name="cancellaCategoria" value="Cancella <%=tempCat.getNome()%>";>
+					<input type="submit" name="cancellaCategoria" value="Cancella <%=tempCat.getNome()%>";>
 				</form>
-				<br>
 				<input type="submit" name="modificaCategoria" value="Modifica <%=tempCat.getNome()%>";>
 				</td>
 			</tr>
