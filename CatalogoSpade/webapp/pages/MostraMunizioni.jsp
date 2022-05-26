@@ -36,7 +36,7 @@
 						List<Munizioni> lista = listaMunizioni.getListaNomiMunizioni();
 						for (int x = 0; x < listaMunizioni.getListaNomiMunizioni().size(); x++) {
 						Munizioni tempMunizioni = listaMunizioni.getListaNomiMunizioni().get(x);
-						String coloreRiga = x%2 == 0? "coloriDispari": "coloriPari"; 
+						String coloreRiga = x%2 == 0? "coloriDispari": "coloriPari";
 						%>
 						<tr class = <%= coloreRiga %>>
 						<td><%=tempMunizioni.getNome()%></td>
@@ -45,6 +45,7 @@
 						<td><%=tempMunizioni.getTipoDanno()%></td>
 						<td>
 							<form action="armaServlet" method="get">
+								<input type="hidden" name="nomeMunizioni" value="<%=tempMunizioni.getNome()%>">
 								<input type="submit" name="deleteMunizioni" value="elimina <%=tempMunizioni.getNome()%>">
 							</form>
 							<input type="submit" name="updateMunizioni" value="aggiorna <%=tempMunizioni.getNome()%>"

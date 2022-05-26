@@ -33,8 +33,9 @@
 				<td><%=tempCat.getNome()%></td>
 				<td><%=tempCat.getDescrizione()%></td>
 				<td>
-				<form action="armaServlet" method="post" id="cancellaCategoria">
-					<input type="submit" name="cancellaCategoria" value="Cancella <%=tempCat.getNome()%>";>
+				<form action="armaServlet" method="get" id="cancellaCategoria">
+					<input type="hidden" name="nomeCategoria" value="<%=tempCat.getNome()%>">
+					<input type="submit" name="deleteCategoria" value="Cancella <%=tempCat.getNome()%>";>
 				</form>
 				<input type="submit" name="modificaCategoria" value="Modifica <%=tempCat.getNome()%>" 
 				onClick="populateForm(

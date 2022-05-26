@@ -109,7 +109,7 @@
 		  <br><br> 
 		  <label for="nomeAbilita">Abilita' arma:</label>
 		  <br>
-		  <select name="nomeAbilita" id="nomeAbilita" required>
+		  <select name="nomeAbilita" id="nomeAbilita">
           	  <%listaAbilita = (ListaAbilita) request.getAttribute("listaNomiAbilita");
           	  for(int x=0; x<listaAbilita.getListaAbilita().size(); x++){ %>
           	  
