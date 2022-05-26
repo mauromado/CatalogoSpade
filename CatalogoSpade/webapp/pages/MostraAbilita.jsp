@@ -5,6 +5,7 @@
 <%@ page import="beans.ListaCategoria"%>
 <%@ page import="java.util.*"%>
 
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,15 +24,42 @@ function hideDisplayForm(){
 
 </head>
 <body>
-	<%ListaAbilita listaAbilita = (ListaAbilita)request.getAttribute("listaAbilita");
-	  List<Abilita> lista = listaAbilita.getListaAbilita();%>
-	<ul>
-		<%for (int i = 0; i<lista.size(); i++){%>
-		<li>nome:<%=lista.get(i).getNome() %>,
-		 descrizione: <%=lista.get(i).getDescrizione() %>,
-		 tipologiaArma: <%=lista.get(i).getTipologiaArma() %></li>
-		<%} %>		
-	</ul>
+
+	<table id="tabellaArmi" align="center">
+			
+				<thead>
+					<tr>
+						<th colspan="3">Abilita'</th>
+					</tr>
+					<tr>
+						<td>Nome</td>
+						<td>Descrizione</td>
+						<td>Aggiorna/elimina</td>
+					</tr>
+					</thead>
+					<tbody>
+						<%
+						ListaAbilita listaAbilita = (ListaAbilita)request.getAttribute("listaAbilita");
+						List<Abilita> lista = listaAbilita.getListaAbilita();
+						for (int x = 0; x < listaAbilita.getListaAbilita().size(); x++) {
+						Abilita tempAbilita = listaAbilita.getListaAbilita().get(x);
+						String coloreRiga = x%2 == 0? "coloriDispari": "coloriPari"; 
+						%>
+						<tr class = <%= coloreRiga %>>
+						<td><%=tempAbilita.getNome()%></td>
+						<td><%=tempAbilita.getDescrizione()%></td>
+						<td>
+							<form action="armaServlet" method="get">
+								<input type="submit" name="deleteAbilita" value="elimina <%=tempAbilita.getNome()%>">
+							</form>
+							<input type="submit" name="updateAbilita" value="aggiorna <%=tempAbilita.getNome()%>">
+						</td>
+						</tr>
+						<%
+						}
+						%>
+					</tbody>
+	</table>
 	<br><br>
 	
 	<input type="button" id="insertButton" value="Inserisci nuova abilità" onClick="hideDisplayForm()">

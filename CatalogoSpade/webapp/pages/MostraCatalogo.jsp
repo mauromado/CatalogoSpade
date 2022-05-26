@@ -15,7 +15,7 @@
 
 </head>
 <body onload="getTabella()">
-<table>
+<table id="tabellaArmi" align="center">
 		<tr>
 			<td>
 				<table id="tabellaArmi">
