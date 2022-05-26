@@ -20,7 +20,7 @@
 			
 				<thead>
 					<tr>
-						<th colspan="3">Abilita'</th>
+						<th colspan="4">Abilita'</th>
 					</tr>
 					<tr>
 						<td>Nome</td>
