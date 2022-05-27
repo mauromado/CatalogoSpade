@@ -73,7 +73,7 @@ public class ArmaServlet extends HttpServlet {
 					Abilita abilita = new Abilita (
 							rs.getString("Nome"),
 							rs.getString("Descrizione"),
-							rs.getString("TipologiaArma"));
+							rs.getString("NomeCategoria"));
 					listaNomiAbilita.getListaAbilita().add(abilita);}
 				request.setAttribute("listaNomiAbilita", listaNomiAbilita);
 				dbConnection.close();
