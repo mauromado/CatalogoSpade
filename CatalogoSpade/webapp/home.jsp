@@ -11,14 +11,6 @@
 		<title>Catalogo Spade</title>
 	</head>
 	<body>
-	<% if(request.getAttribute("esitoOperazione") != null) {
-			boolean esito = (boolean) request.getAttribute("esitoOperazione");
-			if(esito){%>
-			<script>alert("Operazione avvenuta con successo: verrai reindirizzato alla Home :)");</script>
-			<%}
-	}%>
-		
-	
 		<h2>Benvenuto</h2>
 		<p>
 		Hai appena aperto il nostro catalogo delle armi di Dark Souls.<br>

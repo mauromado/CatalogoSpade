@@ -17,37 +17,55 @@ public class DbConnection {
 	private Connection connection;
 	private static String projectLocation = System.getenv("PROJECT_LOC");
 	private static String dbName = "CatalogoSpade.db";
+	
 	private static final String QRY_ARMI_LISTA_TUTTO = "SELECT * "
 			 									    + "FROM Arma;";
+	
 	private static final String QRY_DELETE_ARMA="DELETE FROM Arma WHERE Nome=?;";
+	
 	private static final String QRY_INSERT_ARMA="INSERT INTO Arma(Nome,Potenza,Peso,Livello,TipoDanno,"
 			                                    + "Stabilita,RiduzioneDanno,Scaling,NomeCategoria,NomeAbilita)" 
 			                                    + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+	
 	private static final String QRY_CATEGORIA_LISTA_NOMI="SELECT NomeCategoria FROM Categoria;";
+	
 	private static final String QRY_SELECT_ARMA_BY_NOME="SELECT * FROM Arma WHERE Nome=?;";
+	
 	private static final String QRY_UPDATE_ARMA="UPDATE Arma SET Nome=?,Potenza=?,Peso=?,Livello=?,"
 												+ "TipoDanno=?,Stabilita=?,RiduzioneDanno=?,Scaling=?,NomeCategoria=?,NomeAbilita=?"
 												+ " WHERE Nome=?";
+	
 	private static final String QRY_CATEGORIA_LISTA_TUTTO="SELECT * FROM Categoria";
+	
 	private static final String QRY_MUNIZIONE_LISTA_TUTTO="SELECT * FROM Munizioni;";
+	
 	private static final String QRY_ABILITA_LISTA_TUTTO="SELECT * FROM Abilita;";
+	
 	private static final String QRY_INSERT_CATEGORIA="INSERT INTO Categoria(NomeCategoria,Descrizione) VALUES(?,?)";
+	
 	private static final String QRY_INSERT_MUNIZIONI="INSERT INTO Munizioni(Nome,Descrizione,Danno,TipoDanno) VALUES(?,?,?,?)";
+	
 	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,TipologiaArma) VALUES(?,?,?);";
+	
 	private static final String QRY_DELETE_MUNIZIONI="DELETE FROM Munizioni WHERE Nome=?;";
 	
 	private static final String QRY_DELETE_CATEGORIA="DELETE FROM Categoria WHERE NomeCategoria=?";
+	
 	private static final String QRY_DELETE_ARMA_CATEGORIA="DELETE FROM Arma WHERE NomeCategoria=?";
+	
 	private static final String QRY_DELETE_ABILITA_CATEGORIA="DELETE FROM Abilita WHERE TipologiaArma=?";
 	
 	private static final String QRY_DELETE_ARMA_ABILITA="DELETE FROM ARMA WHERE NomeAbilita=?";
+	
 	private static final String QRY_DELETE_ABILITA="DELETE FROM ABILITA WHERE Nome=?;";
 	
 	private static final String QRY_UPDATE_CATEGORIA="UPDATE Categoria SET NomeCategoria=?,Descrizione=? WHERE NomeCategoria=?;";
+	
 	private static final String QRY_UPDATE_ABILITA="UPDATE Abilita SET Nome=?,Descrizione=?,TipologiaArma=? WHERE Nome=?;";
+	
 	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
 	
-	public Connection connect() {
+	private Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			connection = DriverManager.getConnection("jdbc:sqlite:" + projectLocation + "/" + dbName);
@@ -69,6 +87,7 @@ public class DbConnection {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	
 	public ResultSet selectAllArmi() throws SQLException{
 		Connection c = connect();
@@ -298,22 +317,17 @@ public class DbConnection {
 		boolean ris = false;
 		Connection c = connect();
 		try {
+			Statement statement = c.createStatement();
+			statement.executeUpdate("PRAGMA foreign_keys = ON;");
 			PreparedStatement s = c.prepareStatement(QRY_DELETE_CATEGORIA);
-			PreparedStatement p = c.prepareStatement(QRY_DELETE_ARMA_CATEGORIA);
-			PreparedStatement ps = c.prepareStatement(QRY_DELETE_ABILITA_CATEGORIA);
 			s.setString(1, nomeCategoria);
-			p.setString(1, nomeCategoria);;
-			ps.setString(1, nomeCategoria);
 			s.executeUpdate();
-			p.executeUpdate();
-			ps.executeUpdate();
 			ris=true;
 			s.close();
-			p.close();
-			ps.close();
+			statement.close();
 		}
 		catch(Exception e) {
-			System.out.println("Delete: fallita la cancellazione della munizione "+nomeCategoria +" ("+e.getMessage()+")");
+			System.out.println("Delete: fallita la cancellazione della categoria "+nomeCategoria +" ("+e.getMessage()+")");
 		}
 		return ris;
 	}
@@ -333,7 +347,7 @@ public class DbConnection {
 			p.close();
 		}
 		catch(Exception e) {
-			System.out.println("Delete: fallita la cancellazione della munizione "+nomeAbilita +" ("+e.getMessage()+")");
+			System.out.println("Delete: fallita la cancellazione abilità "+nomeAbilita +" ("+e.getMessage()+")");
 		}
 		return ris;
 	}

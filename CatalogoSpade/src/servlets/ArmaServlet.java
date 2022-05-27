@@ -99,7 +99,6 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -153,7 +152,6 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -171,7 +169,6 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -189,7 +186,6 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -210,7 +206,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -230,7 +225,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		} 
@@ -248,7 +242,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -265,7 +258,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -283,7 +275,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -302,7 +293,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -334,7 +324,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			}
@@ -366,7 +355,6 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			request.setAttribute("esitoOperazione", successOp);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
 			dispatcher.forward(request, response);
 			}
