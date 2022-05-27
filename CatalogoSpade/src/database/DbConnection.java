@@ -45,7 +45,7 @@ public class DbConnection {
 	
 	private static final String QRY_INSERT_MUNIZIONI="INSERT INTO Munizioni(Nome,Descrizione,Danno,TipoDanno) VALUES(?,?,?,?)";
 	
-	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,TipologiaArma) VALUES(?,?,?);";
+	private static final String QRY_INSERT_ABILITA="INSERT INTO Abilita(Nome,Descrizione,NomeCategoria) VALUES(?,?,?);";
 	
 	private static final String QRY_DELETE_MUNIZIONI="DELETE FROM Munizioni WHERE Nome=?;";
 	
@@ -61,7 +61,7 @@ public class DbConnection {
 	
 	private static final String QRY_UPDATE_CATEGORIA="UPDATE Categoria SET NomeCategoria=?,Descrizione=? WHERE NomeCategoria=?;";
 	
-	private static final String QRY_UPDATE_ABILITA="UPDATE Abilita SET Nome=?,Descrizione=?,TipologiaArma=? WHERE Nome=?;";
+	private static final String QRY_UPDATE_ABILITA="UPDATE Abilita SET Nome=?,Descrizione=?,NomeCategoria=? WHERE Nome=?;";
 	
 	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
 	
@@ -225,7 +225,7 @@ public class DbConnection {
 			PreparedStatement s = c.prepareStatement(QRY_UPDATE_ABILITA);
 			s.setString(1, abilita.getNome());
 			s.setString(2, abilita.getDescrizione());
-			s.setString(3, abilita.getTipologiaArma());
+			s.setString(3, abilita.getNomeCategoria());
 			s.setString(4, abilita.getNome());
 			s.executeUpdate();
 			s.close();
@@ -273,7 +273,7 @@ public class DbConnection {
 			PreparedStatement s = c.prepareStatement(QRY_INSERT_ABILITA);
 			s.setString(1, abilita.getNome());
 			s.setString(2, abilita.getDescrizione());
-			s.setString(3, abilita.getTipologiaArma());
+			s.setString(3, abilita.getNomeCategoria());
 			s.executeUpdate();
 			s.close();
 		}

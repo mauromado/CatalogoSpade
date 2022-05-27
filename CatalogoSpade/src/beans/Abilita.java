@@ -3,13 +3,13 @@ package beans;
 public class Abilita {
 	private String nome;
 	private String descrizione;
-	private String tipologiaArma;
+	private String nomeCategoria;
 	
-	public Abilita(String nome, String descrizione,String tipologiaArma){
+	public Abilita(String nome, String descrizione,String nomeCategoria){
 		super();
 		this.nome = nome;
 		this.descrizione = descrizione;
-		this.tipologiaArma = tipologiaArma;
+		this.nomeCategoria = nomeCategoria;
 	}
 	
 	public Abilita() {
@@ -31,12 +31,12 @@ public class Abilita {
 		this.descrizione = descrizione;
 	}
 	
-	public String getTipologiaArma() {
-		return tipologiaArma;
+	public String getNomeCategoria() {
+		return nomeCategoria;
 	}
 
-	public void setTipologiaArma(String tipologiaArma) {
-		this.tipologiaArma = tipologiaArma;
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
 
 	public String toString() {

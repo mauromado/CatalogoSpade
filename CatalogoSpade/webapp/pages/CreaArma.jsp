@@ -14,7 +14,7 @@
 	let dictAbilita = {};
 	<%ListaAbilita listaAbilita = (ListaAbilita) request.getAttribute("listaNomiAbilita");
 	for(int x=0;x<listaAbilita.getListaAbilita().size();x++){%>
-		dictAbilita['<%=listaAbilita.getListaAbilita().get(x).getNome()%>']='<%=listaAbilita.getListaAbilita().get(x).getTipologiaArma()%>';
+		dictAbilita['<%=listaAbilita.getListaAbilita().get(x).getNome()%>']='<%=listaAbilita.getListaAbilita().get(x).getNomeCategoria()%>';
 	<%}%>
 	</script>
 	<script type="text/javascript" src="./scripts/utils.js"></script>

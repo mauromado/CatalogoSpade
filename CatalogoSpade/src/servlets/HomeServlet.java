@@ -54,7 +54,7 @@ public class HomeServlet extends HttpServlet {
 					Abilita newAbilita= new Abilita(
 							rs.getString("Nome"),
 							rs.getString("Descrizione"),
-							rs.getString("TipologiaArma"));
+							rs.getString("NomeCategoria"));
 					listaAbilita.getListaAbilita().add(newAbilita);
 				}
 			} catch (SQLException e){

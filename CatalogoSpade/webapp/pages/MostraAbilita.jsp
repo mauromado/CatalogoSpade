@@ -40,7 +40,7 @@
 						<tr class = <%= coloreRiga %>>
 						<td><%=tempAbilita.getNome()%></td>
 						<td><%=tempAbilita.getDescrizione()%></td>
-						<td><%=tempAbilita.getTipologiaArma()%></td>
+						<td><%=tempAbilita.getNomeCategoria()%></td>
 						<td>
 							<form action="armaServlet" method="get">
 								<input type="hidden" name="nomeAbilita" value="<%=tempAbilita.getNome()%>">
@@ -51,7 +51,7 @@
 									Array(
 									'<%=tempAbilita.getNome()%>',
 									'<%=tempAbilita.getDescrizione()%>',
-									'<%=tempAbilita.getTipologiaArma()%>',
+									'<%=tempAbilita.getNomeCategoria()%>',
 									'Modifica abilita',
 									) )">
 						</td>
