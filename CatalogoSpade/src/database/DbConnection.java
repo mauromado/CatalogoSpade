@@ -336,15 +336,14 @@ public class DbConnection {
 		boolean ris = false;
 		Connection c = connect();
 		try {
+			Statement statement = c.createStatement();
+			statement.executeUpdate("PRAGMA foreign_keys = ON;");
 			PreparedStatement s = c.prepareStatement(QRY_DELETE_ABILITA);
-			PreparedStatement p = c.prepareStatement(QRY_DELETE_ARMA_ABILITA);
 			s.setString(1, nomeAbilita);
-			p.setString(1, nomeAbilita);
 			s.executeUpdate();
-			p.executeUpdate();
 			ris=true;
 			s.close();
-			p.close();
+			statement.close();
 		}
 		catch(Exception e) {
 			System.out.println("Delete: fallita la cancellazione abilità "+nomeAbilita +" ("+e.getMessage()+")");
