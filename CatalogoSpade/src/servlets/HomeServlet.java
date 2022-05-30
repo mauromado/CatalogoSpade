@@ -37,6 +37,8 @@ public class HomeServlet extends HttpServlet {
 		private static final String PARAMETER_VALUE_MUNIZIONI = "Mostra Munizioni";
 		private static final String PARAMETER_ABILITA = "abilita";
 		private static final String PARAMETER_VALUE_ABILITA = "Mostra Abilita";
+		private static final String PARAMETER_RICERCA = "nomeArma";
+		private static final String PARAMETER_CERCA_BTN = "cerca";
 		ListaAbilita listaAbilita = new ListaAbilita();
 	       
 	    public HomeServlet() {
@@ -171,6 +173,34 @@ public class HomeServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/MostraMunizioni.jsp");
 				dispatcher.forward(request, response);
 				
+			}
+			
+			else if((request.getParameter(PARAMETER_CERCA_BTN)!= null && request.getParameter(PARAMETER_CERCA_BTN).equals("Cerca"))
+					&& request.getParameter(PARAMETER_RICERCA)!= null)  {
+				String nome = request.getParameter(PARAMETER_RICERCA);
+				DbConnection db = new DbConnection();
+				Arma arma;
+				try {
+					ResultSet rs = db.selectArmaByNome(nome);
+							arma = new Arma(
+							rs.getString("Nome"),
+							rs.getFloat("Potenza"),
+							rs.getFloat("Peso"),
+							rs.getInt("Livello"),
+							rs.getString("TipoDanno"),
+							rs.getFloat("Stabilita"),
+							rs.getInt("RiduzioneDanno"),
+							rs.getString("Scaling"),
+							rs.getString("NomeCategoria"),
+							rs.getString("NomeAbilita")
+							);
+							db.close();
+							request.setAttribute("detailsArma",arma);
+					}catch(SQLException e) {
+						e.printStackTrace();
+					}
+				RequestDispatcher d = request.getRequestDispatcher("pages/DettagliArma.jsp");
+				d.forward(request, response);
 			}
 			
 		}

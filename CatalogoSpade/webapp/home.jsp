@@ -31,6 +31,12 @@
 		<br>
 		Naviga nel nostro catalogo!
 		</p>
+		<br>
+		<form action="homeServlet" method="get">
+		  <input type="text" id="name" name="nomeArma" value="" placeholder="Ricerca arma" onChange="checkNome(this.form); controlName(this)">
+		  <input type="submit" name="cerca" value="Cerca">
+		</form>
+		  <br>
 		<form action="homeServlet" method="get">
 			<input type="submit" name="catalogo" value="Mostra Catalogo">
 			<input type="submit" name="categorie" value="Mostra Categorie">

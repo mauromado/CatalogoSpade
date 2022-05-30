@@ -65,6 +65,8 @@ public class DbConnection {
 	
 	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
 	
+	private static final String QRY_RICERCA_ARMA="SELECT * FROM Arma WHERE Nome=?"; 
+	
 	private Connection connect() {
 		try {
 			Class.forName("org.sqlite.JDBC");
