@@ -14,7 +14,7 @@
 <script type="text/javascript" src="./scripts/utils.js"></script>
 
 </head>
-<body>
+<body style="color:white">
 
 	<table id="tabellaArmi" align="center">
 			
@@ -69,7 +69,7 @@
 	<form action="armaServlet" method="post" id="formInserisci" hidden>
  		<label for="Name">Nome:</label>
 		<br>
-		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="checkNome(this.form)" >
+		<input type="text" id="name" name="nome" placeholder="Nome abilita'" onChange="checkNome(this.form); controlName(this)" >
 		<br><br>
 		<label for="Name">Descrizione:</label>
 		<br>

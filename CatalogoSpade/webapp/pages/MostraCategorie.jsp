@@ -11,7 +11,7 @@
 <meta charset="ISO-8859-1">
 <title>Categorie Disponibili</title>
 </head>
-<body onload="getTabella()">
+<body onload="getTabella()" style="color:white">
 	<table id="tabellaArmi" align="center">
 		<thead>
 			<tr>
@@ -57,7 +57,7 @@
 		<form action="armaServlet" method="post" id="formInserisci"  hidden>
 			<label for="Name">Nome:</label>
 			<br>
-			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria" onChange="checkNome(this.form)">
+			<input type="text" id="name" name="nome" value="" placeholder="Nome categoria" onChange="checkNome(this.form); controlName(this)">
 			<br><br>
 			<label for="descrizione">Descrizione:</label>
 			<br>

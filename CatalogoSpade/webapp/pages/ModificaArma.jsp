@@ -5,6 +5,7 @@
 <%@ page import="beans.ListaAbilita"%>
 <%@ page import="java.util.*"%>
 
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 	%>
 </head>
 	    
-<body onload="changeAbilitaDisponibili( '<%=arma.getNomeCategoria()%>' )">
+<body onload="changeAbilitaDisponibili( '<%=arma.getNomeCategoria()%>' )" style="color:white">
 	  <form action="armaServlet?arma=<%= tempNome%>" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>

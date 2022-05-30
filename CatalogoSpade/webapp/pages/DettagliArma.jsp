@@ -12,7 +12,7 @@
 <meta charset="ISO-8859-1">
 <title>Dettagli arma</title>
 </head>
-<body align="center">
+<body align="center" style="color:white">
 	<%Arma arma = (Arma)request.getAttribute("detailsArma");%>
 	<h1><%=arma.getNome().toUpperCase() %></h1>
 	<table border="1" align="center" id="tabellaArmi">

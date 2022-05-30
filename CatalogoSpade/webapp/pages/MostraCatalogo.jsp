@@ -15,7 +15,7 @@
 <script type="text/javascript" src="./scripts/filtraCatalogo.js"></script>
 
 </head>
-<body onload="getTabella()">
+<body onload="getTabella()" style="color:white">
 
 <table align="center">
 		<tr>

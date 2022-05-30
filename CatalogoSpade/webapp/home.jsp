@@ -2,7 +2,8 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+
+<link href="./style/style.css" rel="stylesheet" type="text/css">    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,7 +11,7 @@
 		<meta http-equiv="Content-Type" content="text/html;">
 		<title>Catalogo Spade</title>
 	</head>
-	<body>
+	<body style="color:white">
 		<h2>Benvenuto</h2>
 		<p>
 		Hai appena aperto il nostro catalogo delle armi di Dark Souls.<br>

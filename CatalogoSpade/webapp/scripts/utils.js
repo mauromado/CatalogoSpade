@@ -39,6 +39,10 @@ function containsSpecialChars(myField){
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
+
+function controlName(theForm){
+ 	theForm.value = capitalize(theForm.value);
+}
 	
 function isCorrectScaling(theForm){
 		if(theForm.scaling.value === ""){

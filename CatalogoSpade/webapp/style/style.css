@@ -3,7 +3,16 @@ body {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  color: white;
 }
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
 a:link, a:visited {
   color: #F2E37C;
   text-decoration: none;

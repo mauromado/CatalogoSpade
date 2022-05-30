@@ -4,6 +4,7 @@
 <%@ page import="beans.ListaAbilita"%>
 <%@ page import="java.util.*"%>
 
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,12 +21,12 @@
 	<script type="text/javascript" src="./scripts/utils.js"></script>
 	
 </head>
-<body onload="bootStrapPageCreaArmi()">
+<body onload="bootStrapPageCreaArmi()" style="color:white">
 	<div>
 	  <form action="armaServlet" method="post">
 		  <label for="Name">Nome:</label>
 		  <br>
-		  <input type="text" id="name" name="nome" value="" placeholder="nome arma" onChange="checkNome(this.form)" >
+		  <input type="text" id="name" name="nome" value="" placeholder="nome arma" onChange="checkNome(this.form); controlName(this)">
 		  <br><br>
 		  <label for="Pot">Potenza:</label>
 		  <br>
@@ -61,7 +62,7 @@
 		  <label for="Scaling">Scaling:</label>
 		  <br>
 		  <input type="text" id="scaling" name="scaling" value="" placeholder="scaling arma" onChange="isCorrectScaling(this.form)">
-		   (nota:formato scaling:[S,A,B,C,D,E][str,dex,int,fth] divisi da virgole)
+		  (nota:formato scaling:[S,A,B,C,D,E][str,dex,int,fth] divisi da virgole)
 		  <br><br>
 		  <label for="nomeCategoria">Categoria arma:</label>
 		  <br>
