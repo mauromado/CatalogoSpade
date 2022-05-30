@@ -126,5 +126,6 @@
 		  <input id="insertButton" type="submit" name="tipoOperazione" value="modifica">
 	  </form>
 	</div>
+	<button onClick="document.location='home.jsp'">Torna alla home</button>
 </body>
 </html>

@@ -65,6 +65,8 @@
 	<a href = "./armaServlet?updateArma=<%=arma.getNome()%>">Aggiorna</a>
 	&nbsp;&nbsp;
 	<a href = "./armaServlet?deleteArma=<%=arma.getNome()%>">Elimina</a>
+	&nbsp;&nbsp;
+	<button onClick="document.location='home.jsp'">Torna alla home</button>
 	
 </body>
 </html>

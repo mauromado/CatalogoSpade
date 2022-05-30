@@ -97,6 +97,6 @@
 			</td>
 		</tr>
 	</table>
-	
+	<button onClick="document.location='home.jsp'">Torna alla home</button>
 </body>
 </html>
