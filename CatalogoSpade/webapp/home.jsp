@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<script type="text/javascript" src="./scripts/utils.js"></script>
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html;">
 		<title>Catalogo Spade</title>
@@ -33,7 +34,7 @@
 		</p>
 		<br>
 		<form action="homeServlet" method="get">
-		  <input type="text" id="name" name="nomeArma" value="" placeholder="Ricerca arma" onChange="checkNome(this.form); controlName(this)">
+		  <input type="text" id="name" name="nomeArma" value="" placeholder="Ricerca arma" onChange="controlName(this)">
 		  <input type="submit" name="cerca" value="Cerca">
 		</form>
 		  <br>

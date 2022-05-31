@@ -180,8 +180,9 @@ public class HomeServlet extends HttpServlet {
 				String nome = request.getParameter(PARAMETER_RICERCA);
 				DbConnection db = new DbConnection();
 				Arma arma;
+				ResultSet rs;
 				try {
-					ResultSet rs = db.selectArmaByNome(nome);
+						rs = db.selectArmaByNome(nome);
 							arma = new Arma(
 							rs.getString("Nome"),
 							rs.getFloat("Potenza"),
