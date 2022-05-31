@@ -13,7 +13,7 @@
 <meta charset="ISO-8859-1">
 <title>Catalogo Armi</title>
 <script type="text/javascript" src="./scripts/filtraCatalogo.js"></script>
-
+<script type="text/javascript" src="./scripts/utils.js"></script>
 </head>
 <body onload="getTabella()" style="color:white">
 
@@ -81,7 +81,7 @@
 				<p>
 				Filtra per abilita'
 				</p>			
-				<select name="filtroArmi" id="filtroAbilita" onChange="setStatoSelectAbilita(this.value)">
+				<select name="filtroArmi" id="filtroAbilita" value="" onChange="setStatoSelectAbilita(this.value)">
 					<option value="tutto" >
 						Tutto
 					</option>
@@ -92,6 +92,10 @@
 					</option>
 					<%}%>
 				</select>
+				<br><br>
+				<label for="ricerca">Cerca arma:</label>
+				<br>
+				<input type="search" id="filtroNomeArma" name="ricercaArma" onChange="controlName(this);setStatoSelectArma(this.value)">
 				<br><br>
 				<input type="submit" name="" value="Resetta filtri" onClick="resetFiltri()">
 			</td>

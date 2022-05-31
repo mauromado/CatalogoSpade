@@ -198,6 +198,8 @@ public class HomeServlet extends HttpServlet {
 							db.close();
 							request.setAttribute("detailsArma",arma);
 					}catch(SQLException e) {
+						RequestDispatcher r = request.getRequestDispatcher("errors/armaNonTrovata.jsp");
+						r.forward(request, response);
 						e.printStackTrace();
 					}
 				RequestDispatcher d = request.getRequestDispatcher("pages/DettagliArma.jsp");

@@ -109,6 +109,6 @@
 	</form>
 	</div>
 	
-	<button onClick="document.location='home.jsp'">Torna alla home</button>
+	<button align="center" onClick="document.location='home.jsp'">Torna alla home</button>
 </body>
 </html>

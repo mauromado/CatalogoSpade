@@ -3,6 +3,7 @@ let matrixElement = new Array();
 let currentArmi = 0;
 let statoSelectCategoria = "tutto";
 let statoSelectAbilita = "tutto";
+let statoSelectArma = "";
 
 function getTabella(){
 	myTabella=document.getElementById("tabellaArmi");
@@ -39,7 +40,8 @@ function aggiornamentoTabella(){
 	let numberRow=2;
 	for(let x = 0; x<matrixElement.length ; x++){
 		if((statoSelectCategoria===matrixElement[x][1] || statoSelectCategoria==="tutto") 
-		&& (statoSelectAbilita===matrixElement[x][2] || statoSelectAbilita==="tutto") ){
+		&& (statoSelectAbilita===matrixElement[x][2] || statoSelectAbilita==="tutto") 
+		&& (statoSelectArma===matrixElement[x][0].slice(0,statoSelectArma.length) || statoSelectArma==="")){
 			let row = myTabella.insertRow(numberRow);
 			if(numberRow%2==0)row.className="coloriDispari";
 			else row.className="coloriPari";
@@ -60,8 +62,15 @@ function aggiornamentoTabella(){
 function resetFiltri(){
 	setStatoSelectCategoria("tutto");
 	setStatoSelectAbilita("tutto");
+	setStatoSelectArma("");
 	document.getElementById("filtroCategoria").value="tutto";
 	document.getElementById("filtroAbilita").value="tutto";
+	document.getElementById("filtroNomeArma").value="";
+}
+
+function setStatoSelectArma(newStato){
+	statoSelectArma=newStato;
+	aggiornamentoTabella();
 }
 
 
