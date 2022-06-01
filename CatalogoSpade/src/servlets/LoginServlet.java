@@ -39,13 +39,16 @@ public class LoginServlet extends HttpServlet {
 				try {
 					ResultSet rs = db.selectUserByUsername(username);
 					if (rs.next()==false) {
-						db.close();//forward jsp registrazione
+						db.close();
+						RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Registrazione.jsp");
+						dispatcher.forward(request, response);
 					} else {
 						userDb.setUsername(rs.getString("Username"));
 						userDb.setEmail(rs.getString("Email"));
 						userDb.setPassword(rs.getString("Password"));
 						db.close();
 						if (!password.equals(userDb.getPassword())){
+							RequestDispatcher dispatcher = request.getRequestDispatcher(password);
 							//forward jsp login(+messaggio password sbagliata)
 						} else {
 							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
@@ -54,8 +57,19 @@ public class LoginServlet extends HttpServlet {
 					}
 				}catch(SQLException e) {
 					e.printStackTrace();
-				}
+				}	
 			}
+		}else if(request.getParameter("registrazione")!=null && request.getParameter("registrazione").equals("Registrati")) {
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+			String mail = request.getParameter("mail");
+			User userDb = new User(username,mail,password);
+			DbConnection db = new DbConnection();
+			db.insertUser(userDb);
+			db.close();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+			dispatcher.forward(request, response);
+			
 		}
 	}
 

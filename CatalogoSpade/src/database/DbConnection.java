@@ -52,12 +52,6 @@ public class DbConnection {
 	
 	private static final String QRY_DELETE_CATEGORIA="DELETE FROM Categoria WHERE NomeCategoria=?";
 	
-	private static final String QRY_DELETE_ARMA_CATEGORIA="DELETE FROM Arma WHERE NomeCategoria=?";
-	
-	private static final String QRY_DELETE_ABILITA_CATEGORIA="DELETE FROM Abilita WHERE TipologiaArma=?";
-	
-	private static final String QRY_DELETE_ARMA_ABILITA="DELETE FROM ARMA WHERE NomeAbilita=?";
-	
 	private static final String QRY_DELETE_ABILITA="DELETE FROM ABILITA WHERE Nome=?;";
 	
 	private static final String QRY_UPDATE_CATEGORIA="UPDATE Categoria SET NomeCategoria=?,Descrizione=? WHERE NomeCategoria=?;";
@@ -67,6 +61,8 @@ public class DbConnection {
 	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
 	
 	private static final String QRY_SELECT_UTENTE_BY_USERNAME="SELECT * FROM Utenti WHERE Username=?"; 
+	
+	private static final String QRY_INSERIMENTO_USER="INSERT INTO Utenti(Username,Email,Password) VALUES(?,?,?)";
 	
 	private Connection connect() {
 		try {
@@ -288,7 +284,6 @@ public class DbConnection {
 	public void insertCategoria(Categoria categoria) throws SQLException {
 		Connection c = connect();
 		try {
-			System.out.println("sono nel DB");
 			PreparedStatement s = c.prepareStatement(QRY_INSERT_CATEGORIA);
 			s.setString(1, categoria.getNome());
 			s.setString(2, categoria.getDescrizione());
@@ -363,4 +358,19 @@ public class DbConnection {
 		return rs;
 	}
 	
+	public void insertUser(User user) {
+	Connection c = connect();
+	try {
+		PreparedStatement s = c.prepareStatement(QRY_INSERIMENTO_USER);
+		s.setString(1, user.getUsername());
+		s.setString(2, user.getEmail());
+		s.setString(3, user.getPassword());
+		s.executeUpdate();
+		s.close();
+		System.out.println("Insert: Successo nel inserimento dello user "+ user.getUsername());
+	}
+	catch(Exception e) {
+		System.out.println("Insert: fallito l'inserimento dello user "+ user.getUsername() +" ("+e.getMessage()+")");
+	}
+	}
 }

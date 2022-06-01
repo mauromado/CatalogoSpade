@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="scripts/utils.js">
+</script>
 <meta charset="ISO-8859-1">
 <title>Accedi</title>
 </head>
@@ -16,7 +18,8 @@
 		<br>
 		<label for="Password">Password:</label>
 		<br>
-		<input type="text" id="Password" name="password">
+		<input type="password" id="Password" name="password">
+		<input type="checkbox" onclick="mostraPassword('Password')">Mostra password
 		<br>
 		<input type="submit" name="login" value="accedi">
 	</form>

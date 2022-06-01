@@ -99,7 +99,7 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		//insert
@@ -152,7 +152,7 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -169,7 +169,7 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -186,7 +186,7 @@ public class ArmaServlet extends HttpServlet {
 				System.err.println(e.getMessage());
 				}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -207,7 +207,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 			
@@ -226,7 +226,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		} 
 
@@ -243,7 +243,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Modifica categoria")) {
@@ -259,7 +259,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		else if(request.getParameter(TIPO_OPERAZIONE) != null && request.getParameter(TIPO_OPERAZIONE).equals("Modifica abilita")) {
@@ -276,7 +276,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -294,7 +294,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 		}
 		
@@ -325,7 +325,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 			}
 		
@@ -356,7 +356,7 @@ public class ArmaServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			dbConnection.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
 			dispatcher.forward(request, response);
 			}
 		

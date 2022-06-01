@@ -4,7 +4,6 @@ public class User {
 	private String username;
 	private String email;
 	private String password;
-	private int numTentativi;
 	
 	public User() {
 	}
@@ -44,13 +43,5 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public int getNumTentativi() {
-		return numTentativi;
-	}
-
-	public void setNumTentativi(int numTentativi) {
-		this.numTentativi = numTentativi;
 	}	
 }

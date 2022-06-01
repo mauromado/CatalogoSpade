@@ -86,6 +86,7 @@
 		  <br><br>
 		  <input id="insertButton" type="submit" name="tipoOperazione" value="inserisci" disabled>
 	  </form>
+	  <button onClick="document.location='pages/home.jsp'">Torna alla home</button>
 	</div>
 </body>
 </html>

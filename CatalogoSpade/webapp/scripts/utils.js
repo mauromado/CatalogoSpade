@@ -178,3 +178,21 @@ function populateForm(arr){
   	element.value=arr[x++];
 	});
 }
+
+function mostraPassword(elementId) {
+  var x = document.getElementById(elementId);
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function checkPassword(elementId,elementId2){
+	var x = document.getElementById(elementId).value;
+	var y = document.getElementById(elementId2).value;
+	if(x.valueOf() != y.valueOf()){
+		abort();
+		return false;
+	}
+}
