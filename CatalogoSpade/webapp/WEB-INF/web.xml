@@ -3,7 +3,7 @@
   <display-name>CatalogoSpade</display-name>
   <welcome-file-list>
     <!--  <welcome-file>index.html</welcome-file> -->
-    <welcome-file>home.jsp</welcome-file>
+    <welcome-file>Login.jsp</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -35,6 +35,16 @@
   <servlet-mapping>
     <servlet-name>dettaglioArmaServlet</servlet-name>
     <url-pattern>/dettaglioArmaServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <servlet-name>loginServlet</servlet-name>
+    <servlet-class>servlets.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginServlet</servlet-name>
+    <url-pattern>/loginServlet</url-pattern>
   </servlet-mapping>
   
   <error-page>

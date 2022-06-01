@@ -11,6 +11,7 @@ import beans.Abilita;
 import beans.Arma;
 import beans.Categoria;
 import beans.Munizioni;
+import beans.User;
 
 
 public class DbConnection {
@@ -65,7 +66,7 @@ public class DbConnection {
 	
 	private static final String QRY_UPDATE_MUNIZIONI="UPDATE Munizioni SET Nome=?,Descrizione=?,Danno=?,TipoDanno=? WHERE Nome=?;";
 	
-	private static final String QRY_RICERCA_ARMA="SELECT * FROM Arma WHERE Nome=?"; 
+	private static final String QRY_SELECT_UTENTE_BY_USERNAME="SELECT * FROM Utenti WHERE Username=?"; 
 	
 	private Connection connect() {
 		try {
@@ -351,6 +352,15 @@ public class DbConnection {
 			System.out.println("Delete: fallita la cancellazione abilità "+nomeAbilita +" ("+e.getMessage()+")");
 		}
 		return ris;
+	}
+	
+	public ResultSet selectUserByUsername(String username)throws SQLException{
+		Connection c = connect();
+		PreparedStatement s = c.prepareStatement(QRY_SELECT_UTENTE_BY_USERNAME);
+		System.out.println("Utente da cercare: " + username);
+		s.setString(1,username);
+		ResultSet rs = s.executeQuery();
+		return rs;
 	}
 	
 }
