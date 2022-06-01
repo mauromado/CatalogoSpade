@@ -44,8 +44,5 @@
 			<input type="submit" name="abilita" value="Mostra Abilita">
 			<input type="submit" name="munizioni" value="Mostra Munizioni">
 		</form>
-		<form action="logInServlet" method="get">
-			<input type="submit" name="login" value="accedi">
-		</form>
 	</body>
 </html>
