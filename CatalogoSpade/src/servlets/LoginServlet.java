@@ -25,11 +25,11 @@ public class LoginServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		;
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean esitoOpearazione = false;
 		if (request.getParameter("login")!=null && request.getParameter("login").equals("accedi")) {
 			if (request.getParameter("username")!=null && request.getParameter("password")!=null) {
 				String username = request.getParameter("username");
@@ -39,19 +39,21 @@ public class LoginServlet extends HttpServlet {
 				try {
 					ResultSet rs = db.selectUserByUsername(username);
 					if (rs.next()==false) {
+						System.out.println("Utente non trovato");
 						db.close();
 						RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Registrazione.jsp");
 						dispatcher.forward(request, response);
 					} else {
+						System.out.println("Utente trovato!");
 						userDb.setUsername(rs.getString("Username"));
 						userDb.setEmail(rs.getString("Email"));
 						userDb.setPassword(rs.getString("Password"));
 						db.close();
 						if (!password.equals(userDb.getPassword())){
-							RequestDispatcher dispatcher = request.getRequestDispatcher(password);
 							//forward jsp login(+messaggio password sbagliata)
 						} else {
-							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Home.jsp");
+							esitoOpearazione = true;
+							RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
 							dispatcher.forward(request, response);
 						}
 					}
@@ -70,10 +72,12 @@ public class LoginServlet extends HttpServlet {
 				try {
 					db.insertUser(userDb);
 					db.close();
+					esitoOpearazione = true;
 				} catch(SQLException e) {
 					e.printStackTrace();
 				}
-				RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+				request.setAttribute("esitoOp",  String.valueOf(esitoOpearazione));
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Login.jsp");
 				dispatcher.forward(request, response);
 			}
 			
