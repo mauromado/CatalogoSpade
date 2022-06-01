@@ -358,7 +358,7 @@ public class DbConnection {
 		return rs;
 	}
 	
-	public void insertUser(User user) {
+	public void insertUser(User user) throws SQLException {
 	Connection c = connect();
 	try {
 		PreparedStatement s = c.prepareStatement(QRY_INSERIMENTO_USER);

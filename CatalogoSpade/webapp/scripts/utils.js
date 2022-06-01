@@ -192,7 +192,9 @@ function checkPassword(elementId,elementId2){
 	var x = document.getElementById(elementId).value;
 	var y = document.getElementById(elementId2).value;
 	if(x.valueOf() != y.valueOf()){
-		abort();
+		alert("Le password non coincidono!");
 		return false;
-	}
+	} 
+	alert("Le password coincidono!");
+	return true;
 }

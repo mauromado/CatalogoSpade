@@ -14,11 +14,11 @@
 	<form action="loginServlet" method="post">
 		<label for="Username">Username:</label>
 		<br>
-		<input type="text" id="Username" name="username">
+		<input type="text" id="Username" name="username" required>
 		<br>
 		<label for="Password">Password:</label>
 		<br>
-		<input type="password" id="Password" name="password">
+		<input type="password" id="Password" name="password" required>
 		<input type="checkbox" onclick="mostraPassword('Password')">Mostra password
 		<br>
 		<input type="submit" name="login" value="accedi">

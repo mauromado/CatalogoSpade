@@ -9,7 +9,7 @@
 <title>Registrazione</title>
 </head>
 <body>
-<form action="loginServlet" method="post">
+<form action="loginServlet" method="post" onsubmit="return checkPassword('Password','PasswordConfirm')">
 	<label for="mail">Mail:</label>
 	<br>
 	<input type="text" id="Mail" name="mail">
@@ -28,7 +28,7 @@
 	<input type="password" id="PasswordConfirm" name="passwordConfirm" minlength="8" required>
 	<input type="checkbox" onclick="mostraPassword('PasswordConfirm')">Mostra password
 	<br><br>
-	<input type="submit" name="registrazione" value="Registrati" onSubmit="checkPassword('Password','PasswordConfirm')">
+	<input type="submit" name="registrazione" value="Registrati">
 </form>
 
 </body>

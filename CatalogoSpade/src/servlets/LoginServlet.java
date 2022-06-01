@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 							RequestDispatcher dispatcher = request.getRequestDispatcher(password);
 							//forward jsp login(+messaggio password sbagliata)
 						} else {
-							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/home.jsp");
+							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Home.jsp");
 							dispatcher.forward(request, response);
 						}
 					}
@@ -59,16 +59,23 @@ public class LoginServlet extends HttpServlet {
 					e.printStackTrace();
 				}	
 			}
-		}else if(request.getParameter("registrazione")!=null && request.getParameter("registrazione").equals("Registrati")) {
-			String username = request.getParameter("username");
-			String password = request.getParameter("password");
-			String mail = request.getParameter("mail");
-			User userDb = new User(username,mail,password);
-			DbConnection db = new DbConnection();
-			db.insertUser(userDb);
-			db.close();
-			RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
-			dispatcher.forward(request, response);
+		}else {
+			
+			if(request.getParameter("registrazione")!=null && request.getParameter("registrazione").equals("Registrati")) {
+				String username = request.getParameter("username");
+				String password = request.getParameter("password");
+				String mail = request.getParameter("mail");
+				User userDb = new User(username,mail,password);
+				DbConnection db = new DbConnection();
+				try {
+					db.insertUser(userDb);
+					db.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+				}
+				RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+				dispatcher.forward(request, response);
+			}
 			
 		}
 	}
