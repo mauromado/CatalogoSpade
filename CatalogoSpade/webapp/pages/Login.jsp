@@ -9,6 +9,12 @@
 <link href="./style/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="sfondo2">
+	<% String esitoOperazione = (String) request.getAttribute("esitoOp");
+		if(esitoOperazione != null && esitoOperazione.equals("false")) {
+			 %><script type="text/javascript">
+			 	alert("Password errata!");</script>
+			
+		<% } %>
 	<h1 align="center">Accedi per continuare</h1>
 	<br><br>
 	<form action="loginServlet" method="post">

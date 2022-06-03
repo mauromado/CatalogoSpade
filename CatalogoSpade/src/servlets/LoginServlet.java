@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean esitoOpearazione = false;
+		boolean esitoOperazione = false;
 		System.out.print("Servlet di login raggiunta" );
 		if (request.getParameter("login")!=null && request.getParameter("login").equals("accedi")) {
 			if (request.getParameter("username")!=null && request.getParameter("password")!=null) {
@@ -50,9 +50,13 @@ public class LoginServlet extends HttpServlet {
 						userDb.setPassword(rs.getString("Password"));
 						db.close();
 						if (!password.equals(userDb.getPassword())){
-							//forward jsp login(+messaggio password sbagliata)
+							esitoOperazione = false;
+							request.setAttribute("esitoOp",  String.valueOf(esitoOperazione));
+							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Login.jsp");
+							dispatcher.forward(request, response);
+							
 						} else {
-							esitoOpearazione = true;
+							esitoOperazione = true;
 							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Home.jsp");
 							dispatcher.forward(request, response);
 						}
@@ -72,11 +76,11 @@ public class LoginServlet extends HttpServlet {
 				try {
 					db.insertUser(userDb);
 					db.close();
-					esitoOpearazione = true;
+					esitoOperazione = true;
 				} catch(SQLException e) {
 					e.printStackTrace();
 				}
-				request.setAttribute("esitoOp",  String.valueOf(esitoOpearazione));
+				request.setAttribute("esitoOp",  String.valueOf(esitoOperazione));
 				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Login.jsp");
 				dispatcher.forward(request, response);
 			}
