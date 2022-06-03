@@ -3,8 +3,8 @@
 <%@ page import="beans.ListaArmi"%>
 <%@ page import="beans.Arma"%>
 <%@ page import="java.util.*"%>
-<%@page import="beans.ListaAbilita" %>
-<%@page import="beans.ListaCategoria" %>
+<%@ page import="beans.ListaAbilita" %>
+<%@ page import="beans.ListaCategoria" %>
 
 <link href="./style/style.css" rel="stylesheet" type="text/css">
 <html>

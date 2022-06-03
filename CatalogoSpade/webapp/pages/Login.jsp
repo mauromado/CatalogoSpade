@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="../scripts/utils.js">
-</script>
 <meta charset="ISO-8859-1">
 <title>Accedi</title>
+<script type="text/javascript" src="../scripts/utils.js"></script>
 </head>
 <body>
 	<h1 align="center">Accedi per continuare</h1>

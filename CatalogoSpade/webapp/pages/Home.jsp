@@ -1,18 +1,17 @@
-<%@ page errorPage="./errors/failure.jsp" %>
-
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
-<link href="../style/style.css" rel="stylesheet" type="text/css">    
+<%@ page errorPage="../errors/failure.jsp" %>
+    
 <!DOCTYPE html>
 <html>
-	<head>
-		<script type="text/javascript" src="../scripts/utils.js"></script>
-		<meta charset="utf-8">
-		<meta http-equiv="Content-Type" content="text/html;">
-		<title>Catalogo Spade</title>
-	</head>
-	<body style="color:white">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Catalogo Spade</title>
+	<link href="./style/style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="./scripts/utils.js"></script> 
+</head>
+<body style="color:white">
 	<% String esitoOperazione = (String) request.getAttribute("esitoOp");
 		if(esitoOperazione != null && esitoOperazione.equals("true")) {
 			 %><script type="text/javascript">
