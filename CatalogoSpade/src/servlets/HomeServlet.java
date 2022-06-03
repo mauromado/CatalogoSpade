@@ -39,6 +39,8 @@ public class HomeServlet extends HttpServlet {
 		private static final String PARAMETER_VALUE_ABILITA = "Mostra Abilita";
 		private static final String PARAMETER_RICERCA = "nomeArma";
 		private static final String PARAMETER_CERCA_BTN = "cerca";
+		private static final String PARAMETER_ENTRA = "entra";
+		private static final String PARAMETER_TORNA = "torna";
 		ListaAbilita listaAbilita = new ListaAbilita();
 	       
 	    public HomeServlet() {
@@ -67,7 +69,16 @@ public class HomeServlet extends HttpServlet {
 
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			ListaArmi listaArmi = new ListaArmi();
-			if(request.getParameter(PARAMETER_CATALOGO) != null && request.getParameter(PARAMETER_CATALOGO).equals(PARAMETER_VALUE_CATALOGO)) {//catalogo=mostraCatalogo
+			if(request.getParameter(PARAMETER_ENTRA) != null && request.getParameter(PARAMETER_ENTRA).equals("Entra")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Login.jsp");
+				dispatcher.forward(request, response);
+			}
+			else if(request.getParameter(PARAMETER_TORNA) != null && request.getParameter(PARAMETER_TORNA).equals("Torna")) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Home.jsp");
+				dispatcher.forward(request, response);
+			}
+			
+			else if(request.getParameter(PARAMETER_CATALOGO) != null && request.getParameter(PARAMETER_CATALOGO).equals(PARAMETER_VALUE_CATALOGO)) {//catalogo=mostraCatalogo
 				ResultSet rs;
 				DbConnection dbConnection = new DbConnection();
 				ListaCategoria listaCategorie = new ListaCategoria();

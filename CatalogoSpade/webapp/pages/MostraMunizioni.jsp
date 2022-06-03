@@ -112,6 +112,8 @@
 		<input id="insertButton" type="submit" name="tipoOperazione" value="Modifica munizione">
 	</form>
 	</div>
-	<button onClick="document.location='pages/Home.jsp'">Torna alla home</button>
+	<form action="homeServlet" method="get">
+			<input type="submit" name="torna" value="Torna">
+	</form>
 </body>
 </html>
