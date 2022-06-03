@@ -5,11 +5,12 @@
 <head>
 <script type="text/javascript" src="./scripts/utils.js">
 </script>
+<link href="./style/style.css" rel="stylesheet" type="text/css">
 <meta charset="ISO-8859-1">
 <title>Registrazione</title>
 </head>
-<body>
-<form action="loginServlet" method="post" onsubmit="return checkPassword('Password','PasswordConfirm')">
+<body class="sfondo2">
+<form action="loginServlet" method="post" onsubmit="return checkPassword('Password','PasswordConfirm') && checkEmail('Mail')">
 	<label for="mail">Mail:</label>
 	<br>
 	<input type="text" id="Mail" name="mail">

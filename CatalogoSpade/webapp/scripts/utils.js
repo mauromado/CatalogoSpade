@@ -195,6 +195,35 @@ function checkPassword(elementId,elementId2){
 		alert("Le password non coincidono!");
 		return false;
 	} 
-	alert("Le password coincidono!");
 	return true;
+}
+
+function countOccurance(str,ch){
+	let ris=0;
+	for(x in str){
+		if(x===ch){
+			ris++;}	
+	}
+	return ris;	
+}
+
+function checkEmail(mailId){
+	var email = document.getElementById(mailId).value;
+	if(email.includes(" ")){
+		alert("La email non puo contenere spazi!");
+		return false;}
+	if(!email.includes("@")){
+		alert("La email deve contenere una chiocciola!");
+		return false;}
+	if(!email.substring(email.indexOf("@")+1).includes(".")){
+		alert("La parte dell'email dopo la chiocciola deve contenere almeno un punto");
+		return false;}
+	if(countOccurance(email,"@")>1){
+		alert("L'email non puo contenere più di una chiocciola");
+		return false;
+	}
+	if(email.substring(email.indexOf("@")+1).length<=1 || email.substring(0,email.indexOf("@")).length<1){
+		alert("L'email deve contenere testo prima e dopo la chiocciola");
+		return false;
+	}
 }
