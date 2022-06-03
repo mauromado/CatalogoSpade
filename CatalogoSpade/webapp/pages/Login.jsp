@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="scripts/utils.js">
+<script type="text/javascript" src="../scripts/utils.js">
 </script>
 <meta charset="ISO-8859-1">
 <title>Accedi</title>
@@ -11,7 +11,7 @@
 <body>
 	<h1 align="center">Accedi per continuare</h1>
 	<br><br>
-	<form action="loginServlet" method="post">
+	<form action="../loginServlet" method="post">
 		<label for="Username">Username:</label>
 		<br>
 		<input type="text" id="Username" name="username" required>

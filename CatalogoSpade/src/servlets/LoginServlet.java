@@ -15,7 +15,6 @@ import beans.User;
 import database.DbConnection;
 
 
-@WebServlet("/LogInServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -30,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		boolean esitoOpearazione = false;
+		System.out.print("Servlet di login raggiunta" );
 		if (request.getParameter("login")!=null && request.getParameter("login").equals("accedi")) {
 			if (request.getParameter("username")!=null && request.getParameter("password")!=null) {
 				String username = request.getParameter("username");
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 							//forward jsp login(+messaggio password sbagliata)
 						} else {
 							esitoOpearazione = true;
-							RequestDispatcher dispatcher = request.getRequestDispatcher("Home.jsp");
+							RequestDispatcher dispatcher = request.getRequestDispatcher("pages/Home.jsp");
 							dispatcher.forward(request, response);
 						}
 					}
