@@ -11,6 +11,8 @@
 </head>
 <body>
 <h2>Arma non trovata!</h2>
-<button onClick="document.location='home.jsp'">Torna alla home</button>
+<form action="homeServlet" method="get">
+	<input type="submit" name="torna" value="Torna">
+</form>
 </body>
 </html>

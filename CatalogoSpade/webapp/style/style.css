@@ -5,7 +5,9 @@ body {
   background-attachment: fixed;
   color: white;
 }
-
+body.sfondo2 {
+    background-image: url(sfondoLogin.jpg);
+}
 .center {
   margin: auto;
   width: 50%;
